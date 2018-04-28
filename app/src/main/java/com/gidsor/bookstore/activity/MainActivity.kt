@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui
+package com.gidsor.bookstore.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

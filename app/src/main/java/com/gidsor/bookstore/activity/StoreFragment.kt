@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui
+package com.gidsor.bookstore.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
