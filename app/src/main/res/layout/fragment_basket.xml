@@ -10,5 +10,5 @@
         android:layout_marginTop="40sp"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/Roboto-Light"
-        android:text="Магазин книг"/>
+        android:text="Книги в корзине"/>
 </RelativeLayout>

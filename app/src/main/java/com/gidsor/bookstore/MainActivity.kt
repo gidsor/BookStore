@@ -1,8 +1,7 @@
-package com.gidsor.bookstore.activity
+package com.gidsor.bookstore
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.gidsor.bookstore.R
+import android.support.v7.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
