@@ -6,11 +6,23 @@ import android.support.v4.app.FragmentPagerAdapter
 
 class SectionsPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
+    private val fragmentList: MutableList<Fragment> = ArrayList()
+    private val fragmentTitleList: MutableList<String> = ArrayList()
+
+    fun addFragment(fragment: Fragment, title:String) {
+        fragmentList.add(fragment)
+        fragmentTitleList.add(title)
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return fragmentTitleList[position]
+    }
+
     override fun getItem(position: Int): Fragment {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return fragmentList[position]
     }
 
     override fun getCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return fragmentList.count()
     }
 }
