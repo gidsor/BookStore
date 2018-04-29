@@ -25,8 +25,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = SectionsPageAdapter(supportFragmentManager)
         adapter.addFragment(StoreFragment(), "Книги")
-        adapter.addFragment(CategoriesFragment(), "Жанры")
-        adapter.addFragment(BasketFragment(), "Корзина")
+        adapter.addFragment(GenresFragment(), "Жанры")
+        adapter.addFragment(PopularFragment(), "Популярное")
+        adapter.addFragment(NoveltiesFragment(), "Новинки")
         viewPager.adapter = adapter
     }
 }
