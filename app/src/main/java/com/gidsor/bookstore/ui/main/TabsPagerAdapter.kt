@@ -12,7 +12,7 @@ import com.gidsor.bookstore.ui.main.novelties.NoveltiesFragment
 import com.gidsor.bookstore.ui.main.popular.PopularFragment
 import com.gidsor.bookstore.ui.main.store.StoreFragment
 
-class FixedTabsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class TabsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
