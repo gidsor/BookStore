@@ -17,16 +17,7 @@ class StoreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        setupViewPager()
         return inflater.inflate(R.layout.fragment_everything, container, false)
     }
 
-    private fun setupViewPager() {
-//        viewPager = findViewById(R.id.view_pager)
-//        pagerAdapter = TabsPagerAdapter(supportFragmentManager)
-//        viewPager.adapter = pagerAdapter
-//
-//        tabLayout = findViewById(R.id.tab_layout)
-//        tabLayout.setupWithViewPager(viewPager)
-    }
 }
