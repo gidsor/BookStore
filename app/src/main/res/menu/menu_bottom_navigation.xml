@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_store"
+        android:icon="@drawable/ic_home_white_24dp"
         android:title="Главная"/>
     <item
         android:id="@+id/navigation_genre"
+        android:icon="@drawable/ic_home_white_24dp"
         android:title="Жанры"/>
     <item
         android:id="@+id/navigation_purchase"
+        android:icon="@drawable/ic_home_white_24dp"
         android:title="Корзина"/>
     <item
         android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_home_white_24dp"
         android:title="Профиль"/>
 </menu>
