@@ -1,30 +1,46 @@
 package com.gidsor.bookstore.ui.main
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.gidsor.bookstore.*
+import com.gidsor.bookstore.ui.account.AccountFragment
+import com.gidsor.bookstore.ui.genre.GenreFragment
+import com.gidsor.bookstore.ui.purchase.PurchaseFragment
+import com.gidsor.bookstore.ui.store.StoreFragment
+import com.gidsor.bookstore.ui.store.TabsPagerAdapter
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var viewPager: ViewPager
-    private lateinit var pagerAdapter: TabsPagerAdapter
-    private lateinit var tabLayout: TabLayout
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupViewPager()
+        loadFragment(StoreFragment())
+
+        var navigationView: BottomNavigationView = findViewById(R.id.navigation)
+        navigationView.setOnNavigationItemSelectedListener(this)
     }
 
-    private fun setupViewPager() {
-        viewPager = findViewById(R.id.view_pager)
-        pagerAdapter = TabsPagerAdapter(supportFragmentManager)
-        viewPager.adapter = pagerAdapter
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.navigation_store -> loadFragment(StoreFragment())
+            R.id.navigation_genre -> loadFragment(GenreFragment())
+            R.id.navigation_purchase -> loadFragment(PurchaseFragment())
+            R.id.navigation_account -> loadFragment(AccountFragment())
+            else -> loadFragment(StoreFragment())
+        }
+    }
 
-        tabLayout = findViewById(R.id.tab_layout)
-        tabLayout.setupWithViewPager(viewPager)
+    private fun loadFragment(fragment: Fragment?) : Boolean {
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+            return true
+        }
+        return false
     }
 }

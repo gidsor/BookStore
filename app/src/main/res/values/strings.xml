@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BookStore</string>
     <string name="title_activity_main">Книжный магазин</string>
-    <string name="store_page_title">Все</string>
+    <string name="everything_page_title">Все</string>
     <string name="popular_page_title">Популярное</string>
     <string name="novelties_page_title">Новинки</string>
     <string name="action_settings">Settings</string>

@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.main.novelties
+package com.gidsor.bookstore.ui.store.novelties
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
