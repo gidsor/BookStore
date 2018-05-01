@@ -12,7 +12,6 @@ import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.purchase.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
-import com.gidsor.bookstore.ui.store.TabsPagerAdapter
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         loadFragment(StoreFragment())
 
-        var navigationView: BottomNavigationView = findViewById(R.id.navigation)
+        val navigationView: BottomNavigationView = findViewById(R.id.navigation)
         navigationView.setOnNavigationItemSelectedListener(this)
     }
 
