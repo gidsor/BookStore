@@ -6,14 +6,14 @@
         android:title="Главная"/>
     <item
         android:id="@+id/navigation_genre"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:icon="@drawable/ic_library_books_white_24dp"
         android:title="Жанры"/>
     <item
         android:id="@+id/navigation_purchase"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:icon="@drawable/ic_shopping_basket_white_24dp"
         android:title="Корзина"/>
     <item
         android:id="@+id/navigation_account"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:icon="@drawable/ic_account_circle_white_24dp"
         android:title="Профиль"/>
 </menu>
