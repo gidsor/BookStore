@@ -7,15 +7,22 @@ import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.purchase.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
-import java.lang.reflect.AccessibleObject.setAccessible
-import java.lang.reflect.Array.setBoolean
-import java.lang.reflect.Field
+import android.view.View
+import com.mikepenz.materialdrawer.Drawer
+import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.model.interfaces.IProfile
+import com.mikepenz.materialdrawer.AccountHeader
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem
+import com.mikepenz.materialdrawer.AccountHeaderBuilder
+
+
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -27,12 +34,32 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         loadFragment(StoreFragment())
 
-        val navigationView: BottomNavigationView = findViewById(R.id.navigation)
-        navigationView.setOnNavigationItemSelectedListener(this)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation)
+        bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
         // always show text in navigation for more 3 elements and disable shift mode
-        navigationView.disableShiftMode()
+        bottomNavigationView.disableShiftMode()
 
+        // add drawer
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        val accountHeader = AccountHeaderBuilder()
+                .withActivity(this)
+                .addProfiles(
+                        ProfileDrawerItem().withName("Your Name").
+                                withEmail("your mail").
+                                withIcon(R.drawable.ic_user)
+                )
+                .withSelectionListEnabledForSingleProfile(false)
+                .build()
+        val drawer: Drawer = DrawerBuilder()
+                .withActivity(this)
+                .withRootView(R.id.drawer_container)
+                .withToolbar(toolbar)
+                .withAccountHeader(accountHeader)
+                .withActionBarDrawerToggle(true)
+                .withActionBarDrawerToggleAnimated(true)
+                .build()
     }
 
     @SuppressLint("RestrictedApi")
@@ -67,4 +94,5 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return false
     }
+
 }
