@@ -1,7 +1,9 @@
 package com.gidsor.bookstore.ui.main
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
@@ -21,11 +23,20 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
-
-
+import com.mikepenz.materialdrawer.model.DividerDrawerItem
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
+import com.gidsor.bookstore.R.id.toolbar
+import com.gidsor.bookstore.ui.about.AboutFragment
+import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
+import com.gidsor.bookstore.ui.reference.ReferenceFragment
+import com.gidsor.bookstore.ui.settings.SettingsFragment
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+    private lateinit var drawer: Drawer
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +45,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         loadFragment(StoreFragment())
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.navigation)
+        bottomNavigationView = findViewById(R.id.navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
         // always show text in navigation for more 3 elements and disable shift mode
@@ -52,13 +63,34 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 )
                 .withSelectionListEnabledForSingleProfile(false)
                 .build()
-        val drawer: Drawer = DrawerBuilder()
+        drawer = DrawerBuilder()
                 .withActivity(this)
                 .withRootView(R.id.drawer_container)
                 .withToolbar(toolbar)
                 .withAccountHeader(accountHeader)
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
+                .addDrawerItems(
+                        PrimaryDrawerItem().withName("Настройки").
+                                withIcon(R.drawable.ic_settings_white_24dp),
+                        PrimaryDrawerItem().withName("Справка").
+                                withIcon(R.drawable.ic_reference_outline_white_24dp),
+                        PrimaryDrawerItem().withName("Конфиденциальность").
+                                withIcon(R.drawable.ic_confidentiality_white_24dp),
+                        PrimaryDrawerItem().withName("О приложении").
+                                withIcon(R.drawable.ic_about_white_24dp)
+                )
+                .withOnDrawerItemClickListener {view, position, drawerItem ->
+                    bottomNavigationView.menu.setGroupCheckable(0, false, true)
+                    when (position) {
+                        1 -> !loadFragment(SettingsFragment())
+                        2 -> !loadFragment(ReferenceFragment())
+                        3 -> !loadFragment(ConfidentialityFragment())
+                        4 -> !loadFragment(AboutFragment())
+                        else -> true
+                    }
+                }
+                .withSelectedItem(-1)
                 .build()
     }
 
@@ -78,6 +110,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        drawer.closeDrawer()
+        drawer.setSelection(-1)
+        bottomNavigationView.menu.setGroupCheckable(0, true, true)
         return when (item.itemId) {
             R.id.navigation_store -> loadFragment(StoreFragment())
             R.id.navigation_genre -> loadFragment(GenreFragment())
