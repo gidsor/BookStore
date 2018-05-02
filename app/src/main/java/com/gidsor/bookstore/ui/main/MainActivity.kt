@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.MenuItem
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.ui.account.AccountFragment
@@ -32,11 +33,13 @@ import com.gidsor.bookstore.ui.about.AboutFragment
 import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
 import com.gidsor.bookstore.ui.settings.SettingsFragment
+import com.miguelcatalan.materialsearchview.MaterialSearchView
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawer: Drawer
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var searchView: MaterialSearchView
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         loadFragment(StoreFragment())
 
+        // add search
+        searchView = findViewById(R.id.search_view)
+        // add bottom navigation
         bottomNavigationView = findViewById(R.id.navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
@@ -116,6 +122,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         drawer.closeDrawer()
         drawer.setSelection(-1)
         bottomNavigationView.menu.setGroupCheckable(0, true, true)
+        searchView.closeSearch()
         return when (item.itemId) {
             R.id.navigation_store -> loadFragment(StoreFragment())
             R.id.navigation_genre -> loadFragment(GenreFragment())
@@ -133,4 +140,18 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        val item: MenuItem = menu!!.findItem(R.id.action_search)
+        searchView.setMenuItem(item)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (searchView.isSearchOpen) {
+            searchView.closeSearch()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
