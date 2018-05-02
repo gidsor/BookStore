@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                                 withEmail("your mail").
                                 withIcon(R.drawable.ic_user)
                 )
+                .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, currentProfile ->
+                    true
+                })
                 .withSelectionListEnabledForSingleProfile(false)
                 .build()
         drawer = DrawerBuilder()
