@@ -5,9 +5,9 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.gidsor.bookstore.BookStoreApplication
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.ui.store.novelties.NoveltiesFragment
-import com.gidsor.bookstore.ui.store.popular.PopularFragment
-import com.gidsor.bookstore.ui.store.everything.EverythingFragment
+import com.gidsor.bookstore.ui.novelties.NoveltiesFragment
+import com.gidsor.bookstore.ui.popular.PopularFragment
+import com.gidsor.bookstore.ui.everything.EverythingFragment
 
 class TabsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

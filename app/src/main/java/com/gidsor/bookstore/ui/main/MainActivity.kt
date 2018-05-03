@@ -1,9 +1,7 @@
 package com.gidsor.bookstore.ui.main
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
@@ -17,18 +15,12 @@ import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.purchase.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
-import android.view.View
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
-import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.gidsor.bookstore.R.id.toolbar
 import com.gidsor.bookstore.ui.about.AboutFragment
 import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
@@ -65,7 +57,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .addProfiles(
                         ProfileDrawerItem().withName("Your Name").
                                 withEmail("your mail").
-                                withIcon(R.drawable.ic_user)
+                                withIcon(R.drawable.image_default_user)
                 )
                 .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, currentProfile ->
                     true
