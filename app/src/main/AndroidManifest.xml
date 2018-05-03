@@ -11,6 +11,8 @@
         android:theme="@style/MaterialDrawerTheme">
         <activity
             android:name=".ui.main.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/title_activity_main"
             android:theme="@style/MaterialDrawerTheme.TranslucentStatus">
             <intent-filter>
