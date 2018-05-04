@@ -12,7 +12,8 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Genre
 
 class GenreAdapter(val context: Context, val genreItems: ArrayList<Genre>) : BaseAdapter() {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {
+        var convertView: View? = _convertView
         if (convertView == null) {
             val mInflater: LayoutInflater = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = mInflater.inflate(R.layout.fragment_genre_item, null)
