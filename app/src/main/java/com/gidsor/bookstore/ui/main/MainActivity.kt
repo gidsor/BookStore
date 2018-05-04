@@ -29,9 +29,11 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    private lateinit var drawer: Drawer
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var toolbar: Toolbar
     private lateinit var searchView: MaterialSearchView
+    private lateinit var drawer: Drawer
+    private lateinit var accountHeader: AccountHeader
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,61 +44,22 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         // add search
         searchView = findViewById(R.id.search_view)
+
         // add bottom navigation
         bottomNavigationView = findViewById(R.id.navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
-
         // always show text in navigation for more 3 elements and disable shift mode
         bottomNavigationView.disableShiftMode()
 
         // add drawer
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        val accountHeader = AccountHeaderBuilder()
-                .withActivity(this)
-                .addProfiles(
-                        ProfileDrawerItem().withName("Your Name").
-                                withEmail("your mail").
-                                withIcon(R.drawable.image_default_user)
-                )
-                .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, currentProfile ->
-                    true
-                })
-                .withSelectionListEnabledForSingleProfile(false)
-                .build()
-        drawer = DrawerBuilder()
-                .withActivity(this)
-                .withRootView(R.id.drawer_container)
-                .withToolbar(toolbar)
-                .withAccountHeader(accountHeader)
-                .withActionBarDrawerToggle(true)
-                .withActionBarDrawerToggleAnimated(true)
-                .addDrawerItems(
-                        PrimaryDrawerItem().withName("Настройки").
-                                withIcon(R.drawable.ic_settings_white_24dp),
-                        PrimaryDrawerItem().withName("Справка").
-                                withIcon(R.drawable.ic_reference_outline_white_24dp),
-                        PrimaryDrawerItem().withName("Конфиденциальность").
-                                withIcon(R.drawable.ic_confidentiality_white_24dp),
-                        PrimaryDrawerItem().withName("О приложении").
-                                withIcon(R.drawable.ic_about_white_24dp)
-                )
-                .withOnDrawerItemClickListener {view, position, drawerItem ->
-                    bottomNavigationView.menu.setGroupCheckable(0, false, true)
-                    when (position) {
-                        1 -> !loadFragment(SettingsFragment())
-                        2 -> !loadFragment(ReferenceFragment())
-                        3 -> !loadFragment(ConfidentialityFragment())
-                        4 -> !loadFragment(AboutFragment())
-                        else -> true
-                    }
-                }
-                .withSelectedItem(-1)
-                .build()
+        accountHeader = buildAccountHeader()
+        drawer = buildDrawer()
     }
 
     @SuppressLint("RestrictedApi")
-    fun BottomNavigationView.disableShiftMode() {
+    private fun BottomNavigationView.disableShiftMode() {
         val menuView = getChildAt(0) as BottomNavigationMenuView
         val shiftingMode = menuView::class.java.getDeclaredField("mShiftingMode")
         shiftingMode.isAccessible = true
@@ -145,5 +108,52 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun buildAccountHeader(): AccountHeader {
+        return AccountHeaderBuilder()
+                .withActivity(this)
+                .addProfiles(
+                        ProfileDrawerItem().withName("Your Name").
+                                withEmail("your mail").
+                                withIcon(R.drawable.image_default_user)
+                )
+                .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, current ->
+                    true
+                })
+                .withSelectionListEnabledForSingleProfile(false)
+                .build()
+    }
+
+    private fun buildDrawer(): Drawer {
+        return DrawerBuilder()
+                .withActivity(this)
+                .withRootView(R.id.drawer_container)
+                .withToolbar(toolbar)
+                .withAccountHeader(accountHeader)
+                .withActionBarDrawerToggle(true)
+                .withActionBarDrawerToggleAnimated(true)
+                .addDrawerItems(
+                        PrimaryDrawerItem().withName("Настройки")
+                                .withIcon(R.drawable.ic_settings_white_24dp),
+                        PrimaryDrawerItem().withName("Справка")
+                                .withIcon(R.drawable.ic_reference_outline_white_24dp),
+                        PrimaryDrawerItem().withName("Конфиденциальность")
+                                .withIcon(R.drawable.ic_confidentiality_white_24dp),
+                        PrimaryDrawerItem().withName("О приложении")
+                                .withIcon(R.drawable.ic_about_white_24dp)
+                )
+                .withOnDrawerItemClickListener {view, position, drawerItem ->
+                    bottomNavigationView.menu.setGroupCheckable(0, false, true)
+                    when (position) {
+                        1 -> !loadFragment(SettingsFragment())
+                        2 -> !loadFragment(ReferenceFragment())
+                        3 -> !loadFragment(ConfidentialityFragment())
+                        4 -> !loadFragment(AboutFragment())
+                        else -> true
+                    }
+                }
+                .withSelectedItem(-1)
+                .build()
     }
 }
