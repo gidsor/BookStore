@@ -12,7 +12,7 @@ import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.ui.bookitem.BookAdapter
 
 class NoveltiesFragment : ListFragment() {
-    private val names: Array<String> = arrayOf("Тонкое искусство пофигизма", "Оно", "Ходячий замок",
+    private val names: Array<String> = arrayOf("Тонкое искусство пофигизма", "Ходячий замок", "Оно",
             "Книга пыли. Прекрасная дикарка", "Верховная Мать Змей", "Совершенный код", "Потерянное озеро")
     private val images: Array<Int> = arrayOf(R.drawable.book1, R.drawable.book2, R.drawable.book3,
             R.drawable.book4, R.drawable.book5, R.drawable.book6, R.drawable.book7)
