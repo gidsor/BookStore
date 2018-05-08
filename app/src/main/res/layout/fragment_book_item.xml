@@ -13,14 +13,59 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
-    <TextView
-        android:id="@+id/book_name"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@id/book_image"
-        android:layout_marginTop="10dp"
-        android:gravity="left"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto_light"
-        android:textColor="@color/material_drawer_dark_primary_text"/>
+        android:layout_toEndOf="@id/book_image">
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+        <TextView
+            android:id="@+id/book_authors"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/book_name"
+            android:layout_marginTop="1dp"
+            android:gravity="left"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+        <TextView
+            android:id="@+id/book_year"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/book_authors"
+            android:layout_marginTop="1dp"
+            android:gravity="left"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+        <TextView
+            android:id="@+id/book_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/book_year"
+            android:layout_marginTop="1dp"
+            android:gravity="left"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+
+        <TextView
+            android:id="@+id/book_description"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_below="@id/book_genre"
+            android:layout_marginTop="1dp"
+            android:gravity="left"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+    </RelativeLayout>
 </RelativeLayout>
