@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.about
+package com.gidsor.bookstore.ui.delivery
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,17 +9,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.gidsor.bookstore.R
 
-class AboutFragment : Fragment() {
+class DeliveryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        return inflater.inflate(R.layout.fragment_delivery, container, false)
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val text: TextView = view!!.findViewById(R.id.about_text)
+        val text: TextView = view!!.findViewById(R.id.delivery_text)
         text.movementMethod = ScrollingMovementMethod()
     }
 }

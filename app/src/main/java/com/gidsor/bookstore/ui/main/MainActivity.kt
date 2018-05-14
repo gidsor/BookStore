@@ -23,6 +23,7 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.gidsor.bookstore.ui.about.AboutFragment
 import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
+import com.gidsor.bookstore.ui.delivery.DeliveryFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
 import com.gidsor.bookstore.ui.settings.SettingsFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
@@ -136,11 +137,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .addDrawerItems(
                         PrimaryDrawerItem().withName("Настройки")
                                 .withIcon(R.drawable.ic_settings_white_24dp),
-                        PrimaryDrawerItem().withName("Справка")
+                        PrimaryDrawerItem().withName("Публичная оферта")
                                 .withIcon(R.drawable.ic_reference_outline_white_24dp),
                         PrimaryDrawerItem().withName("Конфиденциальность")
                                 .withIcon(R.drawable.ic_confidentiality_white_24dp),
-                        PrimaryDrawerItem().withName("О приложении")
+                        PrimaryDrawerItem().withName("Доставка и оплата")
+                                .withIcon(R.drawable.ic_payment_white_24dp),
+                        PrimaryDrawerItem().withName("О компании")
                                 .withIcon(R.drawable.ic_about_white_24dp)
                 )
                 .withOnDrawerItemClickListener {view, position, drawerItem ->
@@ -149,7 +152,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         1 -> !loadFragment(SettingsFragment())
                         2 -> !loadFragment(ReferenceFragment())
                         3 -> !loadFragment(ConfidentialityFragment())
-                        4 -> !loadFragment(AboutFragment())
+                        4 -> !loadFragment(DeliveryFragment())
+                        5 -> !loadFragment(AboutFragment())
                         else -> true
                     }
                 }
