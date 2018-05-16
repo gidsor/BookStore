@@ -24,18 +24,18 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         val nameBook: TextView = convertView.findViewById(R.id.book_name)
         val authorsBook: TextView = convertView.findViewById(R.id.book_authors)
         val yearBook: TextView = convertView.findViewById(R.id.book_year)
+        val priceBook: TextView = convertView.findViewById(R.id.book_price)
         val genreBook: TextView = convertView.findViewById(R.id.book_genre)
         val descriptionBook: TextView = convertView.findViewById(R.id.book_description)
-        val priceBook: TextView = convertView.findViewById(R.id.book_price)
 
         val book: Book = bookItems[position]
         imageBook.setImageResource(book.image)
         nameBook.text = book.name
         authorsBook.text = "Автор: " + book.authors
         yearBook.text = "Год издания: " + book.year.toString()
+        priceBook.text = "Цена: " + book.price.toString() + " \u20BD"
         genreBook.text = "Жанр: " + book.genre
         descriptionBook.text = book.description
-        priceBook.text = "Цена: " + book.price.toString() + " \u20BD"
 
         return convertView
     }
