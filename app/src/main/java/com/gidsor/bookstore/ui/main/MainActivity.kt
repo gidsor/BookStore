@@ -23,6 +23,7 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.gidsor.bookstore.ui.about.AboutFragment
 import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
+import com.gidsor.bookstore.ui.contacts.ContactsFragment
 import com.gidsor.bookstore.ui.delivery.DeliveryFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
 import com.gidsor.bookstore.ui.settings.SettingsFragment
@@ -143,6 +144,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                                 .withIcon(R.drawable.ic_confidentiality_white_24dp),
                         PrimaryDrawerItem().withName("Доставка и оплата")
                                 .withIcon(R.drawable.ic_payment_white_24dp),
+                        PrimaryDrawerItem().withName("Контакты")
+                                .withIcon(R.drawable.ic_contact_support_white_24dp),
                         PrimaryDrawerItem().withName("О компании")
                                 .withIcon(R.drawable.ic_about_white_24dp)
                 )
@@ -153,7 +156,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         2 -> !loadFragment(ReferenceFragment())
                         3 -> !loadFragment(ConfidentialityFragment())
                         4 -> !loadFragment(DeliveryFragment())
-                        5 -> !loadFragment(AboutFragment())
+                        5 -> !loadFragment(ContactsFragment())
+                        6 -> !loadFragment(AboutFragment())
                         else -> true
                     }
                 }
