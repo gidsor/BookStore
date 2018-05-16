@@ -47,10 +47,20 @@
             android:fontFamily="@font/roboto_light"
             android:textColor="@color/material_drawer_dark_primary_text"/>
         <TextView
-            android:id="@+id/book_genre"
+            android:id="@+id/book_price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@id/book_year"
+            android:layout_marginTop="1dp"
+            android:gravity="left"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/material_drawer_dark_primary_text"/>
+        <TextView
+            android:id="@+id/book_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/book_price"
             android:layout_marginTop="1dp"
             android:gravity="left"
             android:textSize="12sp"
