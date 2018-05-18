@@ -137,8 +137,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return AccountHeaderBuilder()
                 .withActivity(this)
                 .addProfiles(
-                        ProfileDrawerItem().withName("Your Name").
-                                withEmail("your mail").
+                        ProfileDrawerItem().withName("Аноним").
+                                withEmail("mail@mail.com").
                                 withIcon(R.drawable.image_default_user)
                 )
                 .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, current ->

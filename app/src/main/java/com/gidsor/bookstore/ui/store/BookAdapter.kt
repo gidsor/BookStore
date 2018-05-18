@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
@@ -21,21 +22,17 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         }
 
         val imageBook: ImageView = convertView.findViewById(R.id.book_image)
+        val ratingBook: TextView = convertView.findViewById(R.id.book_rating)
         val nameBook: TextView = convertView.findViewById(R.id.book_name)
-        val authorsBook: TextView = convertView.findViewById(R.id.book_authors)
-        val yearBook: TextView = convertView.findViewById(R.id.book_year)
-        val priceBook: TextView = convertView.findViewById(R.id.book_price)
-        val genreBook: TextView = convertView.findViewById(R.id.book_genre)
-        val descriptionBook: TextView = convertView.findViewById(R.id.book_description)
+        val authorsBook: TextView = convertView.findViewById(R.id.book_author)
+        val buyButtonBook: Button = convertView.findViewById(R.id.book_buy_button)
 
         val book: Book = bookItems[position]
         imageBook.setImageResource(book.image)
+        ratingBook.text = "Рейтинг: 4,5"
         nameBook.text = book.name
-        authorsBook.text = "Автор: " + book.authors
-        yearBook.text = "Год издания: " + book.year.toString()
-        priceBook.text = "Цена: " + book.price.toString() + " \u20BD"
-        genreBook.text = "Жанр: " + book.genre
-        descriptionBook.text = book.description
+        authorsBook.text = book.authors
+        buyButtonBook.text = book.price.toString() + ",00 \u20BD"
 
         return convertView
     }
