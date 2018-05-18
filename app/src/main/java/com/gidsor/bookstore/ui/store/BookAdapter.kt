@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.bookitem
+package com.gidsor.bookstore.ui.store
 
 import android.app.Activity
 import android.content.Context
@@ -17,7 +17,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         var convertView: View? = _convertView
         if (convertView == null) {
             val mInflater: LayoutInflater = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = mInflater.inflate(R.layout.fragment_book_item, null)!!
+            convertView = mInflater.inflate(R.layout.fragment_store_book_item, null)!!
         }
 
         val imageBook: ImageView = convertView.findViewById(R.id.book_image)

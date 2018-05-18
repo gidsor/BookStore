@@ -6,11 +6,13 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.gidsor.bookstore.*
+import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.purchase.PurchaseFragment
@@ -27,20 +29,39 @@ import com.gidsor.bookstore.ui.contacts.ContactsFragment
 import com.gidsor.bookstore.ui.delivery.DeliveryFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
 import com.gidsor.bookstore.ui.settings.SettingsFragment
+import com.gidsor.bookstore.ui.store.BookItemFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    private lateinit var bottomNavigationView: BottomNavigationView
+    lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var searchView: MaterialSearchView
     private lateinit var drawer: Drawer
     private lateinit var accountHeader: AccountHeader
 
+    companion object {
+        lateinit var mainFragmentManager:FragmentManager
+
+        fun loadStoreFragmentWithGenre(genre: String) {
+            val storeFragment = StoreFragment()
+            storeFragment.genreToShow = genre
+            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
+        }
+
+        fun loadBookItemFragment(book: Book) {
+            val bookItemFragment = BookItemFragment()
+            bookItemFragment.bookToShow = book
+            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, bookItemFragment).commit()
+        }
+    }
+
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainFragmentManager = supportFragmentManager
 
         loadFragment(StoreFragment())
 

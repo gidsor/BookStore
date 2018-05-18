@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.bookitem
+package com.gidsor.bookstore.ui.store
 
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
