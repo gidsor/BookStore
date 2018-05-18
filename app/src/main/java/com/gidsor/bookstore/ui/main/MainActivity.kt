@@ -142,7 +142,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                                 withIcon(R.drawable.image_default_user)
                 )
                 .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, current ->
-                    true
+                    bottomNavigationView.menu.getItem(3).isChecked = true
+                    loadFragment(AccountFragment())
+                    false
                 })
                 .withSelectionListEnabledForSingleProfile(false)
                 .build()
