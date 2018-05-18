@@ -14,20 +14,18 @@
             android:layout_margin="20dp"
             android:src="@drawable/image_default_user"/>
         <TextView
-            android:id="@+id/account_login"
+            android:id="@+id/account_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_toRightOf="@id/account_image"
-            android:text="Аноним"/>
+            android:layout_toRightOf="@id/account_image"/>
         <TextView
-            android:id="@+id/account_email"
+            android:id="@+id/account_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/account_image"
-            android:layout_below="@id/account_login"
-            android:text="mail@mail.ru"/>
+            android:layout_below="@id/account_email"/>
         <Button
             android:id="@+id/account_login_and_registration"
             android:layout_width="wrap_content"
@@ -37,4 +35,10 @@
             android:layout_centerHorizontal="true"
             android:text="ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/account_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
 </RelativeLayout>

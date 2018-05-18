@@ -1,4 +1,4 @@
 package com.gidsor.bookstore.data.network
 
-class LoginResponse {
+class HTTPRequestBookStore {
 }
