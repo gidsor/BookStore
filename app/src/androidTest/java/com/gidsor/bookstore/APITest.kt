@@ -16,4 +16,9 @@ class APITest {
     fun login() {
         Assert.assertEquals("{\"status\":\"ok\",\"id\":1}", HTTPRequestAPI.login("login1", "pass1").toString())
     }
+
+    @Test
+    fun library() {
+        Assert.assertEquals("{\"status\":[\"ok\",\"result\":[{\"status\":\"Прочитано\",\"book\":\"Мастер и Маргарита\",\"author\":\"Михаил Афанасьевич Булгаков\",\"lib\":\"Валентина Шукшина\"},{\"status\":\"Прочитано\",\"book\":\"И грянул гром\",\"author\":\"Рэй Бредбери\",\"lib\":\"Валентина Шукшина]\"}]}", HTTPRequestAPI.library("1").toString())
+    }
 }

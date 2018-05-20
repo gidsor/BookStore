@@ -42,5 +42,21 @@ class HTTPRequestAPI {
             }
             return data
         }
+
+        fun library(id: String): JSONObject {
+            val url = "http://212.47.240.244/api/library?id=$id"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
     }
 }
