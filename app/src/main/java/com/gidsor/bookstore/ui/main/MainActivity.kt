@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.purchase.PurchaseFragment
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        HTTPRequestAPI.getStatus()
 
         mainFragmentManager = supportFragmentManager
 

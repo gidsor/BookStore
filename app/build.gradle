@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel:1.10.0'
     implementation 'com.github.kittinunf.fuel:fuel-android:1.10.0'
     implementation 'com.github.kittinunf.fuel:fuel-gson:1.10.0'
+    implementation 'com.github.kittinunf.result:result:1.4.0'
+
     implementation 'commons-lang:commons-lang:2.6'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
