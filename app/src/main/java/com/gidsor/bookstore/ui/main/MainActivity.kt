@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        HTTPRequestAPI.getStatus()
+        HTTPRequestAPI.status()
 
         mainFragmentManager = supportFragmentManager
 
