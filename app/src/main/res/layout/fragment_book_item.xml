@@ -19,15 +19,20 @@
                     android:layout_height="400dp"
                     android:layout_margin="15dp"
                     android:layout_centerHorizontal="true"/>
+
                 <RatingBar
                     android:id="@+id/book_item_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:stepSize="1.0"
-                    android:rating="4.0"
                     android:layout_below="@id/book_item_image"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:focusable="false"
+                    android:isIndicator="true"
+                    android:clickable="false"
+                    android:numStars="5"
+                    android:rating="4.0"
+                    android:stepSize="1.0" />
                 <TextView
                     android:id="@+id/book_item_name"
                     android:layout_width="wrap_content"
