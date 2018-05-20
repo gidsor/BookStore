@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <RelativeLayout
+        android:id="@+id/account_info_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <de.hdodenhof.circleimageview.CircleImageView
@@ -34,11 +35,33 @@
             android:layout_below="@id/account_image"
             android:layout_centerHorizontal="true"
             android:text="ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ"/>
+        <Button
+            android:id="@+id/account_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/account_image"
+            android:layout_centerHorizontal="true"
+            android:text="ВЫЙТИ"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@id/account_login_and_registration"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Моя библиотека"/>
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/account_library"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/account_info_layout"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical">
     </LinearLayout>
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
@@ -26,7 +27,7 @@ class BookItemFragment : Fragment() {
 
     private fun setBook(book: Book) {
         view!!.findViewById<ImageView>(R.id.book_item_image).setImageResource(book.image)
-        view!!.findViewById<TextView>(R.id.book_item_rating).text = "Рейтинг: 4,5"
+        //view!!.findViewById<RatingBar>(R.id.book_item_rating).numStars = 4
         view!!.findViewById<TextView>(R.id.book_item_name).text = book.name
         view!!.findViewById<TextView>(R.id.book_item_author).text = book.authors
         view!!.findViewById<Button>(R.id.book_item_buy_button).text = "КУПИТЬ за " + book.price.toString() + ",00 \u20BD"

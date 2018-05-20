@@ -54,7 +54,7 @@ class LoginDialog : DialogFragment() {
                     if (user.id != -1) {
                         val newUser: User = User(user.id, email)
                         AccountFragment.updateCurrentUser(newUser)
-                        AccountFragment.updateLibraryOfUser(newUser)
+//                        AccountFragment.updateLibraryOfUser(newUser)
                         dismiss()
                     }
                 }

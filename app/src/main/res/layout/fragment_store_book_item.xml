@@ -11,13 +11,16 @@
         android:layout_height="300dp"
         android:layout_margin="15dp"
         android:layout_centerHorizontal="true"/>
-    <TextView
+    <RatingBar
         android:id="@+id/book_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/book_image"
-        android:layout_centerHorizontal="true"
-        android:text="Рейтинг: 4,5"/>
+        android:numStars="5"
+        android:stepSize="1.0"
+        android:rating="4.0"
+        android:focusable="false"
+        android:layout_centerHorizontal="true"/>
     <TextView
         android:id="@+id/book_name"
         android:layout_width="wrap_content"
