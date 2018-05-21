@@ -58,5 +58,21 @@ class HTTPRequestAPI {
             }
             return data
         }
+
+        fun registration(login: String, password: String): JSONObject {
+            val url = "http://212.47.240.244/api/registration?login=$login&password=$password"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
     }
 }
