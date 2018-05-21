@@ -30,9 +30,7 @@
                     android:focusable="false"
                     android:isIndicator="true"
                     android:clickable="false"
-                    android:numStars="5"
-                    android:rating="4.0"
-                    android:stepSize="1.0" />
+                    android:numStars="5"/>
                 <TextView
                     android:id="@+id/book_item_name"
                     android:layout_width="wrap_content"

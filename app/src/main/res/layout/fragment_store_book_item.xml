@@ -23,8 +23,6 @@
         android:isIndicator="true"
         android:clickable="false"
         android:numStars="5"
-        android:rating="4.0"
-        android:stepSize="1.0"
         android:visibility="visible" />
     <TextView
         android:id="@+id/book_name"

@@ -27,7 +27,7 @@ class BookItemFragment : Fragment() {
 
     private fun setBook(book: Book) {
         view!!.findViewById<ImageView>(R.id.book_item_image).setImageResource(book.image)
-        //view!!.findViewById<RatingBar>(R.id.book_item_rating).numStars = 4
+        view!!.findViewById<RatingBar>(R.id.book_item_rating).rating = book.rating
         view!!.findViewById<TextView>(R.id.book_item_name).text = book.name
         view!!.findViewById<TextView>(R.id.book_item_author).text = book.authors
         view!!.findViewById<Button>(R.id.book_item_buy_button).text = "КУПИТЬ за " + book.price.toString() + ",00 \u20BD"

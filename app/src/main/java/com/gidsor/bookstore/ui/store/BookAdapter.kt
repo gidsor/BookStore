@@ -5,10 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 
@@ -22,14 +19,14 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         }
 
         val imageBook: ImageView = convertView.findViewById(R.id.book_image)
-        //val ratingBook: TextView = convertView.findViewById(R.id.book_rating)
+        val ratingBook: RatingBar = convertView.findViewById(R.id.book_rating)
         val nameBook: TextView = convertView.findViewById(R.id.book_name)
         val authorsBook: TextView = convertView.findViewById(R.id.book_author)
         val buyButtonBook: Button = convertView.findViewById(R.id.book_buy_button)
 
         val book: Book = bookItems[position]
         imageBook.setImageResource(book.image)
-        //ratingBook.text = "Рейтинг: 4,5"
+        ratingBook.rating = book.rating
         nameBook.text = book.name
         authorsBook.text = book.authors
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
