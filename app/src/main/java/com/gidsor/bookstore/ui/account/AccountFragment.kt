@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
+import com.gidsor.bookstore.data.network.LibraryTask
 import com.github.kittinunf.fuel.httpGet
 import org.apache.commons.lang.StringEscapeUtils
 import org.json.JSONArray
@@ -42,33 +43,30 @@ class AccountFragment : Fragment() {
         fun updateLibraryOfUser(currentUser: User, view: View = viewAccount) {
             val library: LinearLayout = view.findViewById(R.id.account_library)
             library.removeAllViewsInLayout()
-            val url = "http://212.47.240.244/api/library?id=${currentUser.id}"
-            url.httpGet().responseString { request, response, result ->
-                var (data, error) = result
-                if (error == null) {
-                    Log.i("REQUEST TESTING", data)
-                    data = StringEscapeUtils.unescapeJava(data)
-                    Log.i("REQUEST TESTING", data)
+            val userID: String = currentUser.id.toString()
+            val response: JSONObject = LibraryTask().execute(userID).get()
+            if (response.has("status") && response["status"] == "ok" && userID != "-1") {
+                val dataLibrary: JSONArray = response.getJSONArray("result")
 
-                    val dataJSON: JSONObject = JSONObject(data)
-                    val dataLibraryArrayJSON: JSONArray = dataJSON.getJSONArray("result")
-                    Log.i("REQUEST TESTING", dataLibraryArrayJSON.toString())
-
-                    for (i in 0 until dataLibraryArrayJSON.length()) {
-                        val libraryBookTextView = TextView(view.context)
-                        val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                        paramsOfTextView.setMargins(10, 10, 0, 0)
-                        libraryBookTextView.layoutParams = paramsOfTextView
-                        val libraryDataItem = dataLibraryArrayJSON.getJSONObject(i)
-                        val bookName = libraryDataItem.getString("book")
-                        val bookAuthor = libraryDataItem.getString("author")
-                        val bookStatus = libraryDataItem.getString("status")
-                        libraryBookTextView.text = "Название: $bookName\nАвтор: $bookAuthor\nСтатус: $bookStatus"
-                        library.addView(libraryBookTextView)
-                    }
-                } else {
-                    Log.i("REQUEST ERROR", error.toString())
+                for (i in 0 until dataLibrary.length()) {
+                    val newTextView = TextView(view.context)
+                    val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                    paramsOfTextView.setMargins(10, 10, 0, 0)
+                    newTextView.layoutParams = paramsOfTextView
+                    val libraryDataItem = dataLibrary.getJSONObject(i)
+                    val bookName = libraryDataItem.getString("book")
+                    val bookAuthor = libraryDataItem.getString("author")
+                    val bookStatus = libraryDataItem.getString("status")
+                    newTextView.text = "Название: $bookName\nАвтор: $bookAuthor\nСтатус: $bookStatus"
+                    library.addView(newTextView)
                 }
+            } else {
+                val newTextView = TextView(view.context)
+                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                paramsOfTextView.setMargins(10, 10, 0, 0)
+                newTextView.layoutParams = paramsOfTextView
+                newTextView.text = "Войдите для доступа к библиотеке"
+                library.addView(newTextView)
             }
         }
     }
