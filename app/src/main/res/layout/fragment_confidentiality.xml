@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/confidentiality_text"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_margin="10sp"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/roboto_light"
-        android:scrollbars="vertical"
-        android:text="Политика ООО «DokiDoki» (далее - Общество) в отношении обработки персональных данных (далее – Политика) разработана в целях обеспечения реализации требований законодательства РФ в области обработки персональных данных субъектов персональных данных.\n
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/reference_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="10sp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/roboto_light"
+            android:text="Политика ООО «DokiDoki» (далее - Общество) в отношении обработки персональных данных (далее – Политика) разработана в целях обеспечения реализации требований законодательства РФ в области обработки персональных данных субъектов персональных данных.\n
 \n
 1. ОБЩИЕ ПОЛОЖЕНИЯ\n
 1.1 Действие Политики распространяется на все персональные данные субъектов, обрабатываемые Обществом с применением средств автоматизации и без применения таких средств.\n
@@ -44,4 +46,5 @@
 ОГРН 132459547742040,\n
 ИНН 134543211335,\n
 тел. 8-922-001-99-07"/>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

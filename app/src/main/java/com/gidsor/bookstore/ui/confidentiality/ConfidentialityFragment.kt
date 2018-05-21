@@ -14,11 +14,4 @@ class ConfidentialityFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_confidentiality, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val text: TextView = view!!.findViewById(R.id.confidentiality_text)
-        text.movementMethod = ScrollingMovementMethod()
-    }
 }

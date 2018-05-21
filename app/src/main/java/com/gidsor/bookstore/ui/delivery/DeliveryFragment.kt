@@ -14,12 +14,4 @@ class DeliveryFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_delivery, container, false)
     }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val text: TextView = view!!.findViewById(R.id.delivery_text)
-        text.movementMethod = ScrollingMovementMethod()
-    }
 }

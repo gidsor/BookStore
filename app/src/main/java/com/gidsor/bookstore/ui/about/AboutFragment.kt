@@ -14,12 +14,4 @@ class AboutFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val text: TextView = view!!.findViewById(R.id.about_text)
-        text.movementMethod = ScrollingMovementMethod()
-    }
 }

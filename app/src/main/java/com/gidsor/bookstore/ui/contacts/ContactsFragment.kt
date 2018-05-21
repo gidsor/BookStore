@@ -14,11 +14,4 @@ class ContactsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_contacts, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val text: TextView = view!!.findViewById(R.id.contacts_text)
-        text.movementMethod = ScrollingMovementMethod()
-    }
 }
