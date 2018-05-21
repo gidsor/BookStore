@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/reference_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_margin="10sp"
-        android:layout_centerHorizontal="true"
-        android:scrollbars="vertical"
-        android:fontFamily="@font/roboto_light"
-        android:text="Термины и определения\n
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/reference_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_margin="10sp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/roboto_light"
+            android:text="Термины и определения\n
 В настоящей оферте, если из контекста не следует иное, нижеприведенные термины имеют следующие значения и являются её составной неотъемлемой частью:\n
 «Продавец» — Индивидуальный предприниматель Рябов Константин Максимович (ИНН 134543211335, ОГРН 132459547742040, место нахождения: 625000, г. Тюмень, ул.Перикопская, дом 15а), осуществляющая предпринимательскую деятельность по продаже Товара дистанционным способом.\n
 «Покупатель» — любое физическое или юридическое лицо, принявшее (акцептировавшее) настоящую оферту на нижеуказанных условиях. Для юридических лиц условия настоящей оферты применяются в части, не противоречащей специальным нормам гражданского законодательства по поставке товара.\n
@@ -109,4 +111,5 @@
 8.5. Покупатель несёт полную ответственность за достоверность сведений и персональных данных, указанных им при регистрации в Интернет-магазине.\n
 \n
 Copyright 2018"/>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

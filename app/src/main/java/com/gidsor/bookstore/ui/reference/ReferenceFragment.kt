@@ -14,11 +14,4 @@ class ReferenceFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reference, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val text: TextView = view!!.findViewById(R.id.reference_text)
-        text.movementMethod = ScrollingMovementMethod()
-    }
 }
