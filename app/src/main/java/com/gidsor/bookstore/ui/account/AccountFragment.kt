@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.gidsor.bookstore.R
@@ -17,7 +16,6 @@ import com.github.kittinunf.fuel.httpGet
 import org.apache.commons.lang.StringEscapeUtils
 import org.json.JSONArray
 import org.json.JSONObject
-import org.w3c.dom.Text
 
 class AccountFragment : Fragment() {
 
@@ -27,8 +25,8 @@ class AccountFragment : Fragment() {
         fun updateCurrentUser(newUser: User, view: View = viewAccount) {
             user = newUser
 
-            view.findViewById<TextView>(R.id.account_login)?.text = user.id.toString()
             view.findViewById<TextView>(R.id.account_email)?.text = user.email
+            view.findViewById<TextView>(R.id.account_real_name)?.text = user.realName
 
             updateLibraryOfUser(user, view)
 
