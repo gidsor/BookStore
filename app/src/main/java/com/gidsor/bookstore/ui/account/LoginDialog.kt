@@ -10,8 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
+import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.getAs
+import org.json.JSONObject
 import java.net.URL
 import javax.xml.transform.Result
 
@@ -34,14 +36,6 @@ class LoginDialog : DialogFragment() {
             email = view.findViewById<EditText>(R.id.login_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
             val url = "http://212.47.240.244/api/login?login=$email&password=$password"
-//            url.httpGet().responseString { request, response, result ->
-//                val (data, error) = result
-//                if (error == null) {
-//                    Log.i("REQUEST TESTING", data)
-//                } else {
-//                    Log.i("REQUEST TESTING", error.toString())
-//                }
-//            }
             url.httpGet().responseObject(User.Deserializer()) { req, res, result ->
                 //result is of type Result<User, Exception>
                 val (user, err) = result

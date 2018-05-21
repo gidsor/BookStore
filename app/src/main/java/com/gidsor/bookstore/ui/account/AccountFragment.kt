@@ -86,7 +86,6 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewAccount = view
         updateCurrentUser(user, view)
-        updateLibraryOfUser(user, view)
         loginDialog = LoginDialog()
 
         view.findViewById<Button>(R.id.account_login_and_registration).setOnClickListener {
