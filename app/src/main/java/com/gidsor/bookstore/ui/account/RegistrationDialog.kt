@@ -1,16 +1,21 @@
 package com.gidsor.bookstore.ui.account
 
 import android.os.Bundle
+import android.os.StrictMode
 import android.support.v4.app.DialogFragment
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.model.User
-import com.github.kittinunf.fuel.httpGet
+import com.gidsor.bookstore.data.network.GetStatusTask
+import com.gidsor.bookstore.data.network.HTTPRequestAPI
+import com.gidsor.bookstore.data.network.RegistrationTask
+import org.json.JSONObject
 
 class RegistrationDialog : DialogFragment() {
     lateinit var email: String
@@ -26,15 +31,12 @@ class RegistrationDialog : DialogFragment() {
         view.findViewById<Button>(R.id.registration_registration).setOnClickListener {
             email = view.findViewById<EditText>(R.id.registration_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.registration_password_input).text.toString()
-            val url = "http://212.47.240.244/api/registration?login=$email&password=$password"
-            url.httpGet().responseString { request, response, result ->
-                val (data, error) = result
-                if (error == null) {
-                    Log.i("REQUEST TESTING", data)
-                    dismiss()
-                } else {
-                    Log.i("REGISTRATION ERROR", error.toString())
-                }
+            val response: JSONObject = RegistrationTask().execute(email, password).get()
+            if (response.has("status") && response["status"] == "ok") {
+                Toast.makeText(activity, "Пользователь создан", Toast.LENGTH_SHORT).show()
+                dismiss()
+            } else {
+                Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
             }
         }
     }
