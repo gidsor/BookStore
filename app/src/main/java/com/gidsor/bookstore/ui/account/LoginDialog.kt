@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.HTTPRequestAPI
+import com.gidsor.bookstore.data.network.LoginTask
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.getAs
 import org.json.JSONObject
@@ -35,23 +37,14 @@ class LoginDialog : DialogFragment() {
         view.findViewById<Button>(R.id.login_login).setOnClickListener {
             email = view.findViewById<EditText>(R.id.login_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
-            val url = "http://212.47.240.244/api/login?login=$email&password=$password"
-            url.httpGet().responseObject(User.Deserializer()) { req, res, result ->
-                //result is of type Result<User, Exception>
-                val (user, err) = result
-                if (err != null) {
-                    Log.i("LOGIN REQUEST ERROR", err.toString())
-                }
-                if (user != null) {
-                    Log.i("TESTING REQUEST", user.id.toString())
-                    // Закрывает окно входа
-                    if (user.id != -1) {
-                        val newUser: User = User(user.id, email)
-                        AccountFragment.updateCurrentUser(newUser)
-//                        AccountFragment.updateLibraryOfUser(newUser)
-                        dismiss()
-                    }
-                }
+            val response: JSONObject = LoginTask().execute(email, password).get()
+            if (response.has("status") && response["status"] == "ok") {
+                val user: User = User(response.getInt("id"), email)
+                AccountFragment.updateCurrentUser(user)
+                Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
+                dismiss()
+            } else {
+                Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
             }
         }
 
