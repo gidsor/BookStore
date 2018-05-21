@@ -24,4 +24,9 @@ class APITest {
     fun registration() {
         Assert.assertEquals("{\"status\":\"ok\"}", HTTPRequestAPI.registration("qazwsx@mail.ru", "qazwsx").toString())
     }
+
+    @Test
+    fun find() {
+        Assert.assertEquals("{\"status\":\"ok\",\"id\":[[8,\"Черный человек\",\"Сергей Александрович Есенин\",\"Поэзия\",\"Художественная литература\",\"Русский\"]]}", HTTPRequestAPI.find(author = "Есенин").toString())
+    }
 }
