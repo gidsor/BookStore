@@ -33,7 +33,7 @@ class GenreFragment : ListFragment() {
         adapter = GenreAdapter(view!!.context, genreItems)
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(activity, genres[position], Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, genres[position], Toast.LENGTH_SHORT).show()
             MainActivity.loadStoreFragmentWithGenre(genres[position])
         }
     }

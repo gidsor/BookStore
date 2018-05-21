@@ -38,7 +38,7 @@ class StoreFragment : ListFragment() {
         adapter = BookAdapter(view!!.context, bookItems)
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(activity, bookItems[position].name, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity, bookItems[position].name, Toast.LENGTH_SHORT).show()
             MainActivity.loadBookItemFragment(bookItems[position])
         }
     }
