@@ -24,6 +24,8 @@ class StoreFragment : ListFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        // Show all books or books of selected genre
         bookItems = ArrayList()
         if (genreToShow != "Все") {
             for (book in BookTestArrayData.books) {
@@ -34,11 +36,13 @@ class StoreFragment : ListFragment() {
         } else {
             bookItems = BookTestArrayData.books
         }
+
         (activity as MainActivity).bottomNavigationView.menu.getItem(0).isChecked = true
         adapter = BookAdapter(view!!.context, bookItems)
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            //Toast.makeText(activity, bookItems[position].name, Toast.LENGTH_SHORT).show()
+            // Toast.makeText(activity, bookItems[position].name, Toast.LENGTH_SHORT).show()
+            // Load full detail about book
             MainActivity.loadBookItemFragment(bookItems[position])
         }
     }

@@ -26,6 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/book_item_image"
                     android:layout_centerHorizontal="true"
+                    android:progressTint="@color/white"
                     style="?android:attr/ratingBarStyleIndicator"
                     android:focusable="false"
                     android:isIndicator="true"
@@ -45,13 +46,30 @@
                     android:layout_below="@id/book_item_name"
                     android:layout_centerHorizontal="true"
                     android:text="Автор произведения"/>
-                <Button
-                    android:id="@+id/book_item_buy_button"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/book_item_author"
                     android:layout_centerHorizontal="true"
-                    android:text="КУПИТЬ за 299.00\u20BD"/>
+                    android:layout_below="@id/book_item_author">
+                    <Button
+                        android:id="@+id/book_item_buy_button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:textColor="@color/material_drawer_dark_primary_text"
+                        android:theme="@style/BuyBook.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="-7dp"
+                        android:text="КУПИТЬ за 299.00\u20BD"/>
+                    <Button
+                        android:id="@+id/book_item_menu_button"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:textColor="@color/material_drawer_dark_primary_text"
+                        android:theme="@style/BuyBook.Button"
+                        android:layout_width="45dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/book_item_buy_button"
+                        android:text="\u22EE"/>
+                </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/book_item_layout_genres"

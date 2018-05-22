@@ -30,7 +30,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         nameBook.text = book.name
         authorsBook.text = book.authors
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
-
+        // TODO make add book to order by click buyButton
         return convertView
     }
 
