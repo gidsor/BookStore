@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/book_item_button_add_to_order"
+        android:title="Добавить в корзину"/>
+
+    <item
+        android:id="@+id/book_item_button_add_to_library_read"
+        android:title="Добавить в прочитанное"/>
+
+
+    <item
+        android:id="@+id/book_item_button_add_to_library_deferred"
+        android:title="Добавить в отложенное"/>
+
+
+    <item
+        android:id="@+id/book_item_button_add_to_library_desired"
+        android:title="Добавить в избранное"/>
+</menu>

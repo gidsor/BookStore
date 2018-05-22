@@ -2,12 +2,14 @@ package com.gidsor.bookstore.ui.store
 
 import android.app.Activity
 import android.content.Context
+import android.support.v7.widget.PopupMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.ui.main.MainActivity
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
 
@@ -23,6 +25,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         val nameBook: TextView = convertView.findViewById(R.id.book_name)
         val authorsBook: TextView = convertView.findViewById(R.id.book_author)
         val buyButtonBook: Button = convertView.findViewById(R.id.book_buy_button)
+        val menuButtonBook: Button = convertView.findViewById(R.id.book_menu_button)
 
         val book: Book = bookItems[position]
         imageBook.setImageResource(book.image)
@@ -31,7 +34,17 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         authorsBook.text = book.authors
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
         // TODO make add book to order by click buyButton
+
+        menuButtonBook.setOnClickListener { v ->
+            showMenu(v)
+        }
         return convertView
+    }
+
+    fun showMenu(view: View) {
+        val popupMenu = PopupMenu(context, view)
+        popupMenu.inflate(R.menu.menu_book_item_button)
+        popupMenu.show()
     }
 
     override fun getItem(position: Int): Any {

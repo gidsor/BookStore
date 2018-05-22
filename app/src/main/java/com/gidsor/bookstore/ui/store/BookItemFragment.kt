@@ -1,7 +1,9 @@
 package com.gidsor.bookstore.ui.store
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.PopupMenu
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -35,5 +37,15 @@ class BookItemFragment : Fragment() {
         view!!.findViewById<TextView>(R.id.book_item_description).text = book.description
         view!!.findViewById<TextView>(R.id.book_item_publisher).text = "Издатель: " + book.publisher
         view!!.findViewById<TextView>(R.id.book_item_year).text = "Год издания: " + book.year
+
+        view!!.findViewById<Button>(R.id.book_item_menu_button).setOnClickListener {v ->
+            showMenu(v, book)
+        }
+    }
+
+    fun showMenu(view: View, book: Book) {
+        val popupMenu = PopupMenu(activity as Context, view)
+        popupMenu.inflate(R.menu.menu_book_item_button)
+        popupMenu.show()
     }
 }
