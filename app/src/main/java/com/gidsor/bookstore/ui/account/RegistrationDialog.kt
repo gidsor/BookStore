@@ -26,12 +26,17 @@ class RegistrationDialog : DialogFragment() {
         view.findViewById<Button>(R.id.registration_registration).setOnClickListener {
             email = view.findViewById<EditText>(R.id.registration_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.registration_password_input).text.toString()
-            val response: JSONObject = RegistrationTask().execute(email, password).get()
-            if (response.has("status") && response["status"] == "ok") {
-                Toast.makeText(activity, "Пользователь создан", Toast.LENGTH_SHORT).show()
-                dismiss()
+            val passwordConfirm = view.findViewById<EditText>(R.id.registration_password_input_confirm).text.toString()
+            if (password == passwordConfirm) {
+                val response: JSONObject = RegistrationTask().execute(email, password).get()
+                if (response.has("status") && response["status"] == "ok") {
+                    Toast.makeText(activity, "Пользователь создан", Toast.LENGTH_SHORT).show()
+                    dismiss()
+                } else {
+                    Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
+                }
             } else {
-                Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
             }
         }
     }

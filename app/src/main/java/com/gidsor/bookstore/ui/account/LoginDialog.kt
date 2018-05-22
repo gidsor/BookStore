@@ -39,7 +39,7 @@ class LoginDialog : DialogFragment() {
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
             val response: JSONObject = LoginTask().execute(email, password).get()
             if (response.has("status") && response["status"] == "ok") {
-                val user: User = User(response.getInt("id"), email)
+                val user: User = User(response.getInt("result"), email)
                 AccountFragment.updateCurrentUser(user)
                 Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
                 dismiss()
