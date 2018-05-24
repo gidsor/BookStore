@@ -71,8 +71,56 @@ class HTTPRequestAPI {
             return data
         }
 
-        fun find(author: String = "", title: String = "", genre: String = "", category: String = "", language: String = ""): JSONObject {
-            val url = "http://212.47.240.244/api/find?author=$author&title=$title&genre=$genre&category=$category&language=$language"
+        fun review(isbn: String = ""): JSONObject {
+            val url = "http://212.47.240.244/api/review?isbn=$isbn"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
+
+        fun composition(composition: String = "",author: String = "", title: String = "", genre: String = "", category: String = "", language: String = ""): JSONObject {
+            val url = "http://212.47.240.244/api/composition?composition=$composition&author=$author&title=$title&genre=$genre&category=$category&language=$language"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
+
+        fun book(isbn: String = "", composition: String = ""): JSONObject {
+            val url = "http://212.47.240.244/api/book?isbn=$isbn&composition=$composition"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
+
+        fun user(id: String = ""): JSONObject {
+            val url = "http://212.47.240.244/api/user?id=$id"
             var data = JSONObject()
             val (request, response, result) = url.httpGet().responseString()
             when (result) {

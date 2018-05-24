@@ -27,6 +27,6 @@ class APITest {
 
     @Test
     fun find() {
-        Assert.assertEquals("{\"status\":\"ok\",\"id\":[[8,\"Черный человек\",\"Сергей Александрович Есенин\",\"Поэзия\",\"Художественная литература\",\"Русский\"]]}", HTTPRequestAPI.find(author = "Есенин").toString())
+        Assert.assertEquals("{\"status\":\"ok\",\"id\":[[8,\"Черный человек\",\"Сергей Александрович Есенин\",\"Поэзия\",\"Художественная литература\",\"Русский\"]]}", HTTPRequestAPI.composition(author = "Есенин").toString())
     }
 }
