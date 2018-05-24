@@ -29,7 +29,7 @@ class BookTestArrayData {
 
         init {
             for (i in 0 until names.count()) {
-                books.add(Book(names[i], images[i], genres[i], authors[i], year[i], publisher[i], description[i], price[i], rating[i]))
+                //books.add(Book(names[i], images[i], genres[i], author[i], year[i], publisher[i], description[i], price[i], rating[i]))
             }
         }
     }

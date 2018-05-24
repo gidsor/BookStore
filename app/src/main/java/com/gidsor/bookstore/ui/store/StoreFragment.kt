@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.db.BookArrayData
 import com.gidsor.bookstore.data.db.BookTestArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.ui.main.MainActivity
@@ -28,21 +29,19 @@ class StoreFragment : ListFragment() {
         // Show all books or books of selected genre
         bookItems = ArrayList()
         if (genreToShow != "Все") {
-            for (book in BookTestArrayData.books) {
+            for (book in BookArrayData.getBooks()) {
                 if (book.genre == genreToShow) {
                     bookItems.add(book)
                 }
             }
         } else {
-            bookItems = BookTestArrayData.books
+            bookItems = BookArrayData.getBooks()
         }
 
         (activity as MainActivity).bottomNavigationView.menu.getItem(0).isChecked = true
         adapter = BookAdapter(view!!.context, bookItems)
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            // Toast.makeText(activity, bookItems[position].name, Toast.LENGTH_SHORT).show()
-            // Load full detail about book
             MainActivity.loadBookItemFragment(bookItems[position])
         }
     }

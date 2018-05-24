@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
-import com.gidsor.bookstore.ui.main.MainActivity
+import com.gidsor.bookstore.data.network.DownloadImageTask
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
 
@@ -23,15 +23,16 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         val imageBook: ImageView = convertView.findViewById(R.id.book_image)
         val ratingBook: RatingBar = convertView.findViewById(R.id.book_rating)
         val nameBook: TextView = convertView.findViewById(R.id.book_name)
-        val authorsBook: TextView = convertView.findViewById(R.id.book_author)
+        val authorBook: TextView = convertView.findViewById(R.id.book_author)
         val buyButtonBook: Button = convertView.findViewById(R.id.book_buy_button)
         val menuButtonBook: Button = convertView.findViewById(R.id.book_menu_button)
 
         val book: Book = bookItems[position]
-        imageBook.setImageResource(book.image)
+        //imageBook.setImageResource(book.image)
+        DownloadImageTask(imageBook).execute(book.image)
         ratingBook.rating = book.rating
         nameBook.text = book.name
-        authorsBook.text = book.authors
+        authorBook.text = book.author
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
         // TODO make add book to order by click buyButton
 
