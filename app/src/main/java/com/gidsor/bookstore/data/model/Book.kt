@@ -1,4 +1,14 @@
 package com.gidsor.bookstore.data.model
 
-class Book(val name: String, val image: Int, val genre: String = "", val authors: String = "", val year: Int = 2001,
-           val publisher: String = "", val description: String = "", val price: Int = 1234, val rating: Float = 4.5f)
+class Book(val isbn: String,
+           val composition: Int,
+           val name: String,
+           val image: String,
+           val genre: String,
+           val author: String,
+           val year: Int,
+           val publisher: String,
+           val description: String,
+           val price: Int,
+           val language: String,
+           val rating: Float)
