@@ -8,9 +8,11 @@ import org.json.JSONObject
 class BookArrayData {
     companion object {
         private var books: ArrayList<Book>
+        private var genres: MutableSet<String>
 
         init {
             books = arrayListOf()
+            genres = mutableSetOf()
             updateBooks()
         }
 
@@ -18,6 +20,7 @@ class BookArrayData {
             val response: JSONObject = BookTask().execute("", "").get()
             if (response.has("status") && response["status"] == "ok") {
                 books = arrayListOf()
+                genres = mutableSetOf()
                 val result = response.getJSONArray("result")
                 for (i in 0 until result.length()) {
                     val bookItem = result.getJSONObject(i)
@@ -40,6 +43,7 @@ class BookArrayData {
                     val rating = 5.0f
 
                     books.add(Book(isbn, composition, name, image, genre, author, year, publisher, description, price, language, rating))
+                    genres.add(genre)
                 }
             } else {
             }
@@ -62,6 +66,10 @@ class BookArrayData {
 
         fun getBooks(): ArrayList<Book> {
             return books
+        }
+
+        fun getGenres(): MutableSet<String> {
+            return genres
         }
     }
 }

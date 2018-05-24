@@ -11,25 +11,24 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Genre
 
-class GenreAdapter(val context: Context, val genreItems: ArrayList<Genre>) : BaseAdapter() {
+class GenreAdapter(val context: Context, val genreItems: MutableSet<String>) : BaseAdapter() {
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {
         var convertView: View? = _convertView
         if (convertView == null) {
             val mInflater: LayoutInflater = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = mInflater.inflate(R.layout.fragment_genre_item, null)
         }
-        val iconGenre: ImageView = convertView!!.findViewById(R.id.genre_icon)
+
         val nameGenre: TextView = convertView!!.findViewById(R.id.genre_name)
 
-        val genrePos: Genre = genreItems[position]
-        iconGenre.setImageResource(genrePos.icon)
-        nameGenre.text = genrePos.name
+        val genrePos: String = genreItems.elementAt(position)
+        nameGenre.text = genrePos
 
         return convertView
     }
 
     override fun getItem(position: Int): Any {
-        return genreItems[position]
+        return genreItems.elementAt(position)
     }
 
     override fun getItemId(position: Int): Long {
