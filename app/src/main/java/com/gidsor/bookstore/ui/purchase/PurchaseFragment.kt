@@ -13,8 +13,6 @@ import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.ui.main.MainActivity
 
 class PurchaseFragment : ListFragment() {
-
-    private lateinit var orderItems: ArrayList<Order>
     private lateinit var adapter: OrderAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
