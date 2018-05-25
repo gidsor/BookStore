@@ -15,6 +15,10 @@ import org.json.JSONObject
 class RegistrationDialog : DialogFragment() {
     lateinit var email: String
     lateinit var password: String
+    lateinit var firstname: String
+    lateinit var lastname: String
+    lateinit var patronymic: String
+    lateinit var phone: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_registration, container, false)
@@ -26,17 +30,22 @@ class RegistrationDialog : DialogFragment() {
         view.findViewById<Button>(R.id.registration_registration).setOnClickListener {
             email = view.findViewById<EditText>(R.id.registration_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.registration_password_input).text.toString()
+            firstname = view.findViewById<EditText>(R.id.registration_firstname_input).text.toString()
+            lastname = view.findViewById<EditText>(R.id.registration_lastname_input).text.toString()
+            patronymic = view.findViewById<EditText>(R.id.registration_patronymic_input).text.toString()
+            phone = view.findViewById<EditText>(R.id.registration_phone_input).text.toString()
+
             val passwordConfirm = view.findViewById<EditText>(R.id.registration_password_input_confirm).text.toString()
-            if (password == passwordConfirm) {
-                val response: JSONObject = RegistrationTask().execute(email, password).get()
+            if (password == passwordConfirm && password.length < 8) {
+                val response: JSONObject = RegistrationTask().execute(email, password, firstname, lastname, patronymic, phone).get()
                 if (response.has("status") && response["status"] == "ok") {
                     Toast.makeText(activity, "Пользователь создан", Toast.LENGTH_SHORT).show()
                     dismiss()
                 } else {
-                    Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, response.getString("msg"), Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(activity, "Пароли не совпадают", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Пароли не совпадают или меньше 8 символов", Toast.LENGTH_SHORT).show()
             }
         }
     }
