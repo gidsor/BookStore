@@ -31,6 +31,7 @@ class AccountFragment : Fragment() {
 
             view.findViewById<TextView>(R.id.account_email)?.text = user.email
             view.findViewById<TextView>(R.id.account_real_name)?.text = user.realName
+            view.findViewById<TextView>(R.id.account_phone)?.text = user.phone
 
             updateLibraryOfUser(user, view)
             OrderArrayData.updateOrders()

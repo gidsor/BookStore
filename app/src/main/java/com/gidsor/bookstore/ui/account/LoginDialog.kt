@@ -13,6 +13,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.gidsor.bookstore.data.network.LoginTask
+import com.gidsor.bookstore.data.network.UserTask
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.getAs
 import org.json.JSONObject
@@ -39,7 +40,12 @@ class LoginDialog() : DialogFragment() {
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
             val response: JSONObject = LoginTask().execute(email, password).get()
             if (response.has("status") && response["status"] == "ok") {
-                val user: User = User(response.getJSONObject("result").getInt("id"), email)
+                var userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
+                var r = userInfo.getJSONObject("result")
+                var id = r.getInt("id")
+                var name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
+                var phone = r.getString("phone")
+                val user: User = User(id, email, name, phone)
                 AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
                 Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
                 dismiss()

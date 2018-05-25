@@ -10,6 +10,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.db.BookArrayData
 import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Order
+import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.main.MainActivity
 
 class PurchaseFragment : ListFragment() {
@@ -24,7 +25,13 @@ class PurchaseFragment : ListFragment() {
         super.onActivityCreated(savedInstanceState)
         adapter = OrderAdapter(view!!.context)
         listAdapter = adapter
+
         var makeOrder: Button = view!!.findViewById(R.id.purchase_make_order_button)
         makeOrder.text = "Оформить заказ стоимостью ${OrderArrayData.getCommonPrice()},00 \u20BD"
+        makeOrder.setOnClickListener {v ->
+            if (user.id != -1) {
+                MainActivity.loadServiceAndPaymentFragment()
+            }
+        }
     }
 }

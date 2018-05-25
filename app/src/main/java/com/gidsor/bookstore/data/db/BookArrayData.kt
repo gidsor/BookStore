@@ -49,8 +49,13 @@ class BookArrayData {
             }
         }
 
-        private fun getBook(bookItem: JSONObject): Book {
-            TODO()
+        fun getBook(isbn: String): Book {
+            for (book in books) {
+                if (book.isbn == isbn) {
+                    return book
+                }
+            }
+            return books[0]
         }
 
         private fun getComposition(composition: Int): JSONObject {

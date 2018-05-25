@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/s_and_p_make_order_button"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/s_and_p_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Выберите способ получения товара"/>
+            <RadioGroup
+                android:id="@+id/s_and_p_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/s_and_p_text"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/s_and_p_rb_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Самовызов   0,00 \u20BD"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/s_and_p_rb_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Доставка по городу   300,00 \u20BD"/>
+
+                <RadioButton
+                    android:id="@+id/s_and_p_rb_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Доставка по всей России   500,00 \u20BD"/>
+
+                <RadioButton
+                    android:id="@+id/s_and_p_rb_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Почтой России   400,00 \u20BD"/>
+            </RadioGroup>
+            <EditText
+                android:id="@+id/s_and_p_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Карта"
+                android:layout_below="@id/s_and_p_radio_group"/>
+            <EditText
+                android:id="@+id/s_and_p_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Адрес"
+                android:layout_below="@id/s_and_p_card"/>
+            <EditText
+                android:id="@+id/s_and_p_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Телефон"
+                android:layout_below="@id/s_and_p_address"/>
+            <EditText
+                android:id="@+id/s_and_p_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Комментарий"
+                android:layout_below="@id/s_and_p_phone"/>
+        </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/s_and_p_make_order_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Сделать заказ"/>
+</RelativeLayout>

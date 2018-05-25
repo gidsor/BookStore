@@ -167,6 +167,68 @@ class HTTPRequestAPI {
             return data
         }
 
+        fun add_to_basket(user: String, isbn: String): JSONObject {
+            val url = "http://212.47.240.244/api/add_to_basket?user=$user&isbn=$isbn"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    //Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
 
+        fun del_from_basket(user: String, isbn: String): JSONObject {
+            val url = "http://212.47.240.244/api/del_from_basket?user=$user&isbn=$isbn"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    //Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
+
+        fun create_order(user: String, card: String, address: String, phone: String, comment: String, type: String): JSONObject {
+            val url = "http://212.47.240.244/api/create_order?user=$user&card=$card&address=$address&phone=$phone&comment=$comment&type=$type"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    //Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
+
+        fun get_basket(user: String): JSONObject {
+            val url = "http://212.47.240.244/api/get_basket?user=$user"
+            var data = JSONObject()
+            val (request, response, result) = url.httpGet().responseString()
+            when (result) {
+                is Result.Failure -> {
+                    Log.i("HTTPRequestAPI", result.getException().toString())
+                }
+                is Result.Success -> {
+                    data = JSONObject(result.get())
+                    //Log.i("HTTPRequestAPI", data.toString())
+                }
+            }
+            return data
+        }
     }
 }

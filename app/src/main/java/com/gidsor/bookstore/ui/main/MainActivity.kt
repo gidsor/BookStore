@@ -28,6 +28,7 @@ import com.gidsor.bookstore.ui.about.AboutFragment
 import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
 import com.gidsor.bookstore.ui.contacts.ContactsFragment
 import com.gidsor.bookstore.ui.delivery.DeliveryFragment
+import com.gidsor.bookstore.ui.purchase.ServiceAndPaymentFragment
 import com.gidsor.bookstore.ui.reference.ReferenceFragment
 import com.gidsor.bookstore.ui.settings.SettingsFragment
 import com.gidsor.bookstore.ui.store.BookItemFragment
@@ -55,6 +56,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             val bookItemFragment = BookItemFragment()
             bookItemFragment.bookToShow = book
             mainFragmentManager.beginTransaction().replace(R.id.fragment_container, bookItemFragment).commit()
+        }
+
+        fun loadServiceAndPaymentFragment() {
+            val paymentFragment = ServiceAndPaymentFragment()
+            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, paymentFragment).commit()
         }
     }
 
