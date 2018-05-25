@@ -7,12 +7,12 @@
     <ImageView
         android:id="@+id/order_book_image"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_margin="15dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="100dp"
+        android:layout_margin="15dp"/>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/order_book_image">
         <TextView
             android:id="@+id/order_book_name"
@@ -26,9 +26,10 @@
         <TextView
             android:id="@+id/order_book_price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_book_author"/>
         <Button
-            android:id="@+id/order_book_remove"
+            android:id="@+id/order_book_remove_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:theme="@style/RemoveOrder.Button"
             android:textColor="@color/material_drawer_dark_primary_text"

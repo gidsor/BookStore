@@ -14,7 +14,8 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 import android.graphics.Bitmap
 import android.opengl.ETC1.getWidth
-
+import com.gidsor.bookstore.data.db.OrderArrayData
+import com.gidsor.bookstore.data.model.Order
 
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
@@ -44,7 +45,10 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         nameBook.text = book.name
         authorBook.text = book.author
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
-        // TODO make add book to order by click buyButton
+
+        buyButtonBook.setOnClickListener { v ->
+            OrderArrayData.addOrder(Order("1", book))
+        }
 
         menuButtonBook.setOnClickListener { v ->
             showMenu(v)

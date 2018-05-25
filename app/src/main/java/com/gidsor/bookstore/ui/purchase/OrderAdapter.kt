@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.Order
 import com.squareup.picasso.Picasso
 
-class OrderAdapter(val context: Context, val ordersItems: ArrayList<Order>) : BaseAdapter() {
+class OrderAdapter(val context: Context) : BaseAdapter() {
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {
         var convertView: View? = _convertView
         if (convertView == null) {
@@ -24,9 +26,10 @@ class OrderAdapter(val context: Context, val ordersItems: ArrayList<Order>) : Ba
         val imageBook: ImageView = convertView.findViewById(R.id.order_book_image)
         val nameBook: TextView = convertView.findViewById(R.id.order_book_name)
         val authorBook: TextView = convertView.findViewById(R.id.order_book_author)
-        val price: TextView = convertView.findViewById(R.id.order_book_price)
+        val priceBook: TextView = convertView.findViewById(R.id.order_book_price)
+        val removeButton: Button = convertView.findViewById(R.id.order_book_remove_button)
 
-        val book: Book = ordersItems[position].book
+        val book: Book = OrderArrayData.getOrders()[position].book
 
         Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
@@ -35,21 +38,25 @@ class OrderAdapter(val context: Context, val ordersItems: ArrayList<Order>) : Ba
 
         nameBook.text = book.name
         authorBook.text = book.author
-        price.text = book.price.toString() + ",00 \u20BD"
+        priceBook.text = book.price.toString() + ",00 \u20BD"
 
+        removeButton.setOnClickListener { v ->
+            OrderArrayData.removeOrder(OrderArrayData.getOrders()[position])
+            notifyDataSetChanged()
+        }
 
         return convertView
     }
 
     override fun getItem(position: Int): Any {
-        return ordersItems[position]
+        return OrderArrayData.getOrders()[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return ordersItems.indexOf(getItem(position)).toLong()
+        return OrderArrayData.getOrders().indexOf(getItem(position)).toLong()
     }
 
     override fun getCount(): Int {
-        return ordersItems.count()
+        return OrderArrayData.getOrders().count()
     }
 }

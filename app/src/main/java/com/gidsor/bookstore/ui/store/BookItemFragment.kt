@@ -12,7 +12,9 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.DownloadImageTask
 import com.squareup.picasso.Picasso
 
@@ -44,7 +46,11 @@ class BookItemFragment : Fragment() {
         view!!.findViewById<TextView>(R.id.book_item_publisher).text = "Издатель: " + book.publisher
         view!!.findViewById<TextView>(R.id.book_item_year).text = "Год издания: " + book.year
 
-        view!!.findViewById<Button>(R.id.book_item_menu_button).setOnClickListener {v ->
+        view!!.findViewById<Button>(R.id.book_item_buy_button).setOnClickListener { v ->
+            OrderArrayData.addOrder(Order("1", book))
+        }
+
+        view!!.findViewById<Button>(R.id.book_item_menu_button).setOnClickListener { v ->
             showMenu(v, book)
         }
     }

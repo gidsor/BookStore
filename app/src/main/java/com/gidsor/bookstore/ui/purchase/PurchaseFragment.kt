@@ -5,8 +5,10 @@ import android.support.v4.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.db.BookArrayData
+import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.ui.main.MainActivity
 
@@ -22,29 +24,9 @@ class PurchaseFragment : ListFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        orderItems = ArrayList()
-        for (i in 0 until 6) {
-            orderItems.add(Order("1", BookArrayData.getBooks()[i]))
-        }
-        adapter = OrderAdapter(view!!.context, orderItems)
+        adapter = OrderAdapter(view!!.context)
         listAdapter = adapter
-//        // Show all books or books of selected genre
-//        bookItems = ArrayList()
-//        if (genreToShow != "Все") {
-//            for (book in BookArrayData.getBooks()) {
-//                if (book.genre == genreToShow) {
-//                    bookItems.add(book)
-//                }
-//            }
-//        } else {
-//            bookItems = BookArrayData.getBooks()
-//        }
-//
-//        (activity as MainActivity).bottomNavigationView.menu.getItem(0).isChecked = true
-//        adapter = BookAdapter(view!!.context, bookItems)
-//        listAdapter = adapter
-//        listView.setOnItemClickListener { parent, view, position, id ->
-//            MainActivity.loadBookItemFragment(bookItems[position])
-//        }
+        var makeOrder: Button = view!!.findViewById(R.id.purchase_make_order_button)
+        makeOrder.text = "Оформить заказ стоимостью ${OrderArrayData.getCommonPrice()},00 \u20BD"
     }
 }
