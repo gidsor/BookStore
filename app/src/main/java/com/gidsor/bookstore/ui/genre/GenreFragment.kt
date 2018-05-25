@@ -1,17 +1,13 @@
 package com.gidsor.bookstore.ui.genre
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.db.BookArrayData
-import com.gidsor.bookstore.data.model.Genre
 import com.gidsor.bookstore.ui.main.MainActivity
-import com.gidsor.bookstore.ui.store.StoreFragment
 
 class GenreFragment : ListFragment() {
     private lateinit var adapter: GenreAdapter
@@ -26,7 +22,7 @@ class GenreFragment : ListFragment() {
         adapter = GenreAdapter(view!!.context, BookArrayData.getGenres())
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            MainActivity.loadStoreFragmentWithGenre(BookArrayData.getGenres().elementAt(position))
+            MainActivity.loadStoreFragmentWithGenreAndSearch(BookArrayData.getGenres().elementAt(position))
         }
     }
 }

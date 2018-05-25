@@ -44,9 +44,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     companion object {
         lateinit var mainFragmentManager:FragmentManager
 
-        fun loadStoreFragmentWithGenre(genre: String) {
+        fun loadStoreFragmentWithGenreAndSearch(genre: String, search: String = "") {
             val storeFragment = StoreFragment()
             storeFragment.genreToShow = genre
+            storeFragment.searchTitile = search
             mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
         }
 
@@ -70,6 +71,19 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         // add search
         searchView = findViewById(R.id.search_view)
+        searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    loadStoreFragmentWithGenreAndSearch("Все", newText)
+                }
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                loadStoreFragmentWithGenreAndSearch("Все", query)
+                return true
+            }
+        })
 
         // add bottom navigation
         bottomNavigationView = findViewById(R.id.navigation)
