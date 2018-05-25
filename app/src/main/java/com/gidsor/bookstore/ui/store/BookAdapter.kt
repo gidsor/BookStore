@@ -16,6 +16,10 @@ import android.graphics.Bitmap
 import android.opengl.ETC1.getWidth
 import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Order
+import com.gidsor.bookstore.data.network.AddToLibraryTask
+import com.gidsor.bookstore.data.network.LibraryTask
+import com.gidsor.bookstore.ui.account.AccountFragment
+import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
@@ -47,18 +51,62 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"
 
         buyButtonBook.setOnClickListener { v ->
-            OrderArrayData.addOrder(Order("1", book))
+            if (user.id != -1) {
+                OrderArrayData.addOrder(Order(user.id.toString(), book))
+            } else {
+                Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
+            }
         }
 
         menuButtonBook.setOnClickListener { v ->
-            showMenu(v)
+            showMenu(v, book)
         }
         return convertView
     }
 
-    fun showMenu(view: View) {
+    fun showMenu(view: View, book: Book) {
         val popupMenu = PopupMenu(context, view)
         popupMenu.inflate(R.menu.menu_book_item_button)
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.book_item_button_add_to_order -> {
+                    if (user.id != -1) {
+                        OrderArrayData.addOrder(Order(user.id.toString(), book))
+                    } else {
+                        Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                R.id.book_item_button_add_to_library_read -> {
+                    if (user.id != -1) {
+                        AddToLibraryTask().execute(user.id.toString(), "1", book.composition.toString())
+                        AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
+                    } else {
+                        Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                R.id.book_item_button_add_to_library_deferred -> {
+                    if (user.id != -1) {
+                        AddToLibraryTask().execute(user.id.toString(), "2", book.composition.toString())
+                        AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
+                    } else {
+                        Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                R.id.book_item_button_add_to_library_desired -> {
+                    if (user.id != -1) {
+                        AddToLibraryTask().execute(user.id.toString(), "3", book.composition.toString())
+                        AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
+                    } else {
+                        Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
         popupMenu.show()
     }
 

@@ -11,11 +11,8 @@ class OrderArrayData {
             updateOrders()
         }
 
-        private fun updateOrders() {
+        fun updateOrders() {
             orders = arrayListOf()
-//            for (i in 0 until 5) {
-//                orders.add(Order("1", BookArrayData.getBooks()[i]))
-//            }
         }
 
         fun addOrder(order: Order) {

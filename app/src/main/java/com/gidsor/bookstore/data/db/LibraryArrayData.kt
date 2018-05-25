@@ -46,9 +46,6 @@ class LibraryArrayData {
                     compositions.add(Composition(c.getString("composition"), c.getString("title"), c.getString("author"), "3"))
                 }
             }
-//            for (i in 0 until 5) {
-//                orders.add(Order("1", BookArrayData.getBooks()[i]))
-//            }
         }
 
         fun getCompositions(): ArrayList<Composition> {
