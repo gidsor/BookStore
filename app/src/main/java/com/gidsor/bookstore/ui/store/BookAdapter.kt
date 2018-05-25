@@ -28,8 +28,9 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         val menuButtonBook: Button = convertView.findViewById(R.id.book_menu_button)
 
         val book: Book = bookItems[position]
-        //imageBook.setImageResource(book.image)
+
         DownloadImageTask(imageBook).execute(book.image)
+
         ratingBook.rating = book.rating
         nameBook.text = book.name
         authorBook.text = book.author

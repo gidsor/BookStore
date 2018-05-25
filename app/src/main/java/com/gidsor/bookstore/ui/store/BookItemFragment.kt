@@ -28,8 +28,8 @@ class BookItemFragment : Fragment() {
     }
 
     private fun setBook(book: Book) {
-        //view!!.findViewById<ImageView>(R.id.book_item_image).setImageResource(book.image)
         DownloadImageTask(view!!.findViewById(R.id.book_item_image)).execute(book.image)
+
         view!!.findViewById<RatingBar>(R.id.book_item_rating).rating = book.rating
         view!!.findViewById<TextView>(R.id.book_item_name).text = book.name
         view!!.findViewById<TextView>(R.id.book_item_author).text = book.author

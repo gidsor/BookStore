@@ -23,7 +23,7 @@ class AccountFragment : Fragment() {
     companion object {
         var user: User = User()
         lateinit var viewAccount: View
-        fun updateCurrentUser(newUser: User, view: View = viewAccount) {
+        fun updateCurrentUser(newUser: User, view: View) {
             user = newUser
 
             view.findViewById<TextView>(R.id.account_email)?.text = user.email
@@ -40,7 +40,7 @@ class AccountFragment : Fragment() {
             }
         }
 
-        fun updateLibraryOfUser(currentUser: User, view: View = viewAccount) {
+        fun updateLibraryOfUser(currentUser: User, view: View) {
             val library: LinearLayout = view.findViewById(R.id.account_library)
             library.removeAllViewsInLayout()
             val userID: String = currentUser.id.toString()
@@ -89,7 +89,7 @@ class AccountFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.account_exit).setOnClickListener {
-            updateCurrentUser(User())
+            updateCurrentUser(User(), view)
         }
     }
 }

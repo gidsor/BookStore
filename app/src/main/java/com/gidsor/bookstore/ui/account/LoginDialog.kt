@@ -19,7 +19,7 @@ import org.json.JSONObject
 import java.net.URL
 import javax.xml.transform.Result
 
-class LoginDialog : DialogFragment() {
+class LoginDialog() : DialogFragment() {
 
     lateinit var email: String
     lateinit var password: String
@@ -40,7 +40,7 @@ class LoginDialog : DialogFragment() {
             val response: JSONObject = LoginTask().execute(email, password).get()
             if (response.has("status") && response["status"] == "ok") {
                 val user: User = User(response.getInt("result"), email)
-                AccountFragment.updateCurrentUser(user)
+                AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
                 Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
                 dismiss()
             } else {

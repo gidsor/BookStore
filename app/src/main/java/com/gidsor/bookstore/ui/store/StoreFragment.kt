@@ -5,10 +5,8 @@ import android.support.v4.app.ListFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.db.BookArrayData
-import com.gidsor.bookstore.data.db.BookTestArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.ui.main.MainActivity
 
