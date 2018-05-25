@@ -34,6 +34,43 @@
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_password_input"
         android:hint="Подтвердите пароль"/>
+    <EditText
+        android:id="@+id/registration_firstname_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/registration_password_input_confirm"
+        android:hint="Имя"/>
+    <EditText
+        android:id="@+id/registration_lastname_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/registration_firstname_input"
+        android:hint="Фамилия"/>
+    <EditText
+        android:id="@+id/registration_patronymic_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/registration_lastname_input"
+        android:hint="Отчество"/>
+    <EditText
+        android:id="@+id/registration_phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/registration_patronymic_input"
+        android:hint="Телефон"/>
+
     <Button
         android:id="@+id/registration_registration"
         android:layout_width="match_parent"
@@ -41,7 +78,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/registration_password_input_confirm"
+        android:layout_below="@id/registration_phone_input"
         android:layout_centerHorizontal="true"
         android:text="ЗАРЕГИСТРИРОВАТЬСЯ"/>
 </RelativeLayout>
