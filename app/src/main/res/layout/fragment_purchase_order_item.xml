@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/order_book_image"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_margin="15dp"
+        android:layout_centerHorizontal="true"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/order_book_image">
+        <TextView
+            android:id="@+id/order_book_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/order_book_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_book_name"/>
+        <TextView
+            android:id="@+id/order_book_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/order_book_remove"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:theme="@style/RemoveOrder.Button"
+            android:textColor="@color/material_drawer_dark_primary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_book_price"
+            android:text="Удалить из корзины"/>
+    </RelativeLayout>
+</RelativeLayout>

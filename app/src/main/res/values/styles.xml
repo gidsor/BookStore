@@ -20,4 +20,8 @@
     <style name="BuyBook.Button" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">#089c10</item>
     </style>
+
+    <style name="RemoveOrder.Button" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">#9bab9c</item>
+    </style>
 </resources>
