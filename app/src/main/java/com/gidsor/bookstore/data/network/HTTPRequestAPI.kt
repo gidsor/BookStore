@@ -24,7 +24,7 @@ class HTTPRequestAPI {
         }
 
         fun login(email: String, password: String): JSONObject {
-            val url = "http://212.47.240.244/api/login?login=$email&password=$password"
+            val url = "http://212.47.240.244/api/login?email=$email&password=$password"
             var data = JSONObject()
             val (request, response, result) = url.httpGet().responseString()
             when (result) {
