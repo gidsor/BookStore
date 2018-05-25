@@ -14,6 +14,7 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.DownloadImageTask
+import com.squareup.picasso.Picasso
 
 class BookItemFragment : Fragment() {
     lateinit var bookToShow: Book
@@ -28,7 +29,11 @@ class BookItemFragment : Fragment() {
     }
 
     private fun setBook(book: Book) {
-        DownloadImageTask(view!!.findViewById(R.id.book_item_image)).execute(book.image)
+        val imageView = view!!.findViewById<ImageView>(R.id.book_item_image)
+        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+                .fit().centerInside()
+                .into(imageView)
+        //DownloadImageTask(view!!.findViewById(R.id.book_item_image)).execute(book.image)
 
         view!!.findViewById<RatingBar>(R.id.book_item_rating).rating = book.rating
         view!!.findViewById<TextView>(R.id.book_item_name).text = book.name

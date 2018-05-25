@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
+
     implementation("com.mikepenz:materialdrawer:6.0.7@aar") {
         transitive = true
     }
@@ -42,8 +43,9 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-android:1.10.0'
     implementation 'com.github.kittinunf.fuel:fuel-gson:1.10.0'
     implementation 'com.github.kittinunf.result:result:1.4.0'
-
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'commons-lang:commons-lang:2.6'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

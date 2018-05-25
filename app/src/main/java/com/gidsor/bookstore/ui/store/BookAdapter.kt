@@ -10,6 +10,12 @@ import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.DownloadImageTask
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Transformation
+import android.graphics.Bitmap
+import android.opengl.ETC1.getWidth
+
+
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
 
@@ -29,7 +35,10 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
 
         val book: Book = bookItems[position]
 
-        DownloadImageTask(imageBook).execute(book.image)
+        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+                .fit().centerInside()
+                .into(imageBook)
+        //DownloadImageTask(imageBook).execute(book.image)
 
         ratingBook.rating = book.rating
         nameBook.text = book.name
