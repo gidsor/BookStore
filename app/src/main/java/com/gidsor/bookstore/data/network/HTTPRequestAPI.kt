@@ -209,7 +209,7 @@ class HTTPRequestAPI {
                 }
                 is Result.Success -> {
                     data = JSONObject(result.get())
-                    //Log.i("HTTPRequestAPI", data.toString())
+                    Log.i("HTTPRequestAPI", data.toString())
                 }
             }
             return data

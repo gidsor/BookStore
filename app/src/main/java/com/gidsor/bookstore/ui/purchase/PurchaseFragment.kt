@@ -18,6 +18,7 @@ class PurchaseFragment : ListFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        OrderArrayData.updateOrders()
         return inflater.inflate(R.layout.fragment_purchase, container, false)
     }
 

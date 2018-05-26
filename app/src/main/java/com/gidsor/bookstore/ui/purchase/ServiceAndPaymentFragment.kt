@@ -13,6 +13,7 @@ import com.gidsor.bookstore.data.db.BookArrayData
 import com.gidsor.bookstore.data.db.OrderArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.CreateOrderTask
+import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.main.MainActivity
 
@@ -39,7 +40,11 @@ class ServiceAndPaymentFragment : Fragment() {
                 var message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, typeOfService.toString())
                 OrderArrayData.updateOrders()
+                for (order in OrderArrayData.getOrders()) {
+                    DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
+                }
                 MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
+                Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
             }
         }
     }
