@@ -67,6 +67,7 @@
                     android:textStyle="bold"
                     android:text="Моя библиотека"/>
             </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/account_library"
                 android:layout_width="match_parent"
@@ -75,6 +76,28 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_below="@id/account_info_layout"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/account_text_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@id/account_library"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Мои заказы"/>
+            <LinearLayout
+                android:id="@+id/account_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@id/account_text_order"
                 android:layout_centerHorizontal="true"
                 android:orientation="vertical">
             </LinearLayout>

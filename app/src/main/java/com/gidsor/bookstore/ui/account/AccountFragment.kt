@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.db.LibraryArrayData
 import com.gidsor.bookstore.data.db.OrderArrayData
+import com.gidsor.bookstore.data.db.OrderOfUserArrayData
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.LibraryTask
@@ -88,6 +89,32 @@ class AccountFragment : Fragment() {
                 newTextView.layoutParams = paramsOfTextView
                 newTextView.text = "Пусто"
                 library.addView(newTextView)
+            }
+        }
+
+        fun updateMakedOrders(currentUser: User, view: View) {
+            val ordersOfUser: LinearLayout = view.findViewById(R.id.account_orders)
+            ordersOfUser.removeAllViewsInLayout()
+            //TODO add only for OrdersOfUserArrayData (LibraryArrayData.updateCompositions(currentUser))
+            for (i in OrderOfUserArrayData.getOrdersOfUser()) {
+                val newTextView = TextView(view.context)
+                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                paramsOfTextView.setMargins(10, 10, 0, 0)
+                newTextView.layoutParams = paramsOfTextView
+
+//                val bookName = i.title
+//                val bookAuthor = i.author
+
+                ordersOfUser.addView(newTextView)
+            }
+
+            if (OrderOfUserArrayData.getOrdersOfUser().size == 0) {
+                val newTextView = TextView(view.context)
+                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                paramsOfTextView.setMargins(10, 10, 0, 0)
+                newTextView.layoutParams = paramsOfTextView
+                newTextView.text = "Пусто"
+                ordersOfUser.addView(newTextView)
             }
         }
     }
