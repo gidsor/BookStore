@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.OrderArrayData
+import com.gidsor.bookstore.data.db.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask
-import com.gidsor.bookstore.data.network.DownloadImageTask
-import com.gidsor.bookstore.data.network.LibraryTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.updateLibraryOfUser
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.viewAccount
@@ -50,7 +48,7 @@ class BookItemFragment : Fragment() {
 
         view!!.findViewById<Button>(R.id.book_item_buy_button).setOnClickListener { v ->
             if (user.id != -1) {
-                OrderArrayData.addOrder(Order(user.id.toString(), book))
+                BasketArrayData.addToBasket(Order(user.id.toString(), book))
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
             }
@@ -68,7 +66,7 @@ class BookItemFragment : Fragment() {
             when (item.itemId) {
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
-                        OrderArrayData.addOrder(Order(user.id.toString(), book))
+                        BasketArrayData.addToBasket(Order(user.id.toString(), book))
                         updateLibraryOfUser(user, viewAccount)
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()

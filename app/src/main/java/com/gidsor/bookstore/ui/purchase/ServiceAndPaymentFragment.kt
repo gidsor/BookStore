@@ -2,16 +2,12 @@ package com.gidsor.bookstore.ui.purchase
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.ListFragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.BookArrayData
-import com.gidsor.bookstore.data.db.OrderArrayData
-import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.data.db.BasketArrayData
 import com.gidsor.bookstore.data.network.CreateOrderTask
 import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
@@ -29,7 +25,7 @@ class ServiceAndPaymentFragment : Fragment() {
         var makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
         makeOrder.setOnClickListener {v ->
             if (user.id != -1) {
-                var price = OrderArrayData.getCommonPrice()
+                var price = BasketArrayData.getCommonPrice()
                 var rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
                 var rb = view!!.findViewById<RadioButton>(rg.checkedRadioButtonId)
                 var typeOfService = rg.indexOfChild(rb) + 1
@@ -46,8 +42,8 @@ class ServiceAndPaymentFragment : Fragment() {
                 var phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 var message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type)
-                OrderArrayData.updateOrders()
-                for (order in OrderArrayData.getOrders()) {
+                BasketArrayData.updateOrder()
+                for (order in BasketArrayData.getBasket()) {
                     DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
                 }
                 Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)

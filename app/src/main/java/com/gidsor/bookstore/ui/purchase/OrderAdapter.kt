@@ -10,9 +10,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.OrderArrayData
+import com.gidsor.bookstore.data.db.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
-import com.gidsor.bookstore.data.model.Order
 import com.squareup.picasso.Picasso
 
 class OrderAdapter(val context: Context) : BaseAdapter() {
@@ -29,7 +28,7 @@ class OrderAdapter(val context: Context) : BaseAdapter() {
         val priceBook: TextView = convertView.findViewById(R.id.order_book_price)
         val removeButton: Button = convertView.findViewById(R.id.order_book_remove_button)
 
-        val book: Book = OrderArrayData.getOrders()[position].book
+        val book: Book = BasketArrayData.getBasket()[position].book
 
         Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
@@ -41,7 +40,7 @@ class OrderAdapter(val context: Context) : BaseAdapter() {
         priceBook.text = book.price.toString() + ",00 \u20BD"
 
         removeButton.setOnClickListener { v ->
-            OrderArrayData.removeOrder(OrderArrayData.getOrders()[position])
+            BasketArrayData.removeFromBasket(BasketArrayData.getBasket()[position])
             notifyDataSetChanged()
         }
 
@@ -49,14 +48,14 @@ class OrderAdapter(val context: Context) : BaseAdapter() {
     }
 
     override fun getItem(position: Int): Any {
-        return OrderArrayData.getOrders()[position]
+        return BasketArrayData.getBasket()[position]
     }
 
     override fun getItemId(position: Int): Long {
-        return OrderArrayData.getOrders().indexOf(getItem(position)).toLong()
+        return BasketArrayData.getBasket().indexOf(getItem(position)).toLong()
     }
 
     override fun getCount(): Int {
-        return OrderArrayData.getOrders().count()
+        return BasketArrayData.getBasket().count()
     }
 }
