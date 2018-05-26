@@ -33,18 +33,25 @@ class ServiceAndPaymentFragment : Fragment() {
                 var rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
                 var rb = view!!.findViewById<RadioButton>(rg.checkedRadioButtonId)
                 var typeOfService = rg.indexOfChild(rb) + 1
+                var type = "самовывоз"
+                when (typeOfService) {
+                    1 -> type = "самовывоз"
+                    2 -> type = "доставка по городу"
+                    3 -> type = "доставка за пределы"
+                    4 -> type = "почта"
+                }
 
                 var card = view!!.findViewById<EditText>(R.id.s_and_p_card).text.toString()
                 var address = view!!.findViewById<EditText>(R.id.s_and_p_address).text.toString()
                 var phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 var message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
-                CreateOrderTask().execute(user.id.toString(), card, address, phone, message, typeOfService.toString())
+                CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type)
                 OrderArrayData.updateOrders()
                 for (order in OrderArrayData.getOrders()) {
                     DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
                 }
-                MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
                 Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
+                MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
             }
         }
     }
