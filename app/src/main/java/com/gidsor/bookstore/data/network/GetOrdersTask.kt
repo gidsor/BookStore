@@ -5,6 +5,6 @@ import org.json.JSONObject
 
 class GetOrdersTask : AsyncTask<String, Void, JSONObject>() {
     override fun doInBackground(vararg params: String): JSONObject {
-        return HTTPRequestAPI.get_orders(params[0])
+        return HTTPRequestAPI.getOrders(params[0])
     }
 }

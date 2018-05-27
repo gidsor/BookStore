@@ -5,6 +5,6 @@ import org.json.JSONObject
 
 class DelFromLibraryTask : AsyncTask<String, Void, JSONObject>() {
     override fun doInBackground(vararg params: String): JSONObject {
-        return HTTPRequestAPI.del_from_library(params[0], params[1], params[2])
+        return HTTPRequestAPI.delFromLibrary(params[0], params[1], params[2])
     }
 }
