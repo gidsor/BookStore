@@ -24,13 +24,12 @@ import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.gidsor.bookstore.ui.about.AboutFragment
-import com.gidsor.bookstore.ui.confidentiality.ConfidentialityFragment
-import com.gidsor.bookstore.ui.contacts.ContactsFragment
-import com.gidsor.bookstore.ui.delivery.DeliveryFragment
+import com.gidsor.bookstore.ui.companyinfo.AboutFragment
+import com.gidsor.bookstore.ui.companyinfo.ConfidentialityFragment
+import com.gidsor.bookstore.ui.companyinfo.ContactsFragment
+import com.gidsor.bookstore.ui.companyinfo.DeliveryFragment
 import com.gidsor.bookstore.ui.purchase.ServiceAndPaymentFragment
-import com.gidsor.bookstore.ui.reference.ReferenceFragment
-import com.gidsor.bookstore.ui.settings.SettingsFragment
+import com.gidsor.bookstore.ui.companyinfo.ReferenceFragment
 import com.gidsor.bookstore.ui.store.BookItemFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 
@@ -182,8 +181,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .addDrawerItems(
-                        PrimaryDrawerItem().withName("Настройки")
-                                .withIcon(R.drawable.ic_settings_white_24dp),
                         PrimaryDrawerItem().withName("Публичная оферта")
                                 .withIcon(R.drawable.ic_reference_outline_white_24dp),
                         PrimaryDrawerItem().withName("Конфиденциальность")
@@ -198,12 +195,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .withOnDrawerItemClickListener {view, position, drawerItem ->
                     bottomNavigationView.menu.setGroupCheckable(0, false, true)
                     when (position) {
-                        1 -> !loadFragment(SettingsFragment())
-                        2 -> !loadFragment(ReferenceFragment())
-                        3 -> !loadFragment(ConfidentialityFragment())
-                        4 -> !loadFragment(DeliveryFragment())
-                        5 -> !loadFragment(ContactsFragment())
-                        6 -> !loadFragment(AboutFragment())
+                        1 -> !loadFragment(ReferenceFragment())
+                        2 -> !loadFragment(ConfidentialityFragment())
+                        3 -> !loadFragment(DeliveryFragment())
+                        4 -> !loadFragment(ContactsFragment())
+                        5 -> !loadFragment(AboutFragment())
                         else -> true
                     }
                 }

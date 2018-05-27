@@ -41,7 +41,7 @@ class ServiceAndPaymentFragment : Fragment() {
                 var address = view!!.findViewById<EditText>(R.id.s_and_p_address).text.toString()
                 var phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 var message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
-                CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type)
+                CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                 BasketArrayData.updateOrder()
                 for (order in BasketArrayData.getBasket()) {
                     DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()

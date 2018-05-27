@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.model.Genre
 
 class GenreAdapter(val context: Context, val genreItems: MutableSet<String>) : BaseAdapter() {
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {

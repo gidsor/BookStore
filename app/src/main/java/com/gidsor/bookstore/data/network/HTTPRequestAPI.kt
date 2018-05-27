@@ -73,29 +73,29 @@ class HTTPRequestAPI {
         }
 
         fun addToBasket(user: String, isbn: String): JSONObject {
-            val url = "http://212.47.240.244/api/addToBasket?user=$user&isbn=$isbn"
+            val url = "http://212.47.240.244/api/add_to_basket?user=$user&isbn=$isbn"
             return getData(url)
         }
 
         fun delFromBasket(user: String, isbn: String): JSONObject {
-            val url = "http://212.47.240.244/api/delFromBasket?user=$user&isbn=$isbn"
+            val url = "http://212.47.240.244/api/del_from_basket?user=$user&isbn=$isbn"
             return getData(url)
         }
 
         fun createOrder(user: String, card: String, address: String, phone: String,
                         comment: String, type: String): JSONObject {
-            val url = "http://212.47.240.244/api/createOrder?user=$user&card=$card" +
+            val url = "http://212.47.240.244/api/create_order?user=$user&card=$card" +
                     "&address=$address&phone=$phone&comment=$comment&type=$type"
             return getData(url)
         }
 
         fun getBasket(user: String): JSONObject {
-            val url = "http://212.47.240.244/api/getBasket?user=$user"
+            val url = "http://212.47.240.244/api/get_basket?user=$user"
             return getData(url)
         }
 
         fun getOrders(user: String): JSONObject {
-            val url = "http://212.47.240.244/api/getOrders?user=$user"
+            val url = "http://212.47.240.244/api/get_orders?user=$user"
             return getData(url)
         }
 
