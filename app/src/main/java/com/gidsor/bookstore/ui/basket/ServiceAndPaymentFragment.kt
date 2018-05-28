@@ -25,9 +25,9 @@ class ServiceAndPaymentFragment : Fragment() {
         var makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
         makeOrder.setOnClickListener { _ ->
             if (user.id != -1) {
-                var rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
-                var rb = view!!.findViewById<RadioButton>(rg.checkedRadioButtonId)
-                var typeOfService = rg.indexOfChild(rb) + 1
+                val rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
+                val rb = view!!.findViewById<RadioButton>(rg.checkedRadioButtonId)
+                val typeOfService = rg.indexOfChild(rb) + 1
                 var type = "самовывоз"
                 when (typeOfService) {
                     1 -> type = "самовывоз"
@@ -36,15 +36,15 @@ class ServiceAndPaymentFragment : Fragment() {
                     4 -> type = "почта"
                 }
 
-                var card = view!!.findViewById<EditText>(R.id.s_and_p_card).text.toString()
-                var address = view!!.findViewById<EditText>(R.id.s_and_p_address).text.toString()
-                var phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
-                var message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
+                val card = view!!.findViewById<EditText>(R.id.s_and_p_card).text.toString()
+                val address = view!!.findViewById<EditText>(R.id.s_and_p_address).text.toString()
+                val phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
+                val message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                 BasketArrayData.updateOrder()
-                for (order in BasketArrayData.getBasket()) {
-                    DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
-                }
+//                for (order in BasketArrayData.getBasket()) {
+//                    DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
+//                }
                 Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
                 MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
             }

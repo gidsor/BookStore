@@ -3,7 +3,7 @@ package com.gidsor.bookstore.data.model
 class Book(val isbn: String,
            val composition: Int,
            val name: String,
-           val image: String,
+           val imageUrl: String,
            val genre: String,
            val author: String,
            val year: Int,

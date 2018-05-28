@@ -32,10 +32,10 @@ class BookItemFragment : Fragment() {
 
     private fun setBook(book: Book) {
         val imageView = view!!.findViewById<ImageView>(R.id.book_item_image)
-        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageView)
-        //DownloadImageTask(view!!.findViewById(R.id.book_item_image)).execute(book.image)
+        //DownloadImageTask(view!!.findViewById(R.id.book_item_image)).execute(book.imageUrl)
 
         view!!.findViewById<RatingBar>(R.id.book_item_rating).rating = book.rating
         view!!.findViewById<TextView>(R.id.book_item_name).text = book.name

@@ -30,10 +30,10 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
 
         val book: Book = BasketArrayData.getBasket()[position].book
 
-        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
-        //DownloadImageTask(imageBook).execute(book.image)
+        //DownloadImageTask(imageBook).execute(book.imageUrl)
 
         nameBook.text = book.name
         authorBook.text = book.author

@@ -15,6 +15,7 @@ import com.gidsor.bookstore.*
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.gidsor.bookstore.ui.account.AccountFragment
+import com.gidsor.bookstore.ui.base.LoadingView
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.basket.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
@@ -35,6 +36,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+
     lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var searchView: MaterialSearchView
