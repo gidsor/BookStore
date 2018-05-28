@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.BasketArrayData
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.BasketArrayData
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.network.CreateOrderTask
 import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
@@ -23,9 +23,8 @@ class ServiceAndPaymentFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         var makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
-        makeOrder.setOnClickListener {v ->
+        makeOrder.setOnClickListener { _ ->
             if (user.id != -1) {
-                var price = BasketArrayData.getCommonPrice()
                 var rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
                 var rb = view!!.findViewById<RadioButton>(rg.checkedRadioButtonId)
                 var typeOfService = rg.indexOfChild(rb) + 1

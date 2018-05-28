@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.BasketArrayData
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.main.MainActivity
 

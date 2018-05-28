@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.data.db
+package com.gidsor.bookstore.data.database
 
 import com.gidsor.bookstore.data.model.Composition
 import com.gidsor.bookstore.data.model.User

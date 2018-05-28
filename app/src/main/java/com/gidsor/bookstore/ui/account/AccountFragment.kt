@@ -10,9 +10,8 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.LibraryArrayData
-import com.gidsor.bookstore.data.db.BasketArrayData
-import com.gidsor.bookstore.data.db.OrderOfUserArrayData
+import com.gidsor.bookstore.data.database.LibraryArrayData
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 

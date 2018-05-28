@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.db.BasketArrayData
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask

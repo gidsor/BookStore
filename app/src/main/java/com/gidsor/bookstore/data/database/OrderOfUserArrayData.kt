@@ -1,10 +1,6 @@
-package com.gidsor.bookstore.data.db
+package com.gidsor.bookstore.data.database
 
 import com.gidsor.bookstore.data.model.Order
-import com.gidsor.bookstore.data.network.AddToBasketTask
-import com.gidsor.bookstore.data.network.DelFromBasketTask
-import com.gidsor.bookstore.data.network.GetBasketTask
-import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 
 class OrderOfUserArrayData {
     companion object {
