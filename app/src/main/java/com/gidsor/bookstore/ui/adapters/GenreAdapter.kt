@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.genre
+package com.gidsor.bookstore.ui.adapters
 
 import android.app.Activity
 import android.content.Context

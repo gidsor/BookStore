@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.store
+package com.gidsor.bookstore.ui.adapters
 
 import android.app.Activity
 import android.content.Context
@@ -18,7 +18,6 @@ import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
-
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {
         var convertView: View? = _convertView
         if (convertView == null) {

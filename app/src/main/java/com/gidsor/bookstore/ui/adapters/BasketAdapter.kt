@@ -1,4 +1,4 @@
-package com.gidsor.bookstore.ui.purchase
+package com.gidsor.bookstore.ui.adapters
 
 import android.app.Activity
 import android.content.Context
@@ -14,12 +14,12 @@ import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 
-class OrderAdapter(val context: Context) : BaseAdapter() {
+class BasketAdapter(val context: Context) : BaseAdapter() {
     override fun getView(position: Int, _convertView: View?, parent: ViewGroup?): View {
         var convertView: View? = _convertView
         if (convertView == null) {
             val mInflater: LayoutInflater = context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = mInflater.inflate(R.layout.fragment_purchase_order_item, null)!!
+            convertView = mInflater.inflate(R.layout.fragment_basket_item, null)!!
         }
 
         val imageBook: ImageView = convertView.findViewById(R.id.order_book_image)

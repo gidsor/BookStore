@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BookArrayData
+import com.gidsor.bookstore.ui.adapters.GenreAdapter
 import com.gidsor.bookstore.ui.main.MainActivity
 
 class GenreFragment : ListFragment() {

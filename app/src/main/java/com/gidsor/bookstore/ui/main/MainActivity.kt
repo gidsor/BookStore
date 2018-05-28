@@ -16,7 +16,7 @@ import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
-import com.gidsor.bookstore.ui.purchase.PurchaseFragment
+import com.gidsor.bookstore.ui.basket.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
@@ -28,7 +28,7 @@ import com.gidsor.bookstore.ui.companyinfo.AboutFragment
 import com.gidsor.bookstore.ui.companyinfo.ConfidentialityFragment
 import com.gidsor.bookstore.ui.companyinfo.ContactsFragment
 import com.gidsor.bookstore.ui.companyinfo.DeliveryFragment
-import com.gidsor.bookstore.ui.purchase.ServiceAndPaymentFragment
+import com.gidsor.bookstore.ui.basket.ServiceAndPaymentFragment
 import com.gidsor.bookstore.ui.companyinfo.ReferenceFragment
 import com.gidsor.bookstore.ui.store.BookItemFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
