@@ -12,9 +12,11 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.LibraryArrayData
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.database.OrderOfUserArrayData
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
+import com.gidsor.bookstore.data.network.GetOrderTask
 
 class AccountFragment : Fragment() {
 
@@ -103,7 +105,18 @@ class AccountFragment : Fragment() {
 Вариант доставки: ${i.descriptionDelivery}
 Цена доставки: ${i.priceDelivery}
 Комментарий: ${i.comment}
-Статус оплаты: ${i.descriptionPrice}"""
+Статус оплаты: ${i.descriptionPrice}
+"""
+
+                val order = GetOrderTask().execute(currentUser.id.toString(), i.id).get().getJSONArray("result")
+                var booksOrder = ""
+                for (i in 0 until order.length()) {
+                    val nameBook = BookArrayData.getBook(order.getJSONObject(i).getString("isbn")).name
+                    val countBook = order.getJSONObject(i).getString("count")
+                    booksOrder += "$nameBook - $countBook штук\n"
+                }
+
+                newTextView.text = newTextView.text.toString() + booksOrder
 
                 myOrders.addView(newTextView)
             }

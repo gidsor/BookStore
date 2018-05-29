@@ -3,6 +3,7 @@ package com.gidsor.bookstore.ui.store
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.PopupMenu
 import android.view.LayoutInflater
 import android.view.View
@@ -63,7 +64,7 @@ class BookItemFragment : Fragment() {
 
         view.findViewById<Button>(R.id.book_item_review_add_button).setOnClickListener { v ->
             if (user.id == -1) {
-                Toast.makeText(context, "Войдите в учетную запись для добавления отзыва", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Войдите в учетную запись для добавления отзыва", Toast.LENGTH_SHORT).show()
             } else {
                 addReview(v, book)
                 updateReviews(view, book)
@@ -93,7 +94,7 @@ class BookItemFragment : Fragment() {
 
     fun addReview(view: View, book: Book) {
         AddReviewDialog.book = book
-        AddReviewDialog().show(fragmentManager, "")
+        AddReviewDialog().show(fragmentManager, "addReviewDialog")
     }
 
     fun showMenu(view: View, book: Book) {

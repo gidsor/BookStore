@@ -3,6 +3,7 @@ package com.gidsor.bookstore.data.database
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.BookTask
 import com.gidsor.bookstore.data.network.CompositionTask
+import com.gidsor.bookstore.data.network.ReviewTask
 import org.json.JSONObject
 
 object BookArrayData {
@@ -37,7 +38,7 @@ object BookArrayData {
                 val genre = compositionJSON.getString("genre")
                 val name = compositionJSON.getString("title")
 
-                val rating = 5.0f
+                val rating = getRating(isbn).toFloat()
 
                 books.add(Book(isbn, composition, name, image, genre, author, year, publisher, description, price, language, rating))
                 genres.add(genre)
@@ -53,6 +54,21 @@ object BookArrayData {
             }
         }
         return books[0]
+    }
+
+    private fun getRating(isbn: String): Int {
+        var rating = 0
+        var count = 0
+        val reviews = ReviewTask().execute(isbn, "").get()
+        if (!reviews.isNull("review")) {
+            for (i in 0 until reviews.getJSONArray("review").length()) {
+                val mark = reviews.getJSONArray("review").getJSONObject(i).getInt("mark")
+                rating += mark
+                count++
+            }
+        }
+        if (count == 0) return 0
+        else return rating / count
     }
 
     private fun getComposition(composition: Int): JSONObject {
