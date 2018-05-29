@@ -17,7 +17,7 @@ class PurchaseFragment : ListFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        BasketArrayData.updateOrder()
+        BasketArrayData.updateOrder(user)
         return inflater.inflate(R.layout.fragment_basket, container, false)
     }
 

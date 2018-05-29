@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.LibraryArrayData
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.data.database.OrderOfUserArrayData
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 
@@ -28,7 +29,7 @@ class AccountFragment : Fragment() {
             view.findViewById<TextView>(R.id.account_phone)?.text = user.phone
 
             updateLibraryOfUser(user, view)
-            BasketArrayData.updateOrder()
+            updateOrdersOfUser(user, view)
 
             if (user.id == -1) {
                 view.findViewById<Button>(R.id.account_login_and_registration)?.visibility = View.VISIBLE
@@ -85,28 +86,36 @@ class AccountFragment : Fragment() {
             }
         }
 
-//        fun updateMakedOrders(currentUser: User, view: View) {
-//            val ordersOfUser: LinearLayout = view.findViewById(R.id.account_orders)
-//            ordersOfUser.removeAllViewsInLayout()
-//            //TODO add only for OrdersOfUserArrayData (LibraryArrayData.updateCompositions(currentUser))
-//            for (i in OrderOfUserArrayData.getOrdersOfUser()) {
-//                val newTextView = TextView(view.context)
-//                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                paramsOfTextView.setMargins(10, 10, 0, 0)
-//                newTextView.layoutParams = paramsOfTextView
-//
-//                ordersOfUser.addView(newTextView)
-//            }
-//
-//            if (OrderOfUserArrayData.getOrdersOfUser().size == 0) {
-//                val newTextView = TextView(view.context)
-//                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                paramsOfTextView.setMargins(10, 10, 0, 0)
-//                newTextView.layoutParams = paramsOfTextView
-//                newTextView.text = "Пусто"
-//                ordersOfUser.addView(newTextView)
-//            }
-//        }
+        fun updateOrdersOfUser(currentUser: User, view: View) {
+            val myOrders: LinearLayout = view.findViewById(R.id.account_orders)
+            myOrders.removeAllViewsInLayout()
+            OrderOfUserArrayData.updateOrdersOfUser(currentUser)
+            for (i in OrderOfUserArrayData.getOrdersOfUser().reversed()) {
+                val newTextView = TextView(view.context)
+                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                paramsOfTextView.setMargins(10, 10, 0, 0)
+                newTextView.layoutParams = paramsOfTextView
+
+                newTextView.text = """Дата заказа: ${i.dateOrder}
+Цена заказа: ${i.price}
+Дата доставки: ${i.dateDelivery}
+Статус доставки: ${i.statusDelivery}
+Вариант доставки: ${i.descriptionDelivery}
+Цена доставки: ${i.priceDelivery}
+Комментарий: ${i.comment}
+Статус оплаты: ${i.descriptionPrice}"""
+
+                myOrders.addView(newTextView)
+            }
+            if (OrderOfUserArrayData.getOrdersOfUser().size == 0) {
+                val newTextView = TextView(view.context)
+                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                paramsOfTextView.setMargins(10, 10, 0, 0)
+                newTextView.layoutParams = paramsOfTextView
+                newTextView.text = "Пусто"
+                myOrders.addView(newTextView)
+            }
+        }
     }
 
     lateinit var loginDialog: DialogFragment

@@ -1,6 +1,6 @@
 package com.gidsor.bookstore
 
-import com.gidsor.bookstore.data.network.HTTPRequestAPI
+import com.gidsor.bookstore.data.api.HTTPRequestAPI
 import org.junit.Assert
 import org.junit.Test
 

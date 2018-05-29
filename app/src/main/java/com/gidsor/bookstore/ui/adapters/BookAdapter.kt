@@ -11,6 +11,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.data.model.BasketItem
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask
 import com.gidsor.bookstore.ui.account.AccountFragment
@@ -46,7 +47,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
 
         buyButtonBook.setOnClickListener { v ->
             if (user.id != -1) {
-                BasketArrayData.addToBasket(Order(user.id.toString(), book))
+                BasketArrayData.addToBasket(BasketItem(user, book))
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
             }
@@ -65,7 +66,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
             when (item.itemId) {
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
-                        BasketArrayData.addToBasket(Order(user.id.toString(), book))
+                        BasketArrayData.addToBasket(BasketItem(user, book))
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
                     }

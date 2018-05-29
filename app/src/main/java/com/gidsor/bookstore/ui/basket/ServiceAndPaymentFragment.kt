@@ -41,7 +41,7 @@ class ServiceAndPaymentFragment : Fragment() {
                 val phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 val message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
-                BasketArrayData.updateOrder()
+                BasketArrayData.updateOrder(user)
 //                for (order in BasketArrayData.getBasket()) {
 //                    DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
 //                }

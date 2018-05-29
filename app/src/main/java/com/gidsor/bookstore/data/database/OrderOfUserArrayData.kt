@@ -1,31 +1,41 @@
 package com.gidsor.bookstore.data.database
 
 import com.gidsor.bookstore.data.model.Order
+import com.gidsor.bookstore.data.model.User
+import com.gidsor.bookstore.data.network.GetOrdersTask
+import java.util.*
 
-class OrderOfUserArrayData {
-    companion object {
-        private var ordersOfUser: ArrayList<Order>
+object OrderOfUserArrayData {
+    private var ordersOfUser: ArrayList<Order> = arrayListOf()
 
-        // TODO make class with api get_order_of_user
-        init {
-            ordersOfUser = arrayListOf()
-            updateOrdersOfUser()
+    fun updateOrdersOfUser(user: User) {
+        ordersOfUser = arrayListOf()
+        val orders = GetOrdersTask().execute(user.id.toString()).get()
+        if (!orders.isNull("result")) {
+            val arr = orders.getJSONArray("result")
+            for (i in 0 until arr.length()) {
+                val order = arr.getJSONObject(i)
+                val id = order.getString("id")
+                val price = order.getInt("price")
+                val descriptionPrice = order.getString("description_price")
+                val comment = order.getString("comment")
+                val dateOrder = order.getString("date_order")
+                val dateDelivery = order.getString("date_delivery")
+                val address = order.getString("address")
+                val phone = order.getString("phone")
+                val statusDelivery = order.getString("status_delivery")
+                val priceDelivery = order.getInt("price_delivery")
+                val descriptionDelivery = order.getString("description_delivery")
+
+                ordersOfUser.add(Order(id, descriptionPrice, comment, dateOrder, address, price,
+                        dateDelivery, phone, statusDelivery, priceDelivery, descriptionDelivery))
+
+            }
+
         }
+    }
 
-        fun updateOrdersOfUser() {
-            ordersOfUser = arrayListOf()
-//            var basket = GetBasketTask().execute(user.id.toString()).get()
-//            if (!basket.isNull("result")) {
-//                var arr = basket.getJSONArray("result")
-//                for (i in 0 until arr.length()) {
-//                    var book = BookArrayData.getBook(arr.getJSONObject(i).getString("isbn"))
-//                    orders.add(Order(user.id.toString(), book))
-//                }
-//            }
-        }
-
-        fun getOrdersOfUser(): ArrayList<Order> {
-            return ordersOfUser
-        }
+    fun getOrdersOfUser(): ArrayList<Order> {
+        return ordersOfUser
     }
 }

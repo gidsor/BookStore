@@ -2,7 +2,6 @@ package com.gidsor.bookstore.ui.account
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,9 @@ import android.widget.EditText
 import android.widget.Toast
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
-import com.gidsor.bookstore.data.network.HTTPRequestAPI
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
-import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.result.getAs
 import org.json.JSONObject
-import java.net.URL
-import javax.xml.transform.Result
 
 class LoginDialog() : DialogFragment() {
 
