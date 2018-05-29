@@ -128,33 +128,34 @@
                     android:text="Год издания: 13.06.2015"/>
             </RelativeLayout>
 
-            <!--<RelativeLayout-->
-                <!--android:id="@+id/book_item_layout_reviews"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="50dp"-->
-                <!--android:layout_below="@id/book_item_layout_description">-->
-                <!--<TextView-->
-                    <!--android:id="@+id/book_item_simple_text_review"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:layout_centerHorizontal="true"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textSize="20dp"-->
-                    <!--android:text="Отзывы"/>-->
-                <!--<Button-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="15dp"-->
-                    <!--android:layout_toRightOf="@id/book_item_simple_text_review"-->
-                    <!--android:text="+"/>-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_margin="10dp"-->
-                    <!--android:layout_below="@id/book_item_simple_text_review"-->
-                    <!--android:text="Пользователь1: Классная книга"/>-->
-            <!--</RelativeLayout>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_below="@id/book_item_layout_description">
+                <TextView
+                    android:id="@+id/book_item_simple_text_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:text="Отзывы"/>
+                <Button
+                    android:id="@+id/book_item_review_add_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/book_item_simple_text_review"
+                    android:text="+"/>
+                <LinearLayout
+                    android:id="@+id/book_item_layout_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/book_item_simple_text_review"
+                    android:orientation="vertical"/>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

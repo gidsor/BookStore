@@ -100,12 +100,12 @@ object HTTPRequestAPI {
         return getData(url)
     }
 
-    fun getOrder(user: String, id: String): JSONObject {
-        val url = "$siteUrl/api/get_order?user=$user&id=$id"
+    fun getOrder(user: String, order: String): JSONObject {
+        val url = "$siteUrl/api/get_order?user=$user&order=$order"
         return getData(url)
     }
 
-    fun review(isbn: String = "", composition: String): JSONObject {
+    fun review(isbn: String = "", composition: String = ""): JSONObject {
         val url = "$siteUrl/api/review?isbn=$isbn&composition=$composition"
         return getData(url)
     }

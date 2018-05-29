@@ -22,7 +22,7 @@ class ServiceAndPaymentFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
+        val makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
         makeOrder.setOnClickListener { _ ->
             if (user.id != -1) {
                 val rg = view!!.findViewById<RadioGroup>(R.id.s_and_p_radio_group)
@@ -42,9 +42,6 @@ class ServiceAndPaymentFragment : Fragment() {
                 val message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                 BasketArrayData.updateOrder(user)
-//                for (order in BasketArrayData.getBasket()) {
-//                    DelFromBasketTask().execute(user.id.toString(), order.book.isbn).get()
-//                }
                 Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
                 MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
             }

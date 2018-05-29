@@ -15,7 +15,7 @@ object OrderOfUserArrayData {
             val arr = orders.getJSONArray("result")
             for (i in 0 until arr.length()) {
                 val order = arr.getJSONObject(i)
-                val id = order.getString("id")
+                val id = order.getString("order")
                 val price = order.getInt("price")
                 val descriptionPrice = order.getString("description_price")
                 val comment = order.getString("comment")

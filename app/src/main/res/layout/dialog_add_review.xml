@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/review_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/review_add_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/image_default_user"/>
+    <TextView
+        android:id="@+id/review_add_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/review_add_image"
+        android:textStyle="bold"
+        android:text="vadim"/>
+
+    <RatingBar
+        android:id="@+id/review_add_rating"
+        style="?android:attr/ratingBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/review_add_image"
+        android:numStars="5"
+        android:rating="5"
+        android:stepSize="1"
+        android:layout_centerHorizontal="true"
+        android:progressTint="@color/white"
+        android:visibility="visible" />
+    <EditText
+        android:id="@+id/review_add_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/review_add_rating"
+        android:layout_marginTop="10dp"
+        android:hint="Ваш отзыв"
+        android:gravity="top"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/review_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/review_add_text"
+        android:text="Отменить"/>
+
+    <Button
+        android:id="@+id/review_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/review_add_text"
+        android:text="Добавить"/>
+</RelativeLayout>
