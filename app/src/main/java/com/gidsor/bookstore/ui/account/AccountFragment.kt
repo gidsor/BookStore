@@ -12,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.LibraryArrayData
-import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.database.OrderOfUserArrayData
 import com.gidsor.bookstore.data.model.User
@@ -43,52 +42,6 @@ class AccountFragment : Fragment() {
                 view.findViewById<Button>(R.id.account_login_and_registration)?.visibility = View.INVISIBLE
             }
         }
-
-//        fun updateLibraryOfUser(currentUser: User, view: View) {
-//            val library: LinearLayout = view.findViewById(R.id.account_library)
-//            library.removeAllViewsInLayout()
-//            LibraryArrayData.updateCompositions(currentUser)
-//            for (i in LibraryArrayData.getCompositions()) {
-//                val newTextView = TextView(view.context)
-//                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                paramsOfTextView.setMargins(10, 10, 0, 0)
-//                newTextView.layoutParams = paramsOfTextView
-//
-//                val bookName = i.title
-//                val bookAuthor = i.author
-//
-//                val removeButton = Button(view.context)
-//                val paramsOfButton = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                paramsOfButton.setMargins(10, 10, 0, 0)
-//                removeButton.layoutParams = paramsOfTextView
-//                removeButton.text = "Удалить из библиотеки"
-//                removeButton.setOnClickListener { v ->
-//                    DelFromLibraryTask().execute(user.id.toString(), i.lib, i.composition)
-//                    updateLibraryOfUser(user, view)
-//                }
-//                when {
-//                    i.lib == "1" -> {
-//                        newTextView.text = "Название: $bookName\nАвтор: $bookAuthor\nСтатус: Прочитанное"
-//                    }
-//                    i.lib == "2" -> {
-//                        newTextView.text = "Название: $bookName\nАвтор: $bookAuthor\nСтатус: Отложенное"
-//                    }
-//                    i.lib == "3" -> {
-//                        newTextView.text = "Название: $bookName\nАвтор: $bookAuthor\nСтатус: Избранное"
-//                    }
-//                }
-//                library.addView(newTextView)
-//                library.addView(removeButton)
-//            }
-//            if (LibraryArrayData.getCompositions().size == 0) {
-//                val newTextView = TextView(view.context)
-//                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-//                paramsOfTextView.setMargins(10, 10, 0, 0)
-//                newTextView.layoutParams = paramsOfTextView
-//                newTextView.text = "Пусто"
-//                library.addView(newTextView)
-//            }
-//        }
 
         fun updateLibraryOfUser(currentUser: User, view: View) {
             val libraryLayout = view.findViewById<LinearLayout>(R.id.account_library)
