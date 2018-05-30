@@ -1,5 +1,6 @@
 package com.gidsor.bookstore.data.database
 
+import android.util.Log
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.BookTask
 import com.gidsor.bookstore.data.network.CompositionTask
@@ -31,6 +32,11 @@ object BookArrayData {
                 val image = "http://212.47.240.244/images/" + bookItem.getString("envelope")
                 val isbn = bookItem.getString("isbn")
 
+                var rating = 0f
+                if (!bookItem.isNull("mark")) {
+                    rating = bookItem.getString("mark").toFloat()
+                }
+
                 val composition = bookItem.getInt("composition")
                 val compositionJSON = getComposition(composition)
 
@@ -38,7 +44,6 @@ object BookArrayData {
                 val genre = compositionJSON.getString("genre")
                 val name = compositionJSON.getString("title")
 
-                val rating = getRating(isbn).toFloat()
 
                 books.add(Book(isbn, composition, name, image, genre, author, year, publisher, description, price, language, rating))
                 genres.add(genre)
