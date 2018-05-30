@@ -13,11 +13,11 @@ object BasketArrayData {
 
     fun updateOrder(user: User) {
         booksOfBasket = arrayListOf()
-        var basket = GetBasketTask().execute(user.id.toString()).get()
+        val basket = GetBasketTask().execute(user.id.toString()).get()
         if (!basket.isNull("result")) {
-            var arr = basket.getJSONArray("result")
+            val arr = basket.getJSONArray("result")
             for (i in 0 until arr.length()) {
-                var book = BookArrayData.getBook(arr.getJSONObject(i).getString("isbn"))
+                val book = BookArrayData.getBook(arr.getJSONObject(i).getString("isbn"))
                 booksOfBasket.add(BasketItem(user, book))
             }
         }
