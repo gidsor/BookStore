@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.SetReviewTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
@@ -36,6 +37,7 @@ class AddReviewDialog : DialogFragment() {
             val mark = view.findViewById<RatingBar>(R.id.review_add_rating).rating.toInt().toString()
             val text = view.findViewById<EditText>(R.id.review_add_text).text.toString()
             SetReviewTask().execute(user.id.toString(), book.composition.toString(), mark, text).get()
+            BookArrayData.updateRating(book)
             dismiss()
             MainActivity.loadBookItemFragment(book)
         }

@@ -52,6 +52,18 @@ object BookArrayData {
         }
     }
 
+    fun updateRating(book: Book) {
+        val response: JSONObject = BookTask().execute(book.isbn, "").get()
+        if (response.has("status") && response["status"] == "ok") {
+            val bookItem = response.getJSONArray("result").getJSONObject(0)
+            var rating = 0f
+            if (!bookItem.isNull("mark")) {
+                rating = bookItem.getString("mark").toFloat()
+            }
+            book.rating = rating
+        }
+    }
+
     fun getBook(isbn: String): Book {
         for (book in books) {
             if (book.isbn == isbn) {
@@ -59,21 +71,6 @@ object BookArrayData {
             }
         }
         return books[0]
-    }
-
-    private fun getRating(isbn: String): Int {
-        var rating = 0
-        var count = 0
-        val reviews = ReviewTask().execute(isbn, "").get()
-        if (!reviews.isNull("review")) {
-            for (i in 0 until reviews.getJSONArray("review").length()) {
-                val mark = reviews.getJSONArray("review").getJSONObject(i).getInt("mark")
-                rating += mark
-                count++
-            }
-        }
-        if (count == 0) return 0
-        else return rating / count
     }
 
     private fun getComposition(composition: Int): JSONObject {

@@ -11,4 +11,4 @@ class Book(val isbn: String,
            val description: String,
            val price: Int,
            val language: String,
-           val rating: Float)
+           var rating: Float)
