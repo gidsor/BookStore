@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Произведение 1"/>
         <TextView
-            android:id="@+id/Library_author"
+            android:id="@+id/library_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/library_title"
@@ -31,7 +31,7 @@
             android:id="@+id/library_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Library_author"
+            android:layout_below="@id/library_author"
             android:text="Прочитано"/>
         <Button
             android:id="@+id/library_remove"
