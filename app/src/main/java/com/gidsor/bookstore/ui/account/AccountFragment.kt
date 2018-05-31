@@ -14,6 +14,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.LibraryArrayData
 import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.database.OrderOfUserArrayData
+import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.GetOrderTask
@@ -30,12 +31,14 @@ class AccountFragment : Fragment() {
 
             view.findViewById<TextView>(R.id.account_email)?.text = user.email
             view.findViewById<TextView>(R.id.account_real_name)?.text = user.realName
-            view.findViewById<TextView>(R.id.account_phone)?.text = user.phone
+            view.findViewById<TextView>(R.id.account_phone)?.text = "+" + user.phone
 
             updateLibraryOfUser(user, view)
             updateOrdersOfUser(user, view)
 
             if (user.id == -1) {
+                view.findViewById<TextView>(R.id.account_phone)?.text = ""
+
                 view.findViewById<Button>(R.id.account_login_and_registration)?.visibility = View.VISIBLE
                 view.findViewById<Button>(R.id.account_exit)?.visibility = View.INVISIBLE
             } else {
@@ -120,19 +123,28 @@ class AccountFragment : Fragment() {
 Цена доставки: ${i.priceDelivery}
 Комментарий: ${i.comment}
 Статус оплаты: ${i.descriptionPrice}
-"""
-
-                val order = GetOrderTask().execute(currentUser.id.toString(), i.id).get().getJSONArray("result")
-                var booksOrder = ""
-                for (i in 0 until order.length()) {
-                    val nameBook = BookArrayData.getBook(order.getJSONObject(i).getString("isbn")).name
-                    val countBook = order.getJSONObject(i).getString("count")
-                    booksOrder += "$nameBook - $countBook штук\n"
-                }
-
-                newTextView.text = newTextView.text.toString() + booksOrder
-
+Книги:"""
                 myOrders.addView(newTextView)
+
+                val inflater = LayoutInflater.from(view.context)
+                val order = GetOrderTask().execute(currentUser.id.toString(), i.id).get().getJSONArray("result")
+                for (i in 0 until order.length()) {
+                    val book: Book = BookArrayData.getBook(order.getJSONObject(i).getString("isbn"))
+                    val countBook = order.getJSONObject(i).getString("count")
+
+                    val orderItemLayout = inflater.inflate(R.layout.fragment_order, null, false)
+                    val imageView = orderItemLayout.findViewById<ImageView>(R.id.order_image)
+                    var urlImageView  = book.imageUrl
+                    Picasso.get().load(urlImageView).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+                            .fit().centerInside()
+                            .into(imageView)
+
+                    orderItemLayout.findViewById<TextView>(R.id.order_title).text = book.name
+                    orderItemLayout.findViewById<TextView>(R.id.order_author).text = book.author
+                    orderItemLayout.findViewById<TextView>(R.id.order_count).text = "x $countBook"
+
+                    myOrders.addView(orderItemLayout)
+                }
             }
             if (OrderOfUserArrayData.getOrdersOfUser().size == 0) {
                 val newTextView = TextView(view.context)

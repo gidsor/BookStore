@@ -18,7 +18,8 @@ object BasketArrayData {
             val arr = basket.getJSONArray("result")
             for (i in 0 until arr.length()) {
                 val book = BookArrayData.getBook(arr.getJSONObject(i).getString("isbn"))
-                booksOfBasket.add(BasketItem(user, book))
+                val count = arr.getJSONObject(i).getInt("count")
+                booksOfBasket.add(BasketItem(user, book, count))
             }
         }
     }

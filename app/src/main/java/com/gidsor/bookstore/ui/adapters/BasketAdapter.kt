@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.data.model.BasketItem
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 
@@ -27,8 +28,10 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
         val authorBook: TextView = convertView.findViewById(R.id.order_book_author)
         val priceBook: TextView = convertView.findViewById(R.id.order_book_price)
         val removeButton: Button = convertView.findViewById(R.id.order_book_remove_button)
+        val countBook: Button = convertView.findViewById(R.id.order_book_count)
 
-        val book: Book = BasketArrayData.getBasket()[position].book
+        val baskedItem = BasketArrayData.getBasket()[position]
+        val book: Book = baskedItem.book
 
         Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
@@ -38,6 +41,7 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
         nameBook.text = book.name
         authorBook.text = book.author
         priceBook.text = book.price.toString() + ",00 \u20BD"
+        countBook.text = baskedItem.count.toString()
 
         removeButton.setOnClickListener { v ->
             BasketArrayData.removeFromBasket(BasketArrayData.getBasket()[position])
