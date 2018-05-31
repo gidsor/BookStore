@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
+import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.model.Book
@@ -28,6 +29,8 @@ class AddReviewDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.review_add_nickname).text = user.realName
 
         view.findViewById<Button>(R.id.review_cancel).setOnClickListener { _ ->
             dismiss()
