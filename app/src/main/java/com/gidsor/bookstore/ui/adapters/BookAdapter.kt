@@ -15,6 +15,7 @@ import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.model.BasketItem
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask
+import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 
@@ -48,7 +49,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
 
         buyButtonBook.setOnClickListener { v ->
             if (user.id != -1) {
-                BasketArrayData.addToBasket(BasketItem(user, book))
+                BasketArrayData.addToBasket(BasketItem(user, book, 1))
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
             }
@@ -67,7 +68,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
             when (item.itemId) {
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
-                        BasketArrayData.addToBasket(BasketItem(user, book))
+                        BasketArrayData.addToBasket(BasketItem(user, book, 1))
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
                     }
@@ -75,6 +76,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                 }
                 R.id.book_item_button_add_to_library_read -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"1", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "1", book.composition.toString())
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {
@@ -84,6 +86,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                 }
                 R.id.book_item_button_add_to_library_deferred -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"2", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "2", book.composition.toString())
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {
@@ -93,6 +96,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                 }
                 R.id.book_item_button_add_to_library_desired -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"3", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "3", book.composition.toString())
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {

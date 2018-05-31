@@ -14,6 +14,7 @@ import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.BasketItem
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.AddToLibraryTask
+import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.ReviewTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.updateLibraryOfUser
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
@@ -50,7 +51,7 @@ class BookItemFragment : Fragment() {
 
         view.findViewById<Button>(R.id.book_item_buy_button).setOnClickListener { v ->
             if (user.id != -1) {
-                BasketArrayData.addToBasket(BasketItem(user, book))
+                BasketArrayData.addToBasket(BasketItem(user, book, 1))
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
             }
@@ -104,7 +105,7 @@ class BookItemFragment : Fragment() {
             when (item.itemId) {
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
-                        BasketArrayData.addToBasket(BasketItem(user, book))
+                        BasketArrayData.addToBasket(BasketItem(user, book, 1))
                         updateLibraryOfUser(user, viewAccount)
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
@@ -113,6 +114,7 @@ class BookItemFragment : Fragment() {
                 }
                 R.id.book_item_button_add_to_library_read -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"1", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "1", book.composition.toString())
                         updateLibraryOfUser(user, viewAccount)
                     } else {
@@ -122,6 +124,7 @@ class BookItemFragment : Fragment() {
                 }
                 R.id.book_item_button_add_to_library_deferred -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"2", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "2", book.composition.toString())
                         updateLibraryOfUser(user, viewAccount)
                     } else {
@@ -131,6 +134,7 @@ class BookItemFragment : Fragment() {
                 }
                 R.id.book_item_button_add_to_library_desired -> {
                     if (user.id != -1) {
+                        DelFromLibraryTask().execute(user.id.toString(),"3", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "3", book.composition.toString())
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
