@@ -1,6 +1,7 @@
 package com.gidsor.bookstore.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.api.HTTPRequestAPI
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 loadStoreFragmentWithGenreAndSearch("", query)
+                (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(currentFocus.windowToken, 0)
                 return true
             }
         })
