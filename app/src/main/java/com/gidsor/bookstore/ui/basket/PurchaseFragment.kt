@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
@@ -26,11 +27,15 @@ class PurchaseFragment : ListFragment() {
         adapter = BasketAdapter(view!!.context)
         listAdapter = adapter
 
-        var makeOrder: Button = view!!.findViewById(R.id.purchase_make_order_button)
-        makeOrder.text = "Оформить заказ стоимостью ${BasketArrayData.getCommonPrice()},00 \u20BD"
+        val makeOrder: Button = view!!.findViewById(R.id.purchase_make_order_button)
+        val price = BasketArrayData.getCommonPrice()
+        makeOrder.text = "Оформить заказ"
+
         makeOrder.setOnClickListener {v ->
-            if (user.id != -1) {
+            if (user.id != -1 && BasketArrayData.getCommonPrice() != 0) {
                 MainActivity.loadServiceAndPaymentFragment()
+            } else {
+                Toast.makeText(activity, "Добавьте товар в корзину", Toast.LENGTH_SHORT).show()
             }
         }
     }

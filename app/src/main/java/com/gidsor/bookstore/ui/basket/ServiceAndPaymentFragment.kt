@@ -66,14 +66,18 @@ class ServiceAndPaymentFragment : Fragment() {
                 val phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 val message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
 
-                if (phone.length == "+7 1112223344".length) {
-                    CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
-                    BasketArrayData.updateOrder(user)
-                    Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
-                    (activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity!!.currentFocus.windowToken, 0)
-                    MainActivity.loadStoreFragmentWithGenreAndSearch("")
+                if (card != "" || address != "" || message != "") {
+                    if (phone.length == "+7 1112223344".length) {
+                        CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
+                        BasketArrayData.updateOrder(user)
+                        Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
+                        (activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity!!.currentFocus.windowToken, 0)
+                        MainActivity.loadStoreFragmentWithGenreAndSearch("")
+                    } else {
+                        Toast.makeText(activity, "Введите телефон формата +7 1112223344", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(activity, "Введите телефон формата +7 1112223344", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Заполните все поля", Toast.LENGTH_SHORT).show()
                 }
             }
         }
