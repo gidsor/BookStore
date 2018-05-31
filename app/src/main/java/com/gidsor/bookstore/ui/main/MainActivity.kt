@@ -14,7 +14,6 @@ import android.view.MenuItem
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.api.HTTPRequestAPI
-import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.basket.PurchaseFragment
@@ -46,10 +45,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     companion object {
         lateinit var mainFragmentManager:FragmentManager
 
-        fun loadStoreFragmentWithGenreAndSearch(genre: String, search: String = "") {
+        fun loadStoreFragmentWithGenreAndSearch(genre: String = "", search: String = "") {
             val storeFragment = StoreFragment()
             storeFragment.genreToShow = genre
-            storeFragment.searchTitile = search
+            storeFragment.searchTitle = search
             mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
         }
 
@@ -74,20 +73,20 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         mainFragmentManager = supportFragmentManager
 
-        loadFragment(StoreFragment())
+        loadFragment(AccountFragment())
 
         // add search
         searchView = findViewById(R.id.search_view)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    loadStoreFragmentWithGenreAndSearch("Все", newText)
+                    loadStoreFragmentWithGenreAndSearch("", newText)
                 }
                 return false
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                loadStoreFragmentWithGenreAndSearch("Все", query)
+                loadStoreFragmentWithGenreAndSearch("", query)
                 return true
             }
         })
@@ -97,6 +96,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
         // always show text in navigation for more 3 elements and disable shift mode
         bottomNavigationView.disableShiftMode()
+        bottomNavigationView.menu.getItem(3).isChecked = true
 
         // add drawer
         toolbar = findViewById(R.id.toolbar)

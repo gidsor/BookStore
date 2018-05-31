@@ -1,19 +1,13 @@
 package com.gidsor.bookstore.data.database
 
-import android.util.Log
 import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.network.BookTask
 import com.gidsor.bookstore.data.network.CompositionTask
-import com.gidsor.bookstore.data.network.ReviewTask
 import org.json.JSONObject
 
 object BookArrayData {
     private var books: ArrayList<Book> = arrayListOf()
     private var genres: MutableSet<String> = mutableSetOf()
-
-    init {
-        updateBooks()
-    }
 
     fun updateBooks() {
         val response: JSONObject = BookTask().execute("", "").get()
@@ -52,6 +46,17 @@ object BookArrayData {
         }
     }
 
+    private fun getComposition(composition: Int): JSONObject {
+        var value = JSONObject()
+        val response: JSONObject = CompositionTask().execute(composition.toString(), "", "", "", "", "").get()
+        if (response.has("status") && response["status"] == "ok") {
+            val result = response.getJSONArray("result")
+            value = result.getJSONObject(0)
+        } else {
+        }
+        return value
+    }
+
     fun updateRating(book: Book) {
         val response: JSONObject = BookTask().execute(book.isbn, "").get()
         if (response.has("status") && response["status"] == "ok") {
@@ -72,18 +77,6 @@ object BookArrayData {
         }
         return books[0]
     }
-
-    private fun getComposition(composition: Int): JSONObject {
-        var value = JSONObject()
-        val response: JSONObject = CompositionTask().execute(composition.toString(), "", "", "", "", "").get()
-        if (response.has("status") && response["status"] == "ok") {
-            val result = response.getJSONArray("result")
-            value = result.getJSONObject(0)
-        } else {
-        }
-        return value
-    }
-
     fun getBooks(): ArrayList<Book> {
         return books
     }

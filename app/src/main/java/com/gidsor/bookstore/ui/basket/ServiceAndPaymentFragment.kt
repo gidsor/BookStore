@@ -43,7 +43,7 @@ class ServiceAndPaymentFragment : Fragment() {
                 CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                 BasketArrayData.updateOrder(user)
                 Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
-                MainActivity.loadStoreFragmentWithGenreAndSearch("Все")
+                MainActivity.loadStoreFragmentWithGenreAndSearch("")
             }
         }
     }

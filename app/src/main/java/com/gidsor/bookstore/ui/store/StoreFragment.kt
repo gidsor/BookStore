@@ -15,8 +15,8 @@ class StoreFragment : ListFragment() {
 
     private lateinit var bookItems: ArrayList<Book>
     private lateinit var adapter: BookAdapter
-    var genreToShow: String = "Все"
-    var searchTitile: String = ""
+    var genreToShow: String = ""
+    var searchTitle: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -25,10 +25,8 @@ class StoreFragment : ListFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        // Show all books or books of selected genre
         bookItems = ArrayList()
-        if (genreToShow != "Все") {
+        if (genreToShow != "") {
             for (book in BookArrayData.getBooks()) {
                 if (book.genre == genreToShow) {
                     bookItems.add(book)
@@ -40,9 +38,9 @@ class StoreFragment : ListFragment() {
 
         var bookItemsToShow = arrayListOf<Book>()
 
-        if (searchTitile != "") {
+        if (searchTitle != "") {
             for (book in bookItems) {
-                if (book.name.toLowerCase().contains(searchTitile.toLowerCase())) {
+                if (book.name.toLowerCase().contains(searchTitle.toLowerCase())) {
                     bookItemsToShow.add(book)
                 }
             }
@@ -52,6 +50,7 @@ class StoreFragment : ListFragment() {
 
         (activity as MainActivity).bottomNavigationView.menu.getItem(0).isChecked = true
         adapter = BookAdapter(view!!.context, bookItemsToShow)
+
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             MainActivity.loadBookItemFragment(bookItemsToShow[position])

@@ -11,6 +11,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.model.BasketItem
 import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask
