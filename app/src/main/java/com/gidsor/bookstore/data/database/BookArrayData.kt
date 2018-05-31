@@ -47,14 +47,8 @@ object BookArrayData {
     }
 
     private fun getComposition(composition: Int): JSONObject {
-        var value = JSONObject()
         val response: JSONObject = CompositionTask().execute(composition.toString(), "", "", "", "", "").get()
-        if (response.has("status") && response["status"] == "ok") {
-            val result = response.getJSONArray("result")
-            value = result.getJSONObject(0)
-        } else {
-        }
-        return value
+        return response.getJSONArray("result").getJSONObject(0)
     }
 
     fun updateRating(book: Book) {

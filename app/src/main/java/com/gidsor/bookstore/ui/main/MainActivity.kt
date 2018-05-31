@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private lateinit var toolbar: Toolbar
     private lateinit var searchView: MaterialSearchView
     private lateinit var drawer: Drawer
-    private lateinit var accountHeader: AccountHeader
 
     companion object {
         lateinit var mainFragmentManager:FragmentManager
@@ -101,7 +100,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         // add drawer
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        accountHeader = buildAccountHeader()
         drawer = buildDrawer()
     }
 
@@ -157,29 +155,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
-    private fun buildAccountHeader(): AccountHeader {
-        return AccountHeaderBuilder()
-                .withActivity(this)
-                .addProfiles(
-                        ProfileDrawerItem().withName("Аноним").
-                                withEmail("mail@mail.com").
-                                withIcon(R.drawable.image_default_user)
-                )
-                .withOnAccountHeaderListener(AccountHeader.OnAccountHeaderListener { view, profile, current ->
-                    bottomNavigationView.menu.getItem(3).isChecked = true
-                    loadFragment(AccountFragment())
-                    false
-                })
-                .withSelectionListEnabledForSingleProfile(false)
-                .build()
-    }
-
     private fun buildDrawer(): Drawer {
         return DrawerBuilder()
                 .withActivity(this)
                 .withRootView(R.id.drawer_container)
                 .withToolbar(toolbar)
-                .withAccountHeader(accountHeader)
                 .withActionBarDrawerToggle(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .addDrawerItems(
@@ -197,11 +177,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 .withOnDrawerItemClickListener {view, position, drawerItem ->
                     bottomNavigationView.menu.setGroupCheckable(0, false, true)
                     when (position) {
-                        1 -> !loadFragment(ReferenceFragment())
-                        2 -> !loadFragment(ConfidentialityFragment())
-                        3 -> !loadFragment(DeliveryFragment())
-                        4 -> !loadFragment(ContactsFragment())
-                        5 -> !loadFragment(AboutFragment())
+                        0 -> !loadFragment(ReferenceFragment())
+                        1 -> !loadFragment(ConfidentialityFragment())
+                        2 -> !loadFragment(DeliveryFragment())
+                        3 -> !loadFragment(ContactsFragment())
+                        4 -> !loadFragment(AboutFragment())
                         else -> true
                     }
                 }

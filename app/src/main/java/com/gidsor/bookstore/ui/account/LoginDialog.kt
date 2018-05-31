@@ -12,6 +12,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
+import com.gidsor.bookstore.ui.main.MainActivity
 import org.json.JSONObject
 
 class LoginDialog() : DialogFragment() {
