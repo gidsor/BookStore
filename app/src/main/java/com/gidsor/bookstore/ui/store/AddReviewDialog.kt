@@ -35,7 +35,10 @@ class AddReviewDialog : DialogFragment() {
 
         view.findViewById<Button>(R.id.review_add).setOnClickListener { _ ->
             val mark = view.findViewById<RatingBar>(R.id.review_add_rating).rating.toInt().toString()
-            val text = view.findViewById<EditText>(R.id.review_add_text).text.toString()
+            var text = view.findViewById<EditText>(R.id.review_add_text).text.toString()
+            if (text == "") {
+                text = "-"
+            }
             SetReviewTask().execute(user.id.toString(), book.composition.toString(), mark, text).get()
             BookArrayData.updateRating(book)
             dismiss()
