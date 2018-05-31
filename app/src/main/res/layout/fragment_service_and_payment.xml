@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/s_and_p_text"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp">
 
                 <RadioButton
                     android:id="@+id/s_and_p_rb_1"
@@ -56,35 +57,46 @@
             </RadioGroup>
             <EditText
                 android:id="@+id/s_and_p_card"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:hint="Карта"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
                 android:layout_below="@id/s_and_p_radio_group"/>
             <EditText
                 android:id="@+id/s_and_p_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:hint="Адрес"
+                android:singleLine="true"
                 android:layout_below="@id/s_and_p_card"/>
             <EditText
                 android:id="@+id/s_and_p_phone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:hint="Телефон"
+                android:maxLength="13"
+                android:inputType="phone"
+                android:singleLine="true"
                 android:layout_below="@id/s_and_p_address"/>
             <EditText
                 android:id="@+id/s_and_p_message"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:hint="Комментарий"
+                android:singleLine="true"
                 android:layout_below="@id/s_and_p_phone"/>
         </RelativeLayout>
     </ScrollView>

@@ -13,6 +13,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:singleLine="true"
+        android:inputType="textEmailAddress"
         android:hint="E-mail"/>
     <EditText
         android:id="@+id/registration_password_input"
@@ -23,6 +25,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_email_input"
+        android:singleLine="true"
         android:hint="Пароль"/>
     <EditText
         android:id="@+id/registration_password_input_confirm"
@@ -33,7 +36,20 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_password_input"
+        android:singleLine="true"
         android:hint="Подтвердите пароль"/>
+    <EditText
+        android:id="@+id/registration_phone_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/registration_patronymic_input"
+        android:singleLine="true"
+        android:inputType="phone"
+        android:maxLength="13"
+        android:hint="Телефон"/>
     <EditText
         android:id="@+id/registration_firstname_input"
         android:layout_width="match_parent"
@@ -42,6 +58,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_password_input_confirm"
+        android:singleLine="true"
         android:hint="Имя"/>
     <EditText
         android:id="@+id/registration_lastname_input"
@@ -51,6 +68,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_firstname_input"
+        android:singleLine="true"
         android:hint="Фамилия"/>
     <EditText
         android:id="@+id/registration_patronymic_input"
@@ -60,16 +78,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/registration_lastname_input"
+        android:singleLine="true"
         android:hint="Отчество"/>
-    <EditText
-        android:id="@+id/registration_phone_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@id/registration_patronymic_input"
-        android:hint="Телефон"/>
 
     <Button
         android:id="@+id/registration_registration"

@@ -2,6 +2,9 @@ package com.gidsor.bookstore.ui.basket
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.Editable
+import android.text.Selection
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +25,26 @@ class ServiceAndPaymentFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val phoneEditText = view!!.findViewById<EditText>(R.id.s_and_p_phone)
+        phoneEditText.setText("+7 ")
+        Selection.setSelection(phoneEditText.text, phoneEditText.text.length)
+        phoneEditText.addTextChangedListener(object : TextWatcher {
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun afterTextChanged(s: Editable) {
+                if (!s.toString().startsWith("+7 ")) {
+                    phoneEditText.setText("+7")
+                    Selection.setSelection(phoneEditText.text, phoneEditText.text.length)
+
+                }
+
+            }
+        })
+
         val makeOrder: Button = view!!.findViewById(R.id.s_and_p_make_order_button)
         makeOrder.setOnClickListener { _ ->
             if (user.id != -1) {
@@ -40,10 +63,15 @@ class ServiceAndPaymentFragment : Fragment() {
                 val address = view!!.findViewById<EditText>(R.id.s_and_p_address).text.toString()
                 val phone = view!!.findViewById<EditText>(R.id.s_and_p_phone).text.toString()
                 val message = view!!.findViewById<EditText>(R.id.s_and_p_message).text.toString()
-                CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
-                BasketArrayData.updateOrder(user)
-                Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
-                MainActivity.loadStoreFragmentWithGenreAndSearch("")
+
+                if (phone.length == "+7 1112223344".length) {
+                    CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
+                    BasketArrayData.updateOrder(user)
+                    Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
+                    MainActivity.loadStoreFragmentWithGenreAndSearch("")
+                } else {
+                    Toast.makeText(activity, "Введите телефон формата +7 1112223344", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
