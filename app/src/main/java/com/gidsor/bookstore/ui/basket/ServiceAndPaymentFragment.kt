@@ -1,5 +1,6 @@
 package com.gidsor.bookstore.ui.basket
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
@@ -68,6 +70,7 @@ class ServiceAndPaymentFragment : Fragment() {
                     CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                     BasketArrayData.updateOrder(user)
                     Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT)
+                    (activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity!!.currentFocus.windowToken, 0)
                     MainActivity.loadStoreFragmentWithGenreAndSearch("")
                 } else {
                     Toast.makeText(activity, "Введите телефон формата +7 1112223344", Toast.LENGTH_SHORT).show()

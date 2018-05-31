@@ -71,6 +71,12 @@
                         android:text="\u22EE"/>
                 </RelativeLayout>
             </RelativeLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/material_drawer_dark_divider"
+                android:layout_below="@id/book_item_layout_book"/>
             <RelativeLayout
                 android:id="@+id/book_item_layout_genres"
                 android:layout_width="match_parent"
@@ -92,6 +98,12 @@
                     android:layout_margin="10dp"
                     android:text="ФАНТАСТИКА, ФЕНТЕЗИ, ПРИКЛЮЧЕНИЕ"/>
             </RelativeLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/material_drawer_dark_divider"
+                android:layout_below="@id/book_item_layout_genres"/>
             <RelativeLayout
                 android:id="@+id/book_item_layout_description"
                 android:layout_width="match_parent"
@@ -128,15 +140,22 @@
                     android:text="Год издания: 13.06.2015"/>
             </RelativeLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/material_drawer_dark_divider"
+                android:layout_below="@id/book_item_layout_description"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@id/book_item_layout_description">
                 <TextView
                     android:id="@+id/book_item_simple_text_review"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"
                     android:textStyle="bold"
                     android:textSize="20dp"
