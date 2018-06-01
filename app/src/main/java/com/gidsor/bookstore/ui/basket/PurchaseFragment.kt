@@ -28,10 +28,9 @@ class PurchaseFragment : ListFragment() {
         listAdapter = adapter
 
         val makeOrder: Button = view!!.findViewById(R.id.purchase_make_order_button)
-        val price = BasketArrayData.getCommonPrice()
         makeOrder.text = "Оформить заказ"
 
-        makeOrder.setOnClickListener {v ->
+        makeOrder.setOnClickListener { v ->
             if (user.id != -1 && BasketArrayData.getCommonPrice() != 0) {
                 (activity as MainActivity).loadServiceAndPaymentFragment()
             } else {

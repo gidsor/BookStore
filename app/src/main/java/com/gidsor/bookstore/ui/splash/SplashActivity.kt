@@ -1,11 +1,11 @@
-package com.gidsor.bookstore.ui.main
+package com.gidsor.bookstore.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BookArrayData
+import com.gidsor.bookstore.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -35,7 +35,6 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
         Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
-        //DownloadImageTask(imageBook).execute(book.imageUrl)
 
         nameBook.text = book.name
         authorBook.text = book.author

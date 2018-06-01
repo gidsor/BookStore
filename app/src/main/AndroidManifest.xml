@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/ic_launcher"
         android:theme="@style/MaterialDrawerTheme">
         <activity
-            android:name=".ui.main.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/SplashTheme">
