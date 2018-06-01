@@ -33,7 +33,7 @@ class PurchaseFragment : ListFragment() {
 
         makeOrder.setOnClickListener {v ->
             if (user.id != -1 && BasketArrayData.getCommonPrice() != 0) {
-                MainActivity.loadServiceAndPaymentFragment()
+                (activity as MainActivity).loadServiceAndPaymentFragment()
             } else {
                 Toast.makeText(activity, "Добавьте товар в корзину", Toast.LENGTH_SHORT).show()
             }

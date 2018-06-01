@@ -52,7 +52,7 @@ class StoreFragment : ListFragment() {
 
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            MainActivity.loadBookItemFragment(bookItemsToShow[position])
+            (activity as MainActivity).loadBookItemFragment(bookItemsToShow[position])
         }
     }
 }

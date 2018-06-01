@@ -45,7 +45,7 @@ class AddReviewDialog : DialogFragment() {
             SetReviewTask().execute(user.id.toString(), book.composition.toString(), mark, text).get()
             BookArrayData.updateRating(book)
             dismiss()
-            MainActivity.loadBookItemFragment(book)
+            (activity as MainActivity).loadBookItemFragment(book)
         }
     }
 

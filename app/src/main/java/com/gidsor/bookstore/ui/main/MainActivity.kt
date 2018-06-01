@@ -38,34 +38,15 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var toolbar: Toolbar
     private lateinit var searchView: MaterialSearchView
     private lateinit var drawer: Drawer
-
-    companion object {
-        lateinit var mainFragmentManager:FragmentManager
-
-
-
-        fun loadBookItemFragment(book: Book) {
-            val bookItemFragment = BookItemFragment()
-            bookItemFragment.bookToShow = book
-            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, bookItemFragment).commit()
-        }
-
-        fun loadServiceAndPaymentFragment() {
-            val paymentFragment = ServiceAndPaymentFragment()
-            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, paymentFragment).commit()
-        }
-    }
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        mainFragmentManager = supportFragmentManager
 
         loadFragment(AccountFragment())
 
@@ -104,7 +85,18 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         storeFragment.genreToShow = genre
         storeFragment.searchTitle = search
         bottomNavigationView.menu.getItem(0).isChecked = true
-        mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
+        loadFragment(storeFragment)
+    }
+
+    fun loadServiceAndPaymentFragment() {
+        val paymentFragment = ServiceAndPaymentFragment()
+        loadFragment(paymentFragment)
+    }
+
+    fun loadBookItemFragment(book: Book) {
+        val bookItemFragment = BookItemFragment()
+        bookItemFragment.bookToShow = book
+        loadFragment(bookItemFragment)
     }
 
     @SuppressLint("RestrictedApi")
