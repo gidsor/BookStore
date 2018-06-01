@@ -47,6 +47,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         buyButtonBook.setOnClickListener { v ->
             if (user.id != -1) {
                 BasketArrayData.addToBasket(BasketItem(user, book, 1))
+                Toast.makeText(context, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
             }
@@ -66,6 +67,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
                         BasketArrayData.addToBasket(BasketItem(user, book, 1))
+                        Toast.makeText(context, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
                     }
@@ -75,6 +77,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                     if (user.id != -1) {
                         DelFromLibraryTask().execute(user.id.toString(),"1", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "1", book.composition.toString())
+                        Toast.makeText(context, "Книга добавлена в библиотеку", Toast.LENGTH_SHORT).show()
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
@@ -85,6 +88,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                     if (user.id != -1) {
                         DelFromLibraryTask().execute(user.id.toString(),"2", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "2", book.composition.toString())
+                        Toast.makeText(context, "Книга добавлена в библиотеку", Toast.LENGTH_SHORT).show()
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
@@ -95,6 +99,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                     if (user.id != -1) {
                         DelFromLibraryTask().execute(user.id.toString(),"3", book.composition.toString())
                         AddToLibraryTask().execute(user.id.toString(), "3", book.composition.toString())
+                        Toast.makeText(context, "Книга добавлена в библиотеку", Toast.LENGTH_SHORT).show()
                         AccountFragment.updateLibraryOfUser(user, AccountFragment.viewAccount)
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для доступа к библиотеке", Toast.LENGTH_SHORT).show()
