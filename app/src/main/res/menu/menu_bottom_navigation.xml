@@ -10,7 +10,7 @@
         android:title="Жанры"/>
     <item
         android:id="@+id/navigation_purchase"
-        android:icon="@drawable/ic_shopping_basket_white_24dp"
+        android:icon="@drawable/cart_0"
         android:title="Корзина"/>
     <item
         android:id="@+id/navigation_account"

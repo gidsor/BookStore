@@ -5,6 +5,7 @@ import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.AddToBasketTask
 import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.data.network.GetBasketTask
+import com.gidsor.bookstore.ui.main.MainActivity
 
 object BasketArrayData {
     private var booksOfBasket: ArrayList<BasketItem> = arrayListOf()
@@ -20,6 +21,15 @@ object BasketArrayData {
                 booksOfBasket.add(BasketItem(user, book, count))
             }
         }
+        MainActivity.badge.text = countOfBooks().toString()
+    }
+
+    private fun countOfBooks(): Int {
+        var count = 0
+        for (i in booksOfBasket) {
+            count += i.count
+        }
+        return count
     }
 
     fun addToBasket(basketItem: BasketItem) {
