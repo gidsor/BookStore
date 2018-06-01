@@ -9,7 +9,7 @@ object BookArrayData {
     private var books: ArrayList<Book> = arrayListOf()
     private var genres: MutableSet<String> = mutableSetOf()
 
-    fun updateBooks() {
+    fun updateBooks(): Boolean {
         val response: JSONObject = BookTask().execute("", "").get()
         if (response.has("status") && response["status"] == "ok") {
             books = arrayListOf()
@@ -44,6 +44,7 @@ object BookArrayData {
             }
         } else {
         }
+        return true
     }
 
     private fun getComposition(composition: Int): JSONObject {

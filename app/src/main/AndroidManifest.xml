@@ -7,9 +7,9 @@
     <application
         android:name=".BookStoreApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher_doki"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher_doki"
+        android:roundIcon="@drawable/ic_launcher"
         android:theme="@style/MaterialDrawerTheme">
         <activity
             android:name=".ui.main.SplashActivity"

@@ -24,6 +24,7 @@ android {
 
 repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -45,6 +46,7 @@ dependencies {
     implementation 'com.github.kittinunf.result:result:1.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'commons-lang:commons-lang:2.6'
+    implementation 'com.github.ybq:Android-SpinKit:1.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
