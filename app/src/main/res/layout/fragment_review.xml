@@ -3,7 +3,10 @@
     android:id="@+id/review_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginTop="2dp"
+    android:background="@drawable/relative_layout_border">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/review_image"
         android:layout_width="30dp"

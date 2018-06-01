@@ -73,7 +73,7 @@
             </RelativeLayout>
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/material_drawer_dark_divider"
                 android:layout_below="@id/book_item_layout_book"/>
@@ -100,7 +100,7 @@
             </RelativeLayout>
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/material_drawer_dark_divider"
                 android:layout_below="@id/book_item_layout_genres"/>
@@ -142,7 +142,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/material_drawer_dark_divider"
                 android:layout_below="@id/book_item_layout_description"/>
