@@ -29,7 +29,6 @@ object OrderOfUserArrayData {
 
                 ordersOfUser.add(Order(id, descriptionPrice, comment, dateOrder, address, price,
                         dateDelivery, phone, statusDelivery, priceDelivery, descriptionDelivery))
-
             }
 
         }

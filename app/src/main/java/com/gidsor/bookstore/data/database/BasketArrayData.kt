@@ -1,12 +1,10 @@
 package com.gidsor.bookstore.data.database
 
 import com.gidsor.bookstore.data.model.BasketItem
-import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.AddToBasketTask
 import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.data.network.GetBasketTask
-import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 
 object BasketArrayData {
     private var booksOfBasket: ArrayList<BasketItem> = arrayListOf()
@@ -40,11 +38,11 @@ object BasketArrayData {
         return booksOfBasket
     }
 
-    fun getCommonPrice(servieces: Int = 0): Int {
-        var price = servieces
+    fun getCommonPrice(): Int {
+        var price = 0
         for (i in getBasket()) {
             price += i.book.price
         }
-        return price + servieces
+        return price
     }
 }

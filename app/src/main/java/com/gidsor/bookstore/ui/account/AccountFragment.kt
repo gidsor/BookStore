@@ -18,7 +18,6 @@ import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.GetOrderTask
-import com.gidsor.bookstore.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 
 class AccountFragment : Fragment() {
@@ -121,6 +120,7 @@ class AccountFragment : Fragment() {
 Статус доставки: ${i.statusDelivery}
 Вариант доставки: ${i.descriptionDelivery}
 Цена доставки: ${i.priceDelivery}
+Адрес доставки: ${i.address}
 Комментарий: ${i.comment}
 Статус оплаты: ${i.descriptionPrice}
 Книги:"""

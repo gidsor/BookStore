@@ -1,6 +1,8 @@
 package com.gidsor.bookstore.data.model
 
-import com.github.kittinunf.fuel.core.ResponseDeserializable
-import com.google.gson.Gson
+import com.gidsor.bookstore.utils.AppConstants
 
-data class User(val id: Int = -1, val email: String = "", val realName: String = "Аноним", val phone: String = "")
+data class User(val id: Int = AppConstants.DEFAULT_USER_ID,
+                val email: String = "",
+                val realName: String = AppConstants.DEFAULT_USER_NAME,
+                val phone: String = "")

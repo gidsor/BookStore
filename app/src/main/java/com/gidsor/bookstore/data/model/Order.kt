@@ -1,7 +1,13 @@
 package com.gidsor.bookstore.data.model
 
-import java.util.*
-
-class Order(var id: String, var descriptionPrice: String, var comment: String, var dateOrder: String,
-            var address: String, var price: Int, var dateDelivery: String, var phone: String,
-            var statusDelivery: String, var priceDelivery: Int, var descriptionDelivery: String)
+data class Order(var id: String,
+                 var descriptionPrice: String,
+                 var comment: String,
+                 var dateOrder: String,
+                 var address: String,
+                 var price: Int,
+                 var dateDelivery: String,
+                 var phone: String,
+                 var statusDelivery: String,
+                 var priceDelivery: Int,
+                 var descriptionDelivery: String)
