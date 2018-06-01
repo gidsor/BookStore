@@ -12,10 +12,9 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
-import com.gidsor.bookstore.ui.main.MainActivity
 import org.json.JSONObject
 
-class LoginDialog() : DialogFragment() {
+class LoginDialog : DialogFragment() {
 
     lateinit var email: String
     lateinit var password: String
@@ -35,11 +34,11 @@ class LoginDialog() : DialogFragment() {
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
             val response: JSONObject = LoginTask().execute(email, password).get()
             if (response.has("status") && response["status"] == "ok") {
-                var userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
-                var r = userInfo.getJSONObject("result")
-                var id = r.getInt("id")
-                var name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
-                var phone = r.getString("phone")
+                val userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
+                val r = userInfo.getJSONObject("result")
+                val id = r.getInt("id")
+                val name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
+                val phone = r.getString("phone")
                 val user: User = User(id, email, name, phone)
                 AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
                 Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()

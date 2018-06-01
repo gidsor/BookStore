@@ -11,9 +11,7 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.model.Book
 import com.squareup.picasso.Picasso
 import com.gidsor.bookstore.data.database.BasketArrayData
-import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.model.BasketItem
-import com.gidsor.bookstore.data.model.Order
 import com.gidsor.bookstore.data.network.AddToLibraryTask
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.ui.account.AccountFragment
@@ -40,7 +38,6 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
-        //DownloadImageTask(imageBook).execute(book.imageUrl)
 
         ratingBook.rating = book.rating
         nameBook.text = book.name

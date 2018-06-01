@@ -14,7 +14,6 @@ import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.network.CreateOrderTask
-import com.gidsor.bookstore.data.network.DelFromBasketTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.main.MainActivity
 

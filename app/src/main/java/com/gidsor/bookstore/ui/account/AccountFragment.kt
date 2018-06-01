@@ -134,7 +134,7 @@ class AccountFragment : Fragment() {
 
                     val orderItemLayout = inflater.inflate(R.layout.fragment_order, null, false)
                     val imageView = orderItemLayout.findViewById<ImageView>(R.id.order_image)
-                    var urlImageView  = book.imageUrl
+                    val urlImageView  = book.imageUrl
                     Picasso.get().load(urlImageView).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                             .fit().centerInside()
                             .into(imageView)

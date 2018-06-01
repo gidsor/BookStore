@@ -7,7 +7,6 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -15,16 +14,12 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import com.gidsor.bookstore.*
 import com.gidsor.bookstore.data.model.Book
-import com.gidsor.bookstore.data.api.HTTPRequestAPI
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.genre.GenreFragment
 import com.gidsor.bookstore.ui.basket.PurchaseFragment
 import com.gidsor.bookstore.ui.store.StoreFragment
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.AccountHeader
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem
-import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.gidsor.bookstore.ui.companyinfo.AboutFragment
 import com.gidsor.bookstore.ui.companyinfo.ConfidentialityFragment
