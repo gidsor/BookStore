@@ -15,7 +15,7 @@
             android:layout_margin="10sp"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/roboto_light"
-            android:text="Телефон: 8 (922) 001-99-07\n\n
+            android:text="Телефон: +7 (111) 222-33-44\n\n
     В данном разделе отображены пункты самовывоза\n
     Москва:\n
     Автозаводская, ул. Автозаводская \n
