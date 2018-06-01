@@ -48,7 +48,6 @@ class StoreFragment : ListFragment() {
             bookItemsToShow = bookItems
         }
 
-        (activity as MainActivity).bottomNavigationView.menu.getItem(0).isChecked = true
         adapter = BookAdapter(view!!.context, bookItemsToShow)
 
         listAdapter = adapter

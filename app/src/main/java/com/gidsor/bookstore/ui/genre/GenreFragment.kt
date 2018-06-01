@@ -23,7 +23,7 @@ class GenreFragment : ListFragment() {
         adapter = GenreAdapter(view!!.context, BookArrayData.getGenres())
         listAdapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
-            MainActivity.loadStoreFragmentWithGenreAndSearch(BookArrayData.getGenres().elementAt(position))
+            (activity as MainActivity).loadStoreFragmentWithGenreAndSearch(BookArrayData.getGenres().elementAt(position))
         }
     }
 }

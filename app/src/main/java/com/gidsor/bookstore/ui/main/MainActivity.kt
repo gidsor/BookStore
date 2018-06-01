@@ -46,12 +46,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     companion object {
         lateinit var mainFragmentManager:FragmentManager
 
-        fun loadStoreFragmentWithGenreAndSearch(genre: String = "", search: String = "") {
-            val storeFragment = StoreFragment()
-            storeFragment.genreToShow = genre
-            storeFragment.searchTitle = search
-            mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
-        }
+
 
         fun loadBookItemFragment(book: Book) {
             val bookItemFragment = BookItemFragment()
@@ -102,6 +97,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         drawer = buildDrawer()
+    }
+
+    fun loadStoreFragmentWithGenreAndSearch(genre: String = "", search: String = "") {
+        val storeFragment = StoreFragment()
+        storeFragment.genreToShow = genre
+        storeFragment.searchTitle = search
+        bottomNavigationView.menu.getItem(0).isChecked = true
+        mainFragmentManager.beginTransaction().replace(R.id.fragment_container, storeFragment).commit()
     }
 
     @SuppressLint("RestrictedApi")
