@@ -1,5 +1,7 @@
 package com.gidsor.bookstore.ui.account
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
 import com.gidsor.bookstore.ui.main.MainActivity
+import com.gidsor.bookstore.utils.AppConstants
 import org.json.JSONObject
 
 class LoginDialog : DialogFragment() {
@@ -34,21 +37,9 @@ class LoginDialog : DialogFragment() {
         view.findViewById<Button>(R.id.login_login).setOnClickListener {
             email = view.findViewById<EditText>(R.id.login_email_input).text.toString()
             password = view.findViewById<EditText>(R.id.login_password_input).text.toString()
-            val response: JSONObject = LoginTask().execute(email, password).get()
-            if (response.has("status") && response["status"] == "ok") {
-                val userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
-                val r = userInfo.getJSONObject("result")
-                val id = r.getInt("id")
-                val name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
-                val phone = r.getString("phone")
-                val user: User = User(id, email, name, phone)
-                AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
-                Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
-                BasketArrayData.updateOrder(user)
-                (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
+
+            if ((parentFragment as AccountFragment).loginToAccount(email, password)) {
                 dismiss()
-            } else {
-                Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
             }
         }
 

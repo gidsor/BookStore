@@ -42,7 +42,6 @@ object BookArrayData {
                 books.add(Book(isbn, composition, name, image, genre, author, year, publisher, description, price, language, rating))
                 genres.add(genre)
             }
-        } else {
         }
         return true
     }

@@ -35,6 +35,8 @@ import com.gidsor.bookstore.ui.store.BookItemFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.gidsor.bookstore.R.layout.notification_badge
 import com.gidsor.bookstore.data.database.BasketArrayData
+import com.gidsor.bookstore.ui.account.LoginDialog
+import com.gidsor.bookstore.utils.AppConstants
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(StoreFragment())
+        loadFragment(AccountFragment())
 
         // Add search
         searchView = findViewById(R.id.search_view)
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
         // Always show text in navigation for more 3 elements and disable shift mode
         bottomNavigationView.disableShiftMode()
-        bottomNavigationView.menu.getItem(0).isChecked = true
+        bottomNavigationView.menu.getItem(3).isChecked = true
 
         val bottomNavigationMenuView = bottomNavigationView.getChildAt(0) as BottomNavigationMenuView
         val v = bottomNavigationMenuView.getChildAt(2)

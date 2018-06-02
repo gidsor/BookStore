@@ -1,15 +1,13 @@
 package com.gidsor.bookstore.ui.account
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.database.LibraryArrayData
@@ -19,14 +17,19 @@ import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.GetOrderTask
+import com.gidsor.bookstore.data.network.LoginTask
+import com.gidsor.bookstore.data.network.UserTask
 import com.gidsor.bookstore.ui.main.MainActivity
+import com.gidsor.bookstore.utils.AppConstants
 import com.squareup.picasso.Picasso
+import org.json.JSONObject
 
 class AccountFragment : Fragment() {
 
     companion object {
         var user: User = User()
         lateinit var viewAccount: View
+
         fun updateCurrentUser(newUser: User, view: View) {
             user = newUser
 
@@ -36,6 +39,7 @@ class AccountFragment : Fragment() {
 
             updateLibraryOfUser(user, view)
             updateOrdersOfUser(user, view)
+            BasketArrayData.updateOrder(user)
 
             if (user.id == -1) {
                 view.findViewById<TextView>(R.id.account_phone)?.text = ""
@@ -159,7 +163,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-    lateinit var loginDialog: DialogFragment
+    private lateinit var loginDialog: DialogFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -173,11 +177,52 @@ class AccountFragment : Fragment() {
         loginDialog = LoginDialog()
 
         view.findViewById<Button>(R.id.account_login_and_registration).setOnClickListener {
-            loginDialog.show(fragmentManager, "loginDialog")
+            loginDialog.show(childFragmentManager, "loginDialog")
+        }
+
+        val preferences = context!!.getSharedPreferences(AppConstants.STORAGE_ACCOUNT, Context.MODE_PRIVATE)
+
+        if (user.id == -1) {
+            val email = preferences.getString(AppConstants.TAG_EMAIL, "")
+            val password = preferences.getString(AppConstants.TAG_PASSWORD, "")
+            if (email != "" && password != "") {
+                loginToAccount(email, password)
+            }
         }
 
         view.findViewById<Button>(R.id.account_exit).setOnClickListener {
+            val preferencesEditor = preferences.edit()
+            preferencesEditor.putString(AppConstants.TAG_EMAIL, "")
+            preferencesEditor.putString(AppConstants.TAG_PASSWORD, "")
+            preferencesEditor.apply()
+            (activity as MainActivity).badge.text = "0"
             updateCurrentUser(User(), view)
+        }
+    }
+
+    fun loginToAccount(email: String, password: String): Boolean {
+        val response: JSONObject = LoginTask().execute(email, password).get()
+        if (response.has("status") && response["status"] == "ok") {
+            val userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
+            val r = userInfo.getJSONObject("result")
+            val id = r.getInt("id")
+            val name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
+            val phone = r.getString("phone")
+            val user = User(id, email, name, phone)
+
+            AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
+            Toast.makeText(context, "Вход выполнен", Toast.LENGTH_SHORT).show()
+
+            (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
+
+            val preferencesEditor = context!!.getSharedPreferences(AppConstants.STORAGE_ACCOUNT, Context.MODE_PRIVATE).edit()
+            preferencesEditor.putString(AppConstants.TAG_EMAIL, email)
+            preferencesEditor.putString(AppConstants.TAG_PASSWORD, password)
+            preferencesEditor.apply()
+            return true
+        } else {
+            Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()
+            return false
         }
     }
 }
