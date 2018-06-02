@@ -7,13 +7,11 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
-import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.gidsor.bookstore.*
@@ -33,10 +31,7 @@ import com.gidsor.bookstore.ui.basket.ServiceAndPaymentFragment
 import com.gidsor.bookstore.ui.companyinfo.ReferenceFragment
 import com.gidsor.bookstore.ui.store.BookItemFragment
 import com.miguelcatalan.materialsearchview.MaterialSearchView
-import com.gidsor.bookstore.R.layout.notification_badge
 import com.gidsor.bookstore.data.database.BasketArrayData
-import com.gidsor.bookstore.ui.account.LoginDialog
-import com.gidsor.bookstore.utils.AppConstants
 
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {

@@ -1,7 +1,5 @@
 package com.gidsor.bookstore.ui.account
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
@@ -9,15 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.gidsor.bookstore.R
-import com.gidsor.bookstore.data.database.BasketArrayData
-import com.gidsor.bookstore.data.model.User
-import com.gidsor.bookstore.data.network.LoginTask
-import com.gidsor.bookstore.data.network.UserTask
-import com.gidsor.bookstore.ui.main.MainActivity
-import com.gidsor.bookstore.utils.AppConstants
-import org.json.JSONObject
 
 class LoginDialog : DialogFragment() {
 
