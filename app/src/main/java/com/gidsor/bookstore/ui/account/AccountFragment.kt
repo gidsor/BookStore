@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.database.LibraryArrayData
 import com.gidsor.bookstore.data.database.BookArrayData
 import com.gidsor.bookstore.data.database.OrderOfUserArrayData
@@ -18,6 +19,7 @@ import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.data.network.GetOrderTask
+import com.gidsor.bookstore.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 
 class AccountFragment : Fragment() {

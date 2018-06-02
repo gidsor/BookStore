@@ -19,6 +19,7 @@ import com.gidsor.bookstore.data.network.ReviewTask
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.updateLibraryOfUser
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.viewAccount
+import com.gidsor.bookstore.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 
 class BookItemFragment : Fragment() {
@@ -51,6 +52,7 @@ class BookItemFragment : Fragment() {
         view.findViewById<Button>(R.id.book_item_buy_button).setOnClickListener { v ->
             if (user.id != -1) {
                 BasketArrayData.addToBasket(BasketItem(user, book, 1))
+                (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
                 Toast.makeText(context, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
@@ -73,7 +75,7 @@ class BookItemFragment : Fragment() {
         }
     }
 
-    fun updateReviews(view: View, book: Book) {
+    private fun updateReviews(view: View, book: Book) {
         val reviewsLayout = view.findViewById<LinearLayout>(R.id.book_item_layout_reviews)
         reviewsLayout.removeAllViewsInLayout()
 
@@ -93,12 +95,12 @@ class BookItemFragment : Fragment() {
         }
     }
 
-    fun addReview(view: View, book: Book) {
+    private fun addReview(view: View, book: Book) {
         AddReviewDialog.book = book
         AddReviewDialog().show(fragmentManager, "addReviewDialog")
     }
 
-    fun showMenu(view: View, book: Book) {
+    private fun showMenu(view: View, book: Book) {
         val popupMenu = PopupMenu(activity as Context, view)
         popupMenu.inflate(R.menu.menu_book_item_button)
         popupMenu.setOnMenuItemClickListener { item ->

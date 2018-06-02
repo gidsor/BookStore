@@ -19,6 +19,7 @@ class PurchaseFragment : ListFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         BasketArrayData.updateOrder(user)
+        (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
         return inflater.inflate(R.layout.fragment_basket, container, false)
     }
 

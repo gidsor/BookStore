@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.gidsor.bookstore.R
+import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
+import com.gidsor.bookstore.ui.main.MainActivity
 import org.json.JSONObject
 
 class LoginDialog : DialogFragment() {
@@ -42,6 +44,8 @@ class LoginDialog : DialogFragment() {
                 val user: User = User(id, email, name, phone)
                 AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
                 Toast.makeText(activity, "Вход выполнен", Toast.LENGTH_SHORT).show()
+                BasketArrayData.updateOrder(user)
+                (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
                 dismiss()
             } else {
                 Toast.makeText(activity, "Ошибка!!!", Toast.LENGTH_SHORT).show()

@@ -69,6 +69,7 @@ class ServiceAndPaymentFragment : Fragment() {
                     if (phone.length == "+7 1112223344".length) {
                         CreateOrderTask().execute(user.id.toString(), card, address, phone, message, type).get()
                         BasketArrayData.updateOrder(user)
+                        (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
                         Toast.makeText(context, "Заказ был создан успешно", Toast.LENGTH_SHORT).show()
                         (activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity!!.currentFocus.windowToken, 0)
                         (activity as MainActivity).loadStoreFragmentWithGenreAndSearch("")

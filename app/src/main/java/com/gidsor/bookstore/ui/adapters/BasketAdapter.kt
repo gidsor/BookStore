@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.ui.main.MainActivity
 import com.squareup.picasso.Picasso
 
 class BasketAdapter(val context: Context) : BaseAdapter() {
@@ -43,6 +44,7 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
 
         removeButton.setOnClickListener { v ->
             BasketArrayData.removeFromBasket(BasketArrayData.getBasket()[position])
+            (context as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
             notifyDataSetChanged()
         }
 

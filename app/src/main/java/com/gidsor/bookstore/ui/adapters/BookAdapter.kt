@@ -16,6 +16,7 @@ import com.gidsor.bookstore.data.network.AddToLibraryTask
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
 import com.gidsor.bookstore.ui.account.AccountFragment
 import com.gidsor.bookstore.ui.account.AccountFragment.Companion.user
+import com.gidsor.bookstore.ui.main.MainActivity
 
 
 class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAdapter() {
@@ -47,6 +48,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
         buyButtonBook.setOnClickListener { v ->
             if (user.id != -1) {
                 BasketArrayData.addToBasket(BasketItem(user, book, 1))
+                (context as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
                 Toast.makeText(context, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()
@@ -67,6 +69,7 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
                 R.id.book_item_button_add_to_order -> {
                     if (user.id != -1) {
                         BasketArrayData.addToBasket(BasketItem(user, book, 1))
+                        (context as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()
                         Toast.makeText(context, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Войдите в учетную запись для добавления в корзину", Toast.LENGTH_SHORT).show()

@@ -21,10 +21,9 @@ object BasketArrayData {
                 booksOfBasket.add(BasketItem(user, book, count))
             }
         }
-        MainActivity.badge.text = countOfBooks().toString()
     }
 
-    private fun countOfBooks(): Int {
+    fun countOfBooks(): Int {
         var count = 0
         for (i in booksOfBasket) {
             count += i.count

@@ -44,18 +44,16 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private lateinit var searchView: MaterialSearchView
     private lateinit var drawer: Drawer
 
-    companion object {
-        lateinit var badge: TextView
-    }
+    lateinit var badge: TextView
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(AccountFragment())
+        loadFragment(StoreFragment())
 
-        // add search
+        // Add search
         searchView = findViewById(R.id.search_view)
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -72,25 +70,26 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         })
 
-        // add bottom navigation
+        // Add bottom navigation
         bottomNavigationView = findViewById(R.id.navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
-        // always show text in navigation for more 3 elements and disable shift mode
+        // Always show text in navigation for more 3 elements and disable shift mode
         bottomNavigationView.disableShiftMode()
-        bottomNavigationView.menu.getItem(3).isChecked = true
+        bottomNavigationView.menu.getItem(0).isChecked = true
 
         val bottomNavigationMenuView = bottomNavigationView.getChildAt(0) as BottomNavigationMenuView
         val v = bottomNavigationMenuView.getChildAt(2)
         val itemView = v as BottomNavigationItemView
 
+        // Add badge notification. Count books in basket
         val badgeView = LayoutInflater.from(this)
                 .inflate(R.layout.notification_badge, bottomNavigationMenuView, false)
         itemView.addView(badgeView)
         badge = badgeView.findViewById(R.id.badge)
-        badge.text = BasketArrayData.getBasket().size.toString()
+        badge.text = BasketArrayData.countOfBooks().toString()
 
 
-        // add drawer
+        // Add drawer
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         drawer = buildDrawer()
@@ -125,7 +124,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         for (i in 0 until menuView.childCount) {
             val item = menuView.getChildAt(i) as BottomNavigationItemView
             item.setShiftingMode(false)
-            // set once again checked value, so view will be updated
+            // Set once again checked value, so view will be updated
             item.setChecked(item.itemData.isChecked)
         }
     }
