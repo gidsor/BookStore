@@ -11,7 +11,7 @@ class Book(var isbn: String,
            var price: Int,
            @SerializedName("mark") var rating: Float,
            @SerializedName("envelope") var image: String,
-           @SerializedName("ph") var publisher: String) {
-    var genre: String = ""
-    var author: String = ""
+           @SerializedName("ph") var publisher: String,
+           var genre: String = "",
+           var author: String = "") {
 }
