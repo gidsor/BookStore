@@ -40,7 +40,7 @@ class StoreFragment : ListFragment() {
 
         if (searchTitle != "") {
             for (book in bookItems) {
-                if (book.name.toLowerCase().contains(searchTitle.toLowerCase())) {
+                if (book.title.toLowerCase().contains(searchTitle.toLowerCase())) {
                     bookItemsToShow.add(book)
                 }
             }

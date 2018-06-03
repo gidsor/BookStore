@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.PopupMenu
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,17 +35,17 @@ class BookItemFragment : Fragment() {
 
     private fun setBook(view: View, book: Book) {
         val imageView = view.findViewById<ImageView>(R.id.book_item_image)
-        Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.envelope).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageView)
 
-        view.findViewById<RatingBar>(R.id.book_item_rating).rating = book.rating
-        view.findViewById<TextView>(R.id.book_item_name).text = book.name
+        view.findViewById<RatingBar>(R.id.book_item_rating).rating = book.mark
+        view.findViewById<TextView>(R.id.book_item_name).text = book.title
         view.findViewById<TextView>(R.id.book_item_author).text = book.author
         view.findViewById<Button>(R.id.book_item_buy_button).text = "КУПИТЬ за " + book.price.toString() + ",00 \u20BD"
         view.findViewById<TextView>(R.id.book_item_genres).text = book.genre
         view.findViewById<TextView>(R.id.book_item_description).text = book.description
-        view.findViewById<TextView>(R.id.book_item_publisher).text = "Издатель: " + book.publisher
+        view.findViewById<TextView>(R.id.book_item_publisher).text = "Издатель: " + book.ph
         view.findViewById<TextView>(R.id.book_item_year).text = "Год издания: " + book.year
 
         view.findViewById<Button>(R.id.book_item_buy_button).setOnClickListener { v ->

@@ -33,11 +33,11 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
         val baskedItem = BasketArrayData.getBasket()[position]
         val book: Book = baskedItem.book
 
-        Picasso.get().load(book.imageUrl).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.envelope).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
 
-        nameBook.text = book.name
+        nameBook.text = book.title
         authorBook.text = book.author
         priceBook.text = book.price.toString() + ",00 \u20BD"
         countBook.text = baskedItem.count.toString()

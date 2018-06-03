@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadFragment(AccountFragment())
+        loadFragment(StoreFragment())
 
         // Add search
         searchView = findViewById(R.id.search_view)
@@ -72,11 +72,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
         // Always show text in navigation for more 3 elements and disable shift mode
         bottomNavigationView.disableShiftMode()
-        bottomNavigationView.menu.getItem(3).isChecked = true
+        bottomNavigationView.menu.getItem(0).isChecked = true
 
         val bottomNavigationMenuView = bottomNavigationView.getChildAt(0) as BottomNavigationMenuView
-        val v = bottomNavigationMenuView.getChildAt(2)
-        val itemView = v as BottomNavigationItemView
+        val bottomNavigationMenuItem = bottomNavigationMenuView.getChildAt(2)
+        val itemView = bottomNavigationMenuItem as BottomNavigationItemView
 
         // Add badge notification. Count books in basket
         val badgeView = LayoutInflater.from(this)

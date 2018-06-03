@@ -1,54 +1,43 @@
 package com.gidsor.bookstore.data.database
 
 import com.gidsor.bookstore.data.model.Book
+import com.gidsor.bookstore.data.model.Composition
 import com.gidsor.bookstore.data.network.BookTask
 import com.gidsor.bookstore.data.network.CompositionTask
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 
 object BookArrayData {
     private var books: ArrayList<Book> = arrayListOf()
     private var genres: MutableSet<String> = mutableSetOf()
+    private var compositions: ArrayList<Composition> = arrayListOf()
 
     fun updateBooks(): Boolean {
-        val response: JSONObject = BookTask().execute("", "").get()
-        if (response.has("status") && response["status"] == "ok") {
-            books = arrayListOf()
-            genres = mutableSetOf()
-            val result = response.getJSONArray("result")
-            for (i in 0 until result.length()) {
-                val bookItem = result.getJSONObject(i)
+        val responseBook: JSONObject = BookTask().execute("", "").get()
+        if (responseBook.has("status") && responseBook["status"] == "ok") {
+            val booksType = object  : TypeToken<ArrayList<Book>>() {}.type
+            books = Gson().fromJson<ArrayList<Book>>(responseBook.getJSONArray("result").toString(), booksType)
 
-                val language = bookItem.getString("language")
-                val publisher = bookItem.getString("ph")
-                val year = bookItem.getInt("year")
-                val price = bookItem.getInt("price")
-                val description = bookItem.getString("description")
-                val image = "http://212.47.240.244/images/" + bookItem.getString("envelope")
-                val isbn = bookItem.getString("isbn")
+            val responseComposition: JSONObject = CompositionTask().execute("", "", "", "", "", "").get()
+            if (responseComposition.has("status") && responseComposition["status"] == "ok") {
+                val compositionsType = object : TypeToken<ArrayList<Composition>>() {}.type
+                compositions = Gson().fromJson<ArrayList<Composition>>(responseComposition.getJSONArray("result").toString(), compositionsType)
+            }
 
-                var rating = 0f
-                if (!bookItem.isNull("mark")) {
-                    rating = bookItem.getString("mark").toFloat()
+            for (b in books) {
+                for (c in compositions) {
+                    if (b.composition.toString() == c.composition) {
+                        b.author = c.author
+                        b.genre = c.genre
+                        b.envelope = "http://212.47.240.244/images/${b.envelope}"
+                        genres.add(b.genre)
+                        break
+                    }
                 }
-
-                val composition = bookItem.getInt("composition")
-                val compositionJSON = getComposition(composition)
-
-                val author = compositionJSON.getString("author")
-                val genre = compositionJSON.getString("genre")
-                val name = compositionJSON.getString("title")
-
-
-                books.add(Book(isbn, composition, name, image, genre, author, year, publisher, description, price, language, rating))
-                genres.add(genre)
             }
         }
         return true
-    }
-
-    private fun getComposition(composition: Int): JSONObject {
-        val response: JSONObject = CompositionTask().execute(composition.toString(), "", "", "", "", "").get()
-        return response.getJSONArray("result").getJSONObject(0)
     }
 
     fun updateRating(book: Book) {
@@ -59,7 +48,7 @@ object BookArrayData {
             if (!bookItem.isNull("mark")) {
                 rating = bookItem.getString("mark").toFloat()
             }
-            book.rating = rating
+            book.mark = rating
         }
     }
 
@@ -73,6 +62,10 @@ object BookArrayData {
     }
     fun getBooks(): ArrayList<Book> {
         return books
+    }
+
+    fun getComposition(): ArrayList<Composition> {
+        return compositions
     }
 
     fun getGenres(): MutableSet<String> {
