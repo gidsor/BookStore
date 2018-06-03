@@ -36,11 +36,11 @@ class BookAdapter(val context: Context, val bookItems: ArrayList<Book>) : BaseAd
 
         val book: Book = bookItems[position]
 
-        Picasso.get().load(book.envelope).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
 
-        ratingBook.rating = book.mark
+        ratingBook.rating = book.rating
         nameBook.text = book.title
         authorBook.text = book.author
         buyButtonBook.text = book.price.toString() + ",00 \u20BD"

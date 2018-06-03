@@ -30,7 +30,7 @@ object BookArrayData {
                     if (b.composition.toString() == c.composition) {
                         b.author = c.author
                         b.genre = c.genre
-                        b.envelope = "http://212.47.240.244/images/${b.envelope}"
+                        b.image = "http://212.47.240.244/images/${b.image}"
                         genres.add(b.genre)
                         break
                     }
@@ -48,7 +48,7 @@ object BookArrayData {
             if (!bookItem.isNull("mark")) {
                 rating = bookItem.getString("mark").toFloat()
             }
-            book.mark = rating
+            book.rating = rating
         }
     }
 
@@ -64,7 +64,7 @@ object BookArrayData {
         return books
     }
 
-    fun getComposition(): ArrayList<Composition> {
+    fun getCompositions(): ArrayList<Composition> {
         return compositions
     }
 

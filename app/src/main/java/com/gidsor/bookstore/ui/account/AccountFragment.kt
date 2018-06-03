@@ -81,7 +81,7 @@ class AccountFragment : Fragment() {
                 var urlImageView  = ""
                 for (book in BookArrayData.getBooks()) {
                     if (book.composition.toString() == i.composition) {
-                        urlImageView = book.envelope
+                        urlImageView = book.image
                         break
                     }
                 }
@@ -140,7 +140,7 @@ class AccountFragment : Fragment() {
 
                     val orderItemLayout = inflater.inflate(R.layout.fragment_order, null, false)
                     val imageView = orderItemLayout.findViewById<ImageView>(R.id.order_image)
-                    val urlImageView  = book.envelope
+                    val urlImageView  = book.image
                     Picasso.get().load(urlImageView).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                             .fit().centerInside()
                             .into(imageView)

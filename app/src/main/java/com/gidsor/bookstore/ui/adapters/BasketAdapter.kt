@@ -33,7 +33,7 @@ class BasketAdapter(val context: Context) : BaseAdapter() {
         val baskedItem = BasketArrayData.getBasket()[position]
         val book: Book = baskedItem.book
 
-        Picasso.get().load(book.envelope).placeholder(R.drawable.not_found).error(R.drawable.not_found)
+        Picasso.get().load(book.image).placeholder(R.drawable.not_found).error(R.drawable.not_found)
                 .fit().centerInside()
                 .into(imageBook)
 
