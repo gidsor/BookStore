@@ -21,6 +21,7 @@ import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
 import com.gidsor.bookstore.ui.main.MainActivity
 import com.gidsor.bookstore.utils.AppConstants
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import org.json.JSONObject
 
@@ -204,13 +205,11 @@ class AccountFragment : Fragment() {
         val response: JSONObject = LoginTask().execute(email, password).get()
         if (response.has("status") && response["status"] == "ok") {
             val userInfo = UserTask().execute(response.getJSONObject("result").getString("id")).get()
-            val r = userInfo.getJSONObject("result")
-            val id = r.getInt("id")
-            val name = r.getString("lastname") + " " + r.getString("firstname") + " " + r.getString("patronymic")
-            val phone = r.getString("phone")
-            val user = User(id, email, name, phone)
 
-            AccountFragment.updateCurrentUser(user, AccountFragment.viewAccount)
+            val newUser: User = Gson().fromJson(userInfo.getJSONObject("result").toString(), User::class.java)
+            newUser.realName = "${newUser.lastName} ${newUser.firstName} ${newUser.middleName}"
+
+            AccountFragment.updateCurrentUser(newUser, AccountFragment.viewAccount)
             Toast.makeText(context, "Вход выполнен", Toast.LENGTH_SHORT).show()
 
             (activity as MainActivity).badge.text = BasketArrayData.countOfBooks().toString()

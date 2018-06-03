@@ -18,22 +18,22 @@ object BookArrayData {
         if (responseBook.has("status") && responseBook["status"] == "ok") {
             val booksType = object  : TypeToken<ArrayList<Book>>() {}.type
             books = Gson().fromJson<ArrayList<Book>>(responseBook.getJSONArray("result").toString(), booksType)
+        }
 
-            val responseComposition: JSONObject = CompositionTask().execute("", "", "", "", "", "").get()
-            if (responseComposition.has("status") && responseComposition["status"] == "ok") {
-                val compositionsType = object : TypeToken<ArrayList<Composition>>() {}.type
-                compositions = Gson().fromJson<ArrayList<Composition>>(responseComposition.getJSONArray("result").toString(), compositionsType)
-            }
+        val responseComposition: JSONObject = CompositionTask().execute("", "", "", "", "", "").get()
+        if (responseComposition.has("status") && responseComposition["status"] == "ok") {
+            val compositionsType = object : TypeToken<ArrayList<Composition>>() {}.type
+            compositions = Gson().fromJson<ArrayList<Composition>>(responseComposition.getJSONArray("result").toString(), compositionsType)
+        }
 
-            for (b in books) {
-                for (c in compositions) {
-                    if (b.composition.toString() == c.composition) {
-                        b.author = c.author
-                        b.genre = c.genre
-                        b.image = "http://212.47.240.244/images/${b.image}"
-                        genres.add(b.genre)
-                        break
-                    }
+        for (b in books) {
+            for (c in compositions) {
+                if (b.composition.toString() == c.composition) {
+                    b.author = c.author
+                    b.genre = c.genre
+                    b.image = "http://212.47.240.244/images/${b.image}"
+                    genres.add(b.genre)
+                    break
                 }
             }
         }
