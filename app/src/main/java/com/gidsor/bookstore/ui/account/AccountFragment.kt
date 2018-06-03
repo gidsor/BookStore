@@ -57,11 +57,11 @@ class AccountFragment : Fragment() {
             val libraryLayout = view.findViewById<LinearLayout>(R.id.account_library)
             libraryLayout.removeAllViewsInLayout()
 
-            LibraryArrayData.updateCompositions(currentUser)
+            LibraryArrayData.updateLibrary(currentUser)
 
             val inflater = LayoutInflater.from(view.context)
 
-            for (i in LibraryArrayData.getCompositions()) {
+            for (i in LibraryArrayData.getLibrary()) {
                 val bookName = i.title
                 val bookAuthor = i.author
                 var bookStatus = ""
@@ -101,7 +101,7 @@ class AccountFragment : Fragment() {
 
                 libraryLayout.addView(libraryItemLayout)
             }
-            if (LibraryArrayData.getCompositions().size == 0) {
+            if (LibraryArrayData.getLibrary().size == 0) {
                 val newTextView = TextView(view.context)
                 val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
                 paramsOfTextView.setMargins(10, 10, 0, 0)
