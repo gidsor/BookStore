@@ -12,6 +12,7 @@ object BasketArrayData {
 
     fun updateOrder(user: User) {
         booksOfBasket = arrayListOf()
+
         val basket = GetBasketTask().execute(user.id.toString()).get()
         if (!basket.isNull("result")) {
             val arr = basket.getJSONArray("result")

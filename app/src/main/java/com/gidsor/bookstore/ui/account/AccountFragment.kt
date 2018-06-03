@@ -12,11 +12,8 @@ import com.gidsor.bookstore.R
 import com.gidsor.bookstore.data.database.BasketArrayData
 import com.gidsor.bookstore.data.database.LibraryArrayData
 import com.gidsor.bookstore.data.database.BookArrayData
-import com.gidsor.bookstore.data.database.OrderOfUserArrayData
-import com.gidsor.bookstore.data.model.Book
 import com.gidsor.bookstore.data.model.User
 import com.gidsor.bookstore.data.network.DelFromLibraryTask
-import com.gidsor.bookstore.data.network.GetOrderTask
 import com.gidsor.bookstore.data.network.LoginTask
 import com.gidsor.bookstore.data.network.UserTask
 import com.gidsor.bookstore.ui.main.MainActivity
@@ -30,6 +27,8 @@ class AccountFragment : Fragment() {
     companion object {
         var user: User = User()
         lateinit var viewAccount: View
+        private lateinit var loginDialog: DialogFragment
+        private lateinit var myOrdersDialog: DialogFragment
 
         fun updateCurrentUser(newUser: User, view: View) {
             user = newUser
@@ -39,16 +38,17 @@ class AccountFragment : Fragment() {
             view.findViewById<TextView>(R.id.account_phone)?.text = "+" + user.phone
 
             updateLibraryOfUser(user, view)
-            updateOrdersOfUser(user, view)
             BasketArrayData.updateOrder(user)
 
             if (user.id == -1) {
                 view.findViewById<TextView>(R.id.account_phone)?.text = ""
 
                 view.findViewById<Button>(R.id.account_login_and_registration)?.visibility = View.VISIBLE
+                view.findViewById<Button>(R.id.account_show_orders)?.visibility = View.INVISIBLE
                 view.findViewById<Button>(R.id.account_exit)?.visibility = View.INVISIBLE
             } else {
                 view.findViewById<Button>(R.id.account_exit)?.visibility = View.VISIBLE
+                view.findViewById<Button>(R.id.account_show_orders)?.visibility = View.VISIBLE
                 view.findViewById<Button>(R.id.account_login_and_registration)?.visibility = View.INVISIBLE
             }
         }
@@ -110,61 +110,8 @@ class AccountFragment : Fragment() {
                 libraryLayout.addView(newTextView)
             }
         }
-
-        fun updateOrdersOfUser(currentUser: User, view: View) {
-            val myOrders: LinearLayout = view.findViewById(R.id.account_orders)
-            myOrders.removeAllViewsInLayout()
-            OrderOfUserArrayData.updateOrdersOfUser(currentUser)
-            for (i in OrderOfUserArrayData.getOrdersOfUser().reversed()) {
-                val newTextView = TextView(view.context)
-                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                paramsOfTextView.setMargins(10, 10, 0, 0)
-                newTextView.layoutParams = paramsOfTextView
-
-                newTextView.text = """Дата заказа: ${i.dateOrder}
-Цена заказа: ${i.price}
-Дата доставки: ${i.dateDelivery}
-Статус доставки: ${i.statusDelivery}
-Вариант доставки: ${i.descriptionDelivery}
-Цена доставки: ${i.priceDelivery}
-Адрес доставки: ${i.address}
-Комментарий: ${i.comment}
-Статус оплаты: ${i.descriptionPrice}
-Книги:"""
-                myOrders.addView(newTextView)
-
-                val inflater = LayoutInflater.from(view.context)
-                val order = GetOrderTask().execute(currentUser.id.toString(), i.id).get().getJSONArray("result")
-                for (i in 0 until order.length()) {
-                    val book: Book = BookArrayData.getBook(order.getJSONObject(i).getString("isbn"))
-                    val countBook = order.getJSONObject(i).getString("count")
-
-                    val orderItemLayout = inflater.inflate(R.layout.fragment_order, null, false)
-                    val imageView = orderItemLayout.findViewById<ImageView>(R.id.order_image)
-                    val urlImageView  = book.image
-                    Picasso.get().load(urlImageView).placeholder(R.drawable.not_found).error(R.drawable.not_found)
-                            .fit().centerInside()
-                            .into(imageView)
-
-                    orderItemLayout.findViewById<TextView>(R.id.order_title).text = book.title
-                    orderItemLayout.findViewById<TextView>(R.id.order_author).text = book.author
-                    orderItemLayout.findViewById<TextView>(R.id.order_count).text = "x $countBook"
-
-                    myOrders.addView(orderItemLayout)
-                }
-            }
-            if (OrderOfUserArrayData.getOrdersOfUser().size == 0) {
-                val newTextView = TextView(view.context)
-                val paramsOfTextView = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                paramsOfTextView.setMargins(10, 10, 0, 0)
-                newTextView.layoutParams = paramsOfTextView
-                newTextView.text = "Пусто"
-                myOrders.addView(newTextView)
-            }
-        }
     }
 
-    private lateinit var loginDialog: DialogFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -175,9 +122,9 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewAccount = view
         updateCurrentUser(user, view)
-        loginDialog = LoginDialog()
 
         view.findViewById<Button>(R.id.account_login_and_registration).setOnClickListener {
+            loginDialog = LoginDialog()
             loginDialog.show(childFragmentManager, "loginDialog")
         }
 
@@ -198,6 +145,11 @@ class AccountFragment : Fragment() {
             preferencesEditor.apply()
             (activity as MainActivity).badge.text = "0"
             updateCurrentUser(User(), view)
+        }
+
+        view.findViewById<Button>(R.id.account_show_orders).setOnClickListener {
+            myOrdersDialog = MyOrdersDialog()
+            myOrdersDialog.show(childFragmentManager, "myOrdersDialog")
         }
     }
 

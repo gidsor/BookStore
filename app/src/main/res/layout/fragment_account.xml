@@ -51,12 +51,21 @@
                     android:layout_centerHorizontal="true"
                     android:text="ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ"/>
                 <Button
+                    android:id="@+id/account_show_orders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@id/account_image"
+                    android:text="Мои заказы"/>
+                <Button
                     android:id="@+id/account_exit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_below="@id/account_image"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
                     android:text="ВЫЙТИ"/>
                 <TextView
                     android:layout_width="wrap_content"
