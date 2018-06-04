@@ -1,5 +1,5 @@
 ## BookStore(Книжный магазин)
-**BookStore** является мобильным приложением, разработанное под **Android** на языке **Kotlin**. Взаимодействие с сервером происходит через API с помощью HTTP запросов.
+**BookStore** является мобильным приложением, разработанное под **Android** на языке **Kotlin**. Взаимодействие с сервером происходит через API с помощью HTTP запросов. Данный проект является частью курсовой работы.
 ## Скриншоты
 <img src="https://user-images.githubusercontent.com/16274235/40901762-09688602-67eb-11e8-892e-202f32ff9a2b.png" width=30%/> <img src="https://user-images.githubusercontent.com/16274235/40901763-098fd004-67eb-11e8-9ac7-acaa0549f1a7.png" width=30%/> <img src="https://user-images.githubusercontent.com/16274235/40901764-09b6349c-67eb-11e8-92c5-24fdd5dabadf.png" width=30%/>
 
